@@ -1,10 +1,12 @@
 import "./App.css";
+import Header from "./_components/_Header/Header";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <>
       <div>
-        <h1>CleanEase</h1>
+        <Header />
       </div>
     </>
   );

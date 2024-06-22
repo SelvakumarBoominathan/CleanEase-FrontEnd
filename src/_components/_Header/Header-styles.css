@@ -1,0 +1,22 @@
+._Logo {
+  width: 80px;
+  height: 80px;
+}
+
+.title {
+  font-family: "Montserrat", sans-serif;
+  color: rgb(7, 74, 130);
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  place-content: center;
+}
+
+.navbar {
+  background-color: beige;
+}
+
+.list-name > *:hover {
+  color: #f00 !important;
+  text-decoration: underline;
+}
