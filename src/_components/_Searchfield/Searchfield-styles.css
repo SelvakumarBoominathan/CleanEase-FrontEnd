@@ -1,3 +1,13 @@
-.span {
-  color: yellow !important;
+.Span {
+  color: green;
+  font-weight: 700;
+}
+.text-field {
+  font-size: clamp(0.8rem, 2.5vw, 2rem);
+  text-align: center;
+}
+
+h1,
+h6 * {
+  margin: 50px, 0, 50px, 0;
 }
