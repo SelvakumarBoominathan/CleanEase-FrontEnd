@@ -45,9 +45,6 @@ const Header = () => {
                 <div className="list_item">{item.name}</div>
               </Nav.Link>
             ))}
-
-            {/* <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link> */}
           </Nav>
           <Nav className="ms-auto">
             <button className="btn btn-success">Sign Up</button>
