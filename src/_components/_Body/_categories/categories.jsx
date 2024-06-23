@@ -10,8 +10,7 @@ import React from "react";
 const categories = () => {
   const Workers = [
     {
-      image:
-        "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
+      image: "https://im.hunt.in/cg/Tirupur/City-Guide/house.jpg",
       category: "House Clean",
       name: "Lakshmi",
       city: "Chennai",
