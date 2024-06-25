@@ -1,4 +1,5 @@
 import "./App.css";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./_components/_Homepage.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,7 +8,7 @@ import Login from "./_components/_Login/Login";
 
 function App() {
   return (
-    <>
+    <React.StrictMode>
       <div>
         <BrowserRouter>
           <Routes>
@@ -17,7 +18,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </div>
-    </>
+    </React.StrictMode>
   );
 }
 
