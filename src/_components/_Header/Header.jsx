@@ -47,9 +47,6 @@ const Header = () => {
               </Nav.Link>
             ))}
           </Nav>
-          {/* <Nav className="ms-auto">
-            <button className="btn btn-success">Sign Up</button>
-          </Nav> */}
           <Nav className="ms-auto">
             <Link to="/Registerpage" className="btn btn-success">
               Sign Up
