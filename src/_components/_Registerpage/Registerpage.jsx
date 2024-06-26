@@ -22,7 +22,12 @@ const Registerpage = () => {
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-90">
       <h1>Register page</h1>
-      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+      <Form
+        className="Form-Register"
+        noValidate
+        validated={validated}
+        onSubmit={handleSubmit}
+      >
         <Row className="mb-1 mx-3 d-grid align-items-center">
           <Form.Group
             as={Row}
@@ -56,7 +61,7 @@ const Registerpage = () => {
           <Form.Group
             as={Row}
             className="col-md-12"
-            controlId="validationCustom03"
+            controlId="validationCustom05"
           >
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -90,7 +95,7 @@ const Registerpage = () => {
             className="col-md-12"
             controlId="validationCustom04"
           >
-            <Form.Label className="w-50">Confirm Password</Form.Label>
+            <Form.Label className="w-70">Confirm Password</Form.Label>
             <Form.Control
               required
               type="password"
