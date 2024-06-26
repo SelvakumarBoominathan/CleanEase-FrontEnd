@@ -21,9 +21,12 @@ h1 {
   font-weight: 800;
 }
 
-.form-link {
+.register-link-container {
   display: flex;
   margin-top: 15px;
+}
+.register-link {
+  color: rgb(250, 0, 0);
 }
 
 p {

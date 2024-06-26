@@ -119,7 +119,12 @@ const Registerpage = () => {
             Register
           </Button>
         </Container>
-        <Link to="/Login">Click here if already have an account.</Link>
+        <div className="login-Link-container">
+          <p>Already have an account ?</p>
+          <Link className="login-link" to="/Login">
+            Click here
+          </Link>
+        </div>
       </Form>
     </Container>
   );
