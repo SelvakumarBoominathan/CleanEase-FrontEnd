@@ -6,18 +6,31 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./Login-styles.css";
 import { Link } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import { useFormik } from "formik";
 
 const Login = () => {
   const [validated, setValidated] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
+      setValidated(true);
       event.preventDefault();
       event.stopPropagation();
+      return;
     }
 
     setValidated(true);
+
+    // Need to write post method here to send the data for validation
+    console.log({ name: username, pass: password });
+    setUsername("");
+    setPassword("");
+    setValidated(false);
   };
 
   return (
@@ -39,10 +52,11 @@ const Login = () => {
             <Form.Control
               required
               type="text"
-              // placeholder="First name"
-              defaultValue=""
+              placeholder="First name"
+              name="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
         </Row>
 
@@ -56,10 +70,11 @@ const Login = () => {
             <Form.Control
               required
               type="password"
-              // placeholder="password"
-              defaultValue=""
+              placeholder="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
         </Row>
 
