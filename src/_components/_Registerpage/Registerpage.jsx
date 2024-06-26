@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./Registerpage-styles.css";
+import { Link } from "react-router-dom";
 
 const Registerpage = () => {
   const [validated, setValidated] = useState(false);
@@ -118,7 +119,7 @@ const Registerpage = () => {
             Register
           </Button>
         </Container>
-        <a href="/Login">Click here if already have an account.</a>
+        <Link to="/Login">Click here if already have an account.</Link>
       </Form>
     </Container>
   );
