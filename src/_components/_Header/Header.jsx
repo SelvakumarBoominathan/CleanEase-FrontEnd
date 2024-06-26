@@ -3,6 +3,7 @@ import "./Header-styles.css";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const metaData = [
@@ -46,8 +47,13 @@ const Header = () => {
               </Nav.Link>
             ))}
           </Nav>
-          <Nav className="ms-auto">
+          {/* <Nav className="ms-auto">
             <button className="btn btn-success">Sign Up</button>
+          </Nav> */}
+          <Nav className="ms-auto">
+            <Link to="/Registerpage" className="btn btn-success">
+              Sign Up
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
