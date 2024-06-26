@@ -6,11 +6,17 @@
 }
 
 .Form-Register {
-  background-color: rgb(160, 227, 160);
+  background-color: rgba(255, 255, 255, 0.55);
   padding: 20px;
   border-radius: 5px;
+  backdrop-filter: blur(7.1px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
 h1 {
-  color: rgb(11, 91, 11);
+  color: rgb(14, 62, 123);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: 800;
 }

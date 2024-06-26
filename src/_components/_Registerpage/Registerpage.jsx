@@ -22,7 +22,7 @@ const Registerpage = () => {
 
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-90">
-      <h1>Register page</h1>
+      <h1>SignUp Nexus!</h1>
       <Form
         className="Form-Register"
         noValidate
@@ -39,7 +39,7 @@ const Registerpage = () => {
             <Form.Control
               required
               type="text"
-              placeholder="First name"
+              // placeholder="First name"
               defaultValue=""
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -53,7 +53,7 @@ const Registerpage = () => {
             <Form.Control
               required
               type="text"
-              placeholder="Last name"
+              // placeholder="Last name"
               defaultValue=""
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -68,7 +68,7 @@ const Registerpage = () => {
             <Form.Control
               required
               type="Email"
-              placeholder="Email"
+              // placeholder="Email"
               defaultValue=""
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -85,7 +85,7 @@ const Registerpage = () => {
             <Form.Control
               required
               type="password"
-              placeholder="password"
+              // placeholder="password"
               defaultValue=""
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -100,7 +100,7 @@ const Registerpage = () => {
             <Form.Control
               required
               type="password"
-              placeholder="Confirm password"
+              // placeholder="Confirm password"
               defaultValue=""
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
