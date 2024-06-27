@@ -29,6 +29,14 @@ h1 {
   color: rgb(250, 0, 0);
 }
 
+.pasword-reset-link-container {
+  display: flex;
+  margin-top: 5px;
+}
+.pasword-reset-link {
+  color: rgb(250, 0, 0);
+}
+
 p {
   margin-right: 5px;
 }

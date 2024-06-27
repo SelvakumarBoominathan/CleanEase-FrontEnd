@@ -6,8 +6,6 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./Login-styles.css";
 import { Link } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
-import { useFormik } from "formik";
 
 const Login = () => {
   const [validated, setValidated] = useState(false);
@@ -87,6 +85,12 @@ const Login = () => {
           <p>Not a member ?</p>
           <Link className="register-link" to="/Registerpage">
             Register here
+          </Link>
+        </div>
+        <div className="pasword-reset-link-container">
+          <p>Forgot password ?</p>
+          <Link className="pasword-reset-link" to="/passwordreset">
+            Password Reset
           </Link>
         </div>
       </Form>

@@ -5,6 +5,7 @@ import Homepage from "./_components/_Homepage.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Registerpage from "./_components/_Registerpage/Registerpage";
 import Login from "./_components/_Login/Login";
+import Password_reset from "./_components/_Passswordreset/PasswordReset.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" element={<Homepage />} />
             <Route path="/Registerpage" element={<Registerpage />} />
             <Route path="/Login" element={<Login />} />
+            <Route path="/passwordreset" element={<Password_reset />} />
           </Routes>
         </BrowserRouter>
       </div>
