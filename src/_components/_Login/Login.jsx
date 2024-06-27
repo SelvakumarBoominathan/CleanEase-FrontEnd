@@ -35,7 +35,7 @@ const Login = () => {
     <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-90">
       <h1>Lets Getin!</h1>
       <Form
-        className="Form-Register"
+        className="Form-Register shadow"
         noValidate
         validated={validated}
         onSubmit={handleSubmit}

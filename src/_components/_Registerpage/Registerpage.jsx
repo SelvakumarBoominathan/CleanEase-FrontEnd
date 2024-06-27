@@ -24,7 +24,7 @@ const Registerpage = () => {
     <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-90">
       <h1>SignUp Nexus!</h1>
       <Form
-        className="Form-Register"
+        className="Form-Register shadow "
         noValidate
         validated={validated}
         onSubmit={handleSubmit}
