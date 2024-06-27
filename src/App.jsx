@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Registerpage from "./_components/_Registerpage/Registerpage";
 import Login from "./_components/_Login/Login";
 import Password_reset from "./_components/_Passswordreset/PasswordReset.jsx";
+import OTPvalidation from "./_components/_OTPvalidation/OTPvalidation.jsx";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/Registerpage" element={<Registerpage />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/passwordreset" element={<Password_reset />} />
+            <Route path="/otpvalidation" element={<OTPvalidation />} />
           </Routes>
         </BrowserRouter>
       </div>

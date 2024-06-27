@@ -1,9 +1,9 @@
+import "./OTPvalidation-styles.css";
 import React, { useState } from "react";
 import { Container, Form, Button, Row, Col, Toast } from "react-bootstrap";
-import "./Password-reset-styles.css";
 import { useNavigate } from "react-router-dom";
 
-const Password_reset = () => {
+const OTPvalidation = () => {
   const [email, setEmail] = useState("");
   const [showToast, setshowToast] = useState(false);
   const navigate = useNavigate();
@@ -15,21 +15,20 @@ const Password_reset = () => {
     setshowToast(true);
     //to navigate to another component
     setTimeout(() => {
-      navigate("/otpvalidation");
+      navigate("/Login");
     }, 3000);
   };
-
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-90">
-      <h1>Enter Email</h1>
+      <h1>Enter OTP</h1>
       <Row className="w-100 justify-content-center mt-3">
         <Col md={5}>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email Address</Form.Label>
+              <Form.Label>Enter 6 digit OTP from Email</Form.Label>
               <Form.Control
-                type="email"
-                placeholder="Enter email"
+                type="text"
+                placeholder="Enter OTP"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -37,7 +36,7 @@ const Password_reset = () => {
             </Form.Group>
             <div className="d-flex flex-column justify-content-center align-items-center mt-4">
               <Button variant="primary" type="submit" className="w-30">
-                Send OTP
+                Verify OTP
               </Button>
             </div>
           </Form>
@@ -51,7 +50,7 @@ const Password_reset = () => {
             <Toast.Header>
               <strong className="me-auto">Notification</strong>
             </Toast.Header>
-            <Toast.Body>OTP has been sent to your email!</Toast.Body>
+            <Toast.Body>OTP has been verified</Toast.Body>
           </Toast>
         </Col>
       </Row>
@@ -59,4 +58,4 @@ const Password_reset = () => {
   );
 };
 
-export default Password_reset;
+export default OTPvalidation;
