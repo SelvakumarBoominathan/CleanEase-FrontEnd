@@ -22,53 +22,48 @@ const Setpassword = () => {
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-90">
       <h1>Enter New Password</h1>
-      <Row className="w-100 justify-content-center shadow mt-3 p-4">
-        <Col md={5}>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>New Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Enter New Password"
-                value={newpassword}
-                onChange={(e) => setNewpassword(e.target.value)}
-                required
-              />
-            </Form.Group>
-            <Form.Group controlId="formBasicEmail2">
-              <Form.Label>Re-enter new password </Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Confirm New Password"
-                value={reenterpassword}
-                onChange={(e) => setReenterpassword(e.target.value)}
-                required
-              />
-            </Form.Group>
-            <div className="d-flex flex-column justify-content-center align-items-center mt-4">
-              <Button
-                variant="primary"
-                type="submit"
-                className="w-30 px-3 py-2"
-              >
-                Reset
-              </Button>
-            </div>
-          </Form>
-          <Toast
-            onClose={() => setshowToast(false)}
-            show={showToast}
-            delay={3000}
-            autohide
-            className="position-fixed top-0 center-0 m-3"
-          >
-            <Toast.Header>
-              <strong className="me-auto">Notification</strong>
-            </Toast.Header>
-            <Toast.Body>Password reset has been done!</Toast.Body>
-          </Toast>
-        </Col>
-      </Row>
+
+      <Form onSubmit={handleSubmit} className="Form-Register shadow">
+        <Row className="mb-1 mx-5 d-grid align-items-center">
+          <Form.Group controlId="formBasicEmail" className="col-md-12">
+            <Form.Label>New Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Enter New Password"
+              value={newpassword}
+              onChange={(e) => setNewpassword(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail2">
+            <Form.Label>Re-enter new password </Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Confirm New Password"
+              value={reenterpassword}
+              onChange={(e) => setReenterpassword(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <div className="d-flex flex-column justify-content-center align-items-center mt-4">
+            <Button variant="primary" type="submit" className="w-30 px-3 py-2">
+              Reset
+            </Button>
+          </div>
+        </Row>
+      </Form>
+      <Toast
+        onClose={() => setshowToast(false)}
+        show={showToast}
+        delay={3000}
+        autohide
+        className="position-fixed top-0 center-0 m-3"
+      >
+        <Toast.Header>
+          <strong className="me-auto">Notification</strong>
+        </Toast.Header>
+        <Toast.Body>Password reset has been done!</Toast.Body>
+      </Toast>
     </Container>
   );
 };
