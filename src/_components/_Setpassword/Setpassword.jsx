@@ -1,16 +1,35 @@
 import "./Setpassword-styles.css";
 import React, { useState } from "react";
-import { Container, Form, Button, Row, Col, Toast } from "react-bootstrap";
+import { Container, Form, Button, Row, Toast } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { passwordvalidate } from "../validate.js";
 
 const Setpassword = () => {
   const [newpassword, setNewpassword] = useState("");
   const [reenterpassword, setReenterpassword] = useState("");
   const [showToast, setshowToast] = useState(false);
+  const [validationError, setValidationError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate passwords
+    const errors = await passwordvalidate({ password: newpassword });
+
+    if (errors !== "Password is strong") {
+      setValidationError(errors);
+      return;
+    }
+
+    if (newpassword !== reenterpassword) {
+      setValidationError("Passwords do not match");
+      return;
+    }
+
+    // Reset validation error
+    setValidationError("");
+
     // Logic to send OTP to the entered email
     // Example: sendOtp(email);
     setshowToast(true);
@@ -45,6 +64,9 @@ const Setpassword = () => {
               required
             />
           </Form.Group>
+          {validationError && (
+            <div className="text-danger">{validationError}</div>
+          )}
           <div className="d-flex flex-column justify-content-center align-items-center mt-4">
             <Button variant="primary" type="submit" className="w-30 px-3 py-2">
               Reset
