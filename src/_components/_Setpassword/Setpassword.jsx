@@ -4,14 +4,19 @@ import { Container, Form, Button, Row, Col, Toast } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const Setpassword = () => {
-  const [email, setEmail] = useState("");
+  const [newpassword, setNewpassword] = useState("");
+  const [reenterpassword, setReenterpassword] = useState("");
   const [showToast, setshowToast] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Logic to send OTP to the entered email
     // Example: sendOtp(email);
     setshowToast(true);
+    setTimeout(() => {
+      navigate("/Login");
+    }, 3000);
   };
 
   return (
@@ -23,20 +28,20 @@ const Setpassword = () => {
             <Form.Group controlId="formBasicEmail">
               <Form.Label>New Password</Form.Label>
               <Form.Control
-                type="text"
+                type="password"
                 // placeholder="Enter new password"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={newpassword}
+                onChange={(e) => setNewpassword(e.target.value)}
                 required
               />
             </Form.Group>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group controlId="formBasicEmail2">
               <Form.Label>Re-enter new password </Form.Label>
               <Form.Control
-                type="text"
+                type="password"
                 // placeholder="Confirm New Password"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={reenterpassword}
+                onChange={(e) => setReenterpassword(e.target.value)}
                 required
               />
             </Form.Group>

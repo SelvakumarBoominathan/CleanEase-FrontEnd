@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Container, Form, Button, Row, Col, Toast } from "react-bootstrap";
-import "./Password-reset-styles.css";
+import "./Emailvarification-styles.css";
 import { useNavigate } from "react-router-dom";
 
-const Password_reset = () => {
+const Email_verification = () => {
   const [email, setEmail] = useState("");
   const [showToast, setshowToast] = useState(false);
   const navigate = useNavigate();
@@ -59,4 +59,4 @@ const Password_reset = () => {
   );
 };
 
-export default Password_reset;
+export default Email_verification;

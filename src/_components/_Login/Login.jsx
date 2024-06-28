@@ -89,7 +89,7 @@ const Login = () => {
         </div>
         <div className="pasword-reset-link-container">
           <p>Forgot password ?</p>
-          <Link className="pasword-reset-link" to="/passwordreset">
+          <Link className="pasword-reset-link" to="/emailverification">
             Password Reset
           </Link>
         </div>
