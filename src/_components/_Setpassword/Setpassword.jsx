@@ -22,14 +22,14 @@ const Setpassword = () => {
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-90">
       <h1>Enter New Password</h1>
-      <Row className="w-100 justify-content-center mt-3">
+      <Row className="w-100 justify-content-center shadow mt-3 p-4">
         <Col md={5}>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>New Password</Form.Label>
               <Form.Control
                 type="password"
-                // placeholder="Enter new password"
+                placeholder="Enter New Password"
                 value={newpassword}
                 onChange={(e) => setNewpassword(e.target.value)}
                 required
@@ -39,15 +39,19 @@ const Setpassword = () => {
               <Form.Label>Re-enter new password </Form.Label>
               <Form.Control
                 type="password"
-                // placeholder="Confirm New Password"
+                placeholder="Confirm New Password"
                 value={reenterpassword}
                 onChange={(e) => setReenterpassword(e.target.value)}
                 required
               />
             </Form.Group>
             <div className="d-flex flex-column justify-content-center align-items-center mt-4">
-              <Button variant="primary" type="submit" className="w-30">
-                Reset Password
+              <Button
+                variant="primary"
+                type="submit"
+                className="w-30 px-3 py-2"
+              >
+                Reset
               </Button>
             </div>
           </Form>

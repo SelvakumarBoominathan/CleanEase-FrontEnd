@@ -22,7 +22,7 @@ const Email_verification = () => {
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-90">
       <h1>Enter Email</h1>
-      <Row className="w-100 justify-content-center mt-3">
+      <Row className="w-100 justify-content-center shadow mt-3 p-4">
         <Col md={5}>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">
