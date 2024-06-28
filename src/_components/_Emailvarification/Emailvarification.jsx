@@ -1,26 +1,38 @@
 import React, { useState } from "react";
-import { Container, Form, Button, Row, Col, Toast } from "react-bootstrap";
+import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import "./Emailvarification-styles.css";
 import { useNavigate } from "react-router-dom";
 
 const Email_verification = () => {
   const [email, setEmail] = useState("");
-  const [showToast, setshowToast] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Logic to send OTP to the entered email
     // Example: sendOtp(email);
-    setshowToast(true);
-    //to navigate to another component
+
+    // Show alert for email submission
+    setShowAlert(true);
+    console.log({ email: email });
+
+    // Navigate to another component after some time
     setTimeout(() => {
+      setShowAlert(false); // Hide alert after some time
       navigate("/otpvalidation");
     }, 3000);
   };
 
   return (
-    <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-90">
+    <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-90 position-relative">
+      {showAlert && (
+        <div className="alert-overlay">
+          <div className="alert alert-success" role="alert">
+            OTP has been sent to your email!
+          </div>
+        </div>
+      )}
       <h1>Enter Email</h1>
       <Row className="w-100 justify-content-center shadow mt-3 p-4">
         <Col md={5}>
@@ -41,18 +53,6 @@ const Email_verification = () => {
               </Button>
             </div>
           </Form>
-          <Toast
-            onClose={() => setshowToast(false)}
-            show={showToast}
-            delay={3000}
-            autohide
-            className="position-fixed top-0 center-0 m-3"
-          >
-            <Toast.Header>
-              <strong className="me-auto">Notification</strong>
-            </Toast.Header>
-            <Toast.Body>OTP has been sent to your email!</Toast.Body>
-          </Toast>
         </Col>
       </Row>
     </Container>

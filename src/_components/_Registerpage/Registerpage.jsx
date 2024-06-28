@@ -9,15 +9,37 @@ import { Link } from "react-router-dom";
 
 const Registerpage = () => {
   const [validated, setValidated] = useState(false);
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmpassword] = useState("");
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
+      setValidated(true);
       event.preventDefault();
       event.stopPropagation();
+      return;
     }
 
     setValidated(true);
+
+    console.log({
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      password: password,
+      confirmpassword: confirmpassword,
+    });
+    setFirstname("");
+    setLastname("");
+    setEmail("");
+    setPassword("");
+    setConfirmpassword("");
+    setValidated(false);
   };
 
   return (
@@ -40,7 +62,9 @@ const Registerpage = () => {
               required
               type="text"
               // placeholder="First name"
+              name="firstname"
               defaultValue=""
+              onChange={(e) => setFirstname(e.target.value)}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -54,7 +78,9 @@ const Registerpage = () => {
               required
               type="text"
               // placeholder="Last name"
+              name="lastname"
               defaultValue=""
+              onChange={(e) => setLastname(e.target.value)}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -69,7 +95,9 @@ const Registerpage = () => {
               required
               type="Email"
               // placeholder="Email"
+              name="email"
               defaultValue=""
+              onChange={(e) => setEmail(e.target.value)}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -86,7 +114,9 @@ const Registerpage = () => {
               required
               type="password"
               // placeholder="password"
+              name="password"
               defaultValue=""
+              onChange={(e) => setPassword(e.target.value)}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -101,7 +131,9 @@ const Registerpage = () => {
               required
               type="password"
               // placeholder="Confirm password"
+              name="confirmpassword"
               defaultValue=""
+              onChange={(e) => setConfirmpassword(e.target.value)}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>

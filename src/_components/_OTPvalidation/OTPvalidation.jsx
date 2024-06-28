@@ -4,15 +4,16 @@ import { Container, Form, Button, Row, Col, Toast } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const OTPvalidation = () => {
-  const [email, setEmail] = useState("");
+  const [otp, setotp] = useState("");
   const [showToast, setshowToast] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Logic to send OTP to the entered email
-    // Example: sendOtp(email);
+    // Logic to send OTP to the entered otp
+    // Example: sendOtp(otp);
     setshowToast(true);
+    console.log({ otp: otp });
     //to navigate to another component
     setTimeout(() => {
       navigate("/setpassword");
@@ -24,13 +25,13 @@ const OTPvalidation = () => {
       <Row className="w-100 justify-content-center shadow mt-3 p-4">
         <Col md={5}>
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Enter 6 digit OTP from Email</Form.Label>
+            <Form.Group controlId="formBasicotp">
+              <Form.Label>Enter OTP received in otp</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter OTP"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={otp}
+                onChange={(e) => setotp(e.target.value)}
                 required
               />
             </Form.Group>

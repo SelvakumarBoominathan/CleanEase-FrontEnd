@@ -33,6 +33,8 @@ const Setpassword = () => {
     // Logic to send OTP to the entered email
     // Example: sendOtp(email);
     setshowToast(true);
+
+    console.log({ newpassword: newpassword, reenterpassword: reenterpassword });
     setTimeout(() => {
       navigate("/Login");
     }, 3000);
