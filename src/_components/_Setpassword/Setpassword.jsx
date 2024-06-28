@@ -1,34 +1,40 @@
-import "./OTPvalidation-styles.css";
+import "./Setpassword-styles.css";
 import React, { useState } from "react";
 import { Container, Form, Button, Row, Col, Toast } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const OTPvalidation = () => {
+const Setpassword = () => {
   const [email, setEmail] = useState("");
   const [showToast, setshowToast] = useState(false);
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Logic to send OTP to the entered email
     // Example: sendOtp(email);
     setshowToast(true);
-    //to navigate to another component
-    setTimeout(() => {
-      navigate("/setpassword");
-    }, 3000);
   };
+
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-90">
-      <h1>Enter OTP</h1>
+      <h1>Enter New Password</h1>
       <Row className="w-100 justify-content-center mt-3">
         <Col md={5}>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Enter 6 digit OTP from Email</Form.Label>
+              <Form.Label>New Password</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter OTP"
+                // placeholder="Enter new password"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Re-enter new password </Form.Label>
+              <Form.Control
+                type="text"
+                // placeholder="Confirm New Password"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -36,7 +42,7 @@ const OTPvalidation = () => {
             </Form.Group>
             <div className="d-flex flex-column justify-content-center align-items-center mt-4">
               <Button variant="primary" type="submit" className="w-30">
-                Verify OTP
+                Reset Password
               </Button>
             </div>
           </Form>
@@ -50,7 +56,7 @@ const OTPvalidation = () => {
             <Toast.Header>
               <strong className="me-auto">Notification</strong>
             </Toast.Header>
-            <Toast.Body>OTP has been verified</Toast.Body>
+            <Toast.Body>Password reset has been done!</Toast.Body>
           </Toast>
         </Col>
       </Row>
@@ -58,4 +64,4 @@ const OTPvalidation = () => {
   );
 };
 
-export default OTPvalidation;
+export default Setpassword;
