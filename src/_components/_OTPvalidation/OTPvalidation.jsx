@@ -20,13 +20,13 @@ const OTPvalidation = () => {
     }, 3000);
   };
   return (
-    <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-90">
+    <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-100">
       <h1>Enter OTP</h1>
-      <Row className="w-100 justify-content-center shadow mt-3 p-4">
-        <Col md={5}>
+      <Row className="fixed-width justify-content-center shadow mt-3 pt-4 pb-4">
+        <Col md={12}>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicotp">
-              <Form.Label>Enter OTP received in otp</Form.Label>
+              <Form.Label>Enter OTP received in email</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter OTP"
@@ -46,7 +46,7 @@ const OTPvalidation = () => {
             show={showToast}
             delay={3000}
             autohide
-            className="position-fixed top-0 center-0 m-3"
+            className="position-fixed top-0 start-50 translate-middle-x m-3"
           >
             <Toast.Header>
               <strong className="me-auto">Notification</strong>

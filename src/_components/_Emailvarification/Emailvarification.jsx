@@ -34,8 +34,8 @@ const Email_verification = () => {
         </div>
       )}
       <h1>Enter Email</h1>
-      <Row className="w-100 justify-content-center shadow mt-3 p-4">
-        <Col md={5}>
+      <Row className="fixed-width justify-content-center shadow mt-3 pt-4 pb-4">
+        <Col md={12}>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email Address</Form.Label>

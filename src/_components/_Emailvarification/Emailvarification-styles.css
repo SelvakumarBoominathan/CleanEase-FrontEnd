@@ -1,7 +1,30 @@
-.Form-Register {
+/* .Form-Register {
   background-color: rgba(255, 255, 255, 0.55);
   border-radius: 5px;
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+} */
+
+.fixed-width {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alert-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 10;
+}
+
+.alert {
+  margin: auto;
 }
