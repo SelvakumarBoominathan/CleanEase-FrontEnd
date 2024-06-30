@@ -9,8 +9,8 @@ import { Link } from "react-router-dom";
 
 const Registerpage = () => {
   const [validated, setValidated] = useState(false);
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
+  const [name, setName] = useState("");
+  const [userName, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmpassword] = useState("");
@@ -28,14 +28,14 @@ const Registerpage = () => {
     setValidated(true);
 
     console.log({
-      firstname: firstname,
-      lastname: lastname,
+      name: name,
+      userName: userName,
       email: email,
       password: password,
       confirmpassword: confirmpassword,
     });
-    setFirstname("");
-    setLastname("");
+    setName("");
+    setUsername("");
     setEmail("");
     setPassword("");
     setConfirmpassword("");
@@ -57,14 +57,14 @@ const Registerpage = () => {
             className="col-md-12"
             controlId="validationCustom01"
           >
-            <Form.Label>First name</Form.Label>
+            <Form.Label>Name</Form.Label>
             <Form.Control
               required
               type="text"
               // placeholder="First name"
-              name="firstname"
+              name="name"
               defaultValue=""
-              onChange={(e) => setFirstname(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -73,14 +73,14 @@ const Registerpage = () => {
             className="col-md-12"
             controlId="validationCustom02"
           >
-            <Form.Label>Last name</Form.Label>
+            <Form.Label>Username</Form.Label>
             <Form.Control
               required
               type="text"
               // placeholder="Last name"
-              name="lastname"
+              name="username"
               defaultValue=""
-              onChange={(e) => setLastname(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
