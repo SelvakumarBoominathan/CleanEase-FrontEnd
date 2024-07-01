@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   const [validated, setValidated] = useState(false);
-  const [username, setUsername] = useState("");
+  const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
@@ -25,7 +25,7 @@ const Login = () => {
     setValidated(true);
 
     // Need to write post method here to send the data for validation
-    console.log({ name: username, pass: password });
+    console.log({ name: userName, pass: password });
     setUsername("");
     setPassword("");
     setValidated(false);
@@ -51,8 +51,8 @@ const Login = () => {
               required
               type="text"
               placeholder="First name"
-              name="username"
-              value={username}
+              name="userName"
+              value={userName}
               onChange={(e) => setUsername(e.target.value)}
             />
           </Form.Group>
