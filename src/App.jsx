@@ -9,6 +9,7 @@ import _Emailvarification from "./_components/_Emailvarification/Emailvarificati
 import OTPvalidation from "./_components/_OTPvalidation/OTPvalidation.jsx";
 import Setpassword from "./_components/_Setpassword/Setpassword.jsx";
 
+
 function App() {
   return (
     <React.StrictMode>
