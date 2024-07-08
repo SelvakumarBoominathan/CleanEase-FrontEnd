@@ -17,16 +17,16 @@ const Footer = () => {
                 <h2>CleanEase</h2>
               </ListGroup.Item>
               <ListGroup.Item className="bg-dark text-white border-0">
-                1234 Street Name
+                134, Ritchie St, Besant Nagar
               </ListGroup.Item>
               <ListGroup.Item className="bg-dark text-white border-0">
-                City, State, ZIP Code
+                Chennai, Tamilnadu, 600001
               </ListGroup.Item>
               <ListGroup.Item className="bg-dark text-white border-0">
                 Phone: (123) 456-7890
               </ListGroup.Item>
               <ListGroup.Item className="bg-dark text-white border-0">
-                Email: contact@company.com
+                Email: duncan.green@ethereal.email
               </ListGroup.Item>
             </ListGroup>
           </Col>
