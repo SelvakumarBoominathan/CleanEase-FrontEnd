@@ -7,6 +7,7 @@ import "./Searchfield-styles.css";
 import React, { useState, useEffect } from "react";
 
 const Searchfield = () => {
+  // place holder effect using useState and useEffect
   const [placeholder, setPlaceholder] = useState("Search Fan Cleaning");
 
   useEffect(() => {
