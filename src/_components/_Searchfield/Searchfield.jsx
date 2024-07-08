@@ -8,7 +8,7 @@ import React, { useState, useEffect } from "react";
 
 const Searchfield = () => {
   // place holder effect using useState and useEffect
-  const [placeholder, setPlaceholder] = useState("Search Fan Cleaning");
+  const [placeholder, setPlaceholder] = useState('Search "Fan Cleaning"');
 
   useEffect(() => {
     const options = [
@@ -22,7 +22,7 @@ const Searchfield = () => {
     const interval = setInterval(() => {
       index = (index + 1) % options.length;
       setPlaceholder(`Search "${options[index]}"`);
-    }, 1000);
+    }, 1500);
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, []);
@@ -43,7 +43,7 @@ const Searchfield = () => {
               <Form.Control
                 type="text"
                 placeholder={placeholder}
-                className=" mr-sm-4"
+                className="mr-sm-4"
               />
             </Col>
             <Col xs="auto p-2">
