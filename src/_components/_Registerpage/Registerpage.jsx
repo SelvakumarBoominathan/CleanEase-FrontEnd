@@ -6,40 +6,60 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./Registerpage-styles.css";
 import { Link } from "react-router-dom";
+import { passwordvalidate } from "../validate.js";
 
 const Registerpage = () => {
-  const [validated, setValidated] = useState(false);
-  const [name, setName] = useState("");
-  const [userName, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmpassword, setConfirmpassword] = useState("");
+  const [formInput, setFormInput] = useState({
+    name: "",
+    username: "",
+    email: "",
+    password: "",
+    confirmpassword: "",
+  });
+  const [validationError, setValidationError] = useState("");
 
-  const handleSubmit = (event) => {
+  const [validated, setValidated] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormInput((currentInput) => ({
+      ...currentInput,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      setValidated(true);
-      event.preventDefault();
-      event.stopPropagation();
+    // Validate passwords
+    const errors = await passwordvalidate({ password: formInput.password });
+    if (errors !== "Password is strong") {
+      setValidationError(errors);
       return;
     }
 
-    setValidated(true);
+    if (formInput.password !== formInput.confirmpassword) {
+      setValidationError("Passwords do not match");
+      return;
+    }
 
-    console.log({
-      name: name,
-      userName: userName,
-      email: email,
-      password: password,
-      confirmpassword: confirmpassword,
+    //To check validity of the input elements
+    if (form.checkValidity && !form.checkValidity()) {
+      setValidated(true);
+      event.stopPropagation();
+      return;
+    }
+    // console.log(formInput);
+
+    setValidated(true);
+    setFormInput({
+      name: "",
+      username: "",
+      email: "",
+      password: "",
+      confirmpassword: "",
     });
-    setName("");
-    setUsername("");
-    setEmail("");
-    setPassword("");
-    setConfirmpassword("");
-    setValidated(false);
   };
 
   return (
@@ -63,8 +83,8 @@ const Registerpage = () => {
               type="text"
               // placeholder="First name"
               name="name"
-              defaultValue=""
-              onChange={(e) => setName(e.target.value)}
+              defaultValue={formInput.name}
+              onChange={handleChange}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -79,8 +99,8 @@ const Registerpage = () => {
               type="text"
               // placeholder="Last name"
               name="username"
-              defaultValue=""
-              onChange={(e) => setUsername(e.target.value)}
+              defaultValue={formInput.username}
+              onChange={handleChange}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -96,8 +116,8 @@ const Registerpage = () => {
               type="Email"
               // placeholder="Email"
               name="email"
-              defaultValue=""
-              onChange={(e) => setEmail(e.target.value)}
+              defaultValue={formInput.email}
+              onChange={handleChange}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -115,8 +135,8 @@ const Registerpage = () => {
               type="password"
               // placeholder="password"
               name="password"
-              defaultValue=""
-              onChange={(e) => setPassword(e.target.value)}
+              defaultValue={formInput.password}
+              onChange={handleChange}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -132,8 +152,8 @@ const Registerpage = () => {
               type="password"
               // placeholder="Confirm password"
               name="confirmpassword"
-              defaultValue=""
-              onChange={(e) => setConfirmpassword(e.target.value)}
+              defaultValue={formInput.confirmpassword}
+              onChange={handleChange}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -146,6 +166,9 @@ const Registerpage = () => {
             feedbackType="invalid"
           />
         </Form.Group>
+        {validationError && (
+          <div className="text-danger">{validationError}</div>
+        )}
         <Container className="d-flex justify-content-center">
           <Button className="" type="submit">
             Register

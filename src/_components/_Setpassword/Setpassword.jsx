@@ -35,6 +35,8 @@ const Setpassword = () => {
     setshowToast(true);
 
     console.log({ newpassword: newpassword, reenterpassword: reenterpassword });
+
+    // settimeout to redirect to loginpage automatically
     setTimeout(() => {
       navigate("/Login");
     }, 3000);
