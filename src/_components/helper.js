@@ -1,4 +1,4 @@
-// // end points for make get post requests from front end
+// // end points to make get post requests from front end
 // import axios from "axios";
 
 // //Make api request
@@ -74,17 +74,6 @@ export const loginUser = async (loginData) => {
     throw error;
   }
 };
-
-// Get bill
-// export const getBill = async () => {
-//   try {
-//     const response = await axios.post(`${baseURL}/getbill`);
-//     return response.data;
-//   } catch (error) {
-//     console.error("Error getting bill:", error.response.data);
-//     throw error;
-//   }
-// };
 
 // OTP validation route
 export const validateOTP = async () => {

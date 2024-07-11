@@ -1,14 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//setting initial state to store the user details
-const initialState = {
-  users: [],
-};
-
 //Reducer function
 export const userSlice = createSlice({
   name: "users",
-  initialState,
+  initialState: { users: [] },
   reducers: {
     setUsers: (state, { payload }) => {
       //updating state

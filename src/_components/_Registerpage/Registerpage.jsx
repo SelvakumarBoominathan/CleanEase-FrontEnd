@@ -7,8 +7,14 @@ import Row from "react-bootstrap/Row";
 import "./Registerpage-styles.css";
 import { Link } from "react-router-dom";
 import { passwordvalidate } from "../validate.js";
+import { useDispatch, useSelector } from "react-redux";
 
 const Registerpage = () => {
+  const dispatch = useDispatch();
+
+  const users = useSelector((state) => state.users);
+
+  console.log(users);
   const [formInput, setFormInput] = useState({
     name: "",
     username: "",
@@ -170,7 +176,7 @@ const Registerpage = () => {
           <div className="text-danger">{validationError}</div>
         )}
         <Container className="d-flex justify-content-center">
-          <Button className="" type="submit">
+          <Button type="submit" onSubmit={() => dispatch(setUsers())}>
             Register
           </Button>
         </Container>
