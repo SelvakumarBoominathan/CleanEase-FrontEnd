@@ -1,5 +1,4 @@
 // // end points to make get post requests from front end
-// import axios from "axios";
 
 // //Make api request
 
@@ -31,7 +30,6 @@ import axios from "axios";
 
 const baseURL = "http://localhost:8000/api";
 
-// Register a new user
 export const registerUser = async (userData) => {
   try {
     const response = await axios.post(`${baseURL}/register`, userData);
