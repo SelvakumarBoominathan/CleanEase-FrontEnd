@@ -1,13 +1,4 @@
-// import React from "react";
-// import { useState } from "react";
-// import Container from "react-bootstrap/Container";
-// import Button from "react-bootstrap/Button";
-// import Form from "react-bootstrap/Form";
-// import Row from "react-bootstrap/Row";
-// import "./Registerpage-styles.css";
-// import { Link } from "react-router-dom";
-// import { passwordvalidate } from "../validate.js";
-// import { useDispatch, useSelector } from "react-redux";
+
 
 import React, { useState } from "react";
 import { Container, Button, Form, Row } from "react-bootstrap";

@@ -25,7 +25,6 @@
 // }
 
 //function for user registration
-
 import axios from "axios";
 
 const baseURL = "http://localhost:8000/api";
@@ -36,6 +35,17 @@ export const registerUser = async (userData) => {
     return response.data;
   } catch (error) {
     console.error("Error registering user:", error.response.data);
+    throw error;
+  }
+};
+
+// Login user
+export const loginUser = async (userData) => {
+  try {
+    const response = await axios.post(`${baseURL}/login`, userData);
+    return response.data;
+  } catch (error) {
+    console.error("Error logging in user:", error.response.data);
     throw error;
   }
 };
@@ -58,17 +68,6 @@ export const authenticateUser = async (username) => {
     return response.data;
   } catch (error) {
     console.error("Error authenticating user:", error.response.data);
-    throw error;
-  }
-};
-
-// Login user
-export const loginUser = async (loginData) => {
-  try {
-    const response = await axios.post(`${baseURL}/login`, loginData);
-    return response.data;
-  } catch (error) {
-    console.error("Error logging in:", error.response.data);
     throw error;
   }
 };
