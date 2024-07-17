@@ -1,8 +1,6 @@
-
-
 import React, { useState } from "react";
 import { Container, Button, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useNavigation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setUsers } from "../slices/registerslice.js";
 import { passwordvalidate } from "../validate.js";
@@ -12,6 +10,7 @@ import { registerUser } from "../helper.js";
 const Registerpage = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.userInfo.users); // Corrected selector
+  const Navigate = useNavigate();
 
   console.log(users);
 
@@ -24,6 +23,7 @@ const Registerpage = () => {
   });
   const [validationError, setValidationError] = useState("");
   const [validated, setValidated] = useState(false);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false); // New state variable
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,6 +72,10 @@ const Registerpage = () => {
         confirmpassword: "",
       });
       setValidationError("");
+      setRegistrationSuccess(true); // Set success state
+      setTimeout(() => {
+        Navigate("/Login");
+      }, 3000);
     } catch (error) {
       setValidationError("Registration failed. Please try again.");
     }
@@ -175,6 +179,9 @@ const Registerpage = () => {
         </Form.Group>
         {validationError && (
           <div className="text-danger">{validationError}</div>
+        )}
+        {registrationSuccess && (
+          <div className="text-success">Registration successful!</div>
         )}
         <Container className="d-flex justify-content-center">
           <Button type="submit">Register</Button>
