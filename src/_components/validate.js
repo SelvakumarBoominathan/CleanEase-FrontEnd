@@ -6,7 +6,7 @@ export async function passwordvalidate(values) {
 }
 
 let passwordVerify = (values) => {
-  const minLength = 12;
+  const minLength = 6;
   const hasUpperCase = /[A-Z]/.test(values.password);
   const hasLowerCase = /[a-z]/.test(values.password);
   const hasNumbers = /[0-9]/.test(values.password);
@@ -18,7 +18,7 @@ let passwordVerify = (values) => {
   if (!hasUpperCase) {
     return "Password must contain at least one uppercase letter";
   }
-  if (!hasLowerCase) {
+  if (!hasLowerCase) { 
     return "Password must contain at least one lowercase letter";
   }
   if (!hasNumbers) {
