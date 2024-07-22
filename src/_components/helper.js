@@ -67,13 +67,27 @@ export const generateOTP = async (username) => {
   }
 };
 
+// // Send OTP to email for registration
+// export const sendRegisterMail = async (mailData) => {
+//   try {
+//     const response = await axios.post(`${baseURL}/registermail`, mailData);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error sending register mail:", error.response?.data || error.message);
+//     throw error;
+//   }
+// };
+
 // Send OTP to email for registration
-export const sendRegisterMail = async (mailData) => {
+export const sendRegisterMail = async (email) => {
   try {
-    const response = await axios.post(`${baseURL}/registermail`, mailData);
+    const response = await axios.post(`${baseURL}/registermail`, { email });
     return response.data;
   } catch (error) {
-    console.error("Error sending register mail:", error.response?.data || error.message);
+    console.error(
+      "Error sending register mail:",
+      error.response?.data || error.message
+    );
     throw error;
   }
 };

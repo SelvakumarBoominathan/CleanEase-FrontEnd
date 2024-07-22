@@ -1,27 +1,43 @@
 import React, { useState } from "react";
-import { Container, Form, Button, Row, Col } from "react-bootstrap";
-import "./Emailvarification-styles.css";
+import { Container, Form, Button, Row, Col, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { sendRegisterMail } from "../helper";
+import "./Emailvarification-styles.css";
 
 const Email_verification = () => {
   const [email, setEmail] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Logic to send OTP to the entered email
-    // Example: sendOtp(email);
+    setLoading(true);
+    try {
+      // Send OTP to the entered email using the helper function
+      await sendRegisterMail(email);
+      // Show alert for email submission
+      setShowAlert(true);
+      console.log({ email: email });
 
-    // Show alert for email submission
-    setShowAlert(true);
-    console.log({ email: email });
-
-    // Navigate to another component after some time
-    setTimeout(() => {
-      setShowAlert(false); // Hide alert after some time
-      navigate("/otpvalidation");
-    }, 3000);
+      // Navigate to another component after some time
+      setTimeout(() => {
+        setShowAlert(false); // Hide alert after some time
+        navigate("/otpvalidation");
+      }, 3000);
+    } catch (error) {
+      console.error(
+        "Error sending OTP:",
+        error.response?.data || error.message
+      );
+      setError("Failed to send OTP. Please try again.");
+      setTimeout(() => {
+        setError("");
+      }, 3000);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -30,6 +46,13 @@ const Email_verification = () => {
         <div className="alert-overlay">
           <div className="alert alert-success" role="alert">
             OTP has been sent to your email!
+          </div>
+        </div>
+      )}
+      {error && (
+        <div className="alert-overlay">
+          <div className="alert alert-danger" role="alert">
+            {error}
           </div>
         </div>
       )}
@@ -48,8 +71,17 @@ const Email_verification = () => {
               />
             </Form.Group>
             <div className="d-flex flex-column justify-content-center align-items-center mt-4">
-              <Button variant="primary" type="submit" className="w-30">
-                Send OTP
+              <Button
+                variant="primary"
+                type="submit"
+                className="w-30"
+                disabled={loading}
+              >
+                {loading ? (
+                  <Spinner animation="border" size="sm" />
+                ) : (
+                  "Send OTP"
+                )}
               </Button>
             </div>
           </Form>
