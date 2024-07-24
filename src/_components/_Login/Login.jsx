@@ -18,7 +18,6 @@ const Login = () => {
 
     try {
       const userData = { username: userName, password: password };
-      console.log("Submitting user data:", userData); // Log user data
       const response = await loginUser(userData);
       console.log("Login response:", response); // Log response from loginUser
       dispatch(loginSuccess(response));
