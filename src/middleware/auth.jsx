@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 
-export const AuthorizeUser = ({ children }) => {
+export const AuthUser = ({ children }) => {
   const token = localStorage.getItem("authToken");
 
   if (!token) {
@@ -9,3 +9,11 @@ export const AuthorizeUser = ({ children }) => {
 
   return children;
 };
+
+// export const LogoutUser = () => {
+//   const removeToken = localStorage.removeItem("authToken") ? true : false;
+
+//   if (removeToken) {
+//     return <Navigate to={"/login"} replace={true}></Navigate>;
+//   }
+// };

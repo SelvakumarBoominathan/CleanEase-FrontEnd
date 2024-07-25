@@ -25,6 +25,10 @@ const Header = () => {
     },
   ];
 
+  function handleLogout() {
+    localStorage.removeItem("authToken");
+  }
+
   return (
     <Navbar expand="lg" className="navbar">
       <Container>
@@ -47,9 +51,12 @@ const Header = () => {
               </Nav.Link>
             ))}
           </Nav>
-          <Nav className="ms-auto">
-            <Link to="/Registerpage" className="btn btn-success">
+          <Nav className="ms-auto justify-content-around">
+            <Link to="/Registerpage" className="btn btn-success mx-2">
               Sign Up
+            </Link>
+            <Link to="/login" className="btn btn-danger" onClick={handleLogout}>
+              Logout
             </Link>
           </Nav>
         </Navbar.Collapse>
