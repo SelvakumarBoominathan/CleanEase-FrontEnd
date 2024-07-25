@@ -9,6 +9,9 @@ import _Emailvarification from "./_components/_Emailvarification/Emailvarificati
 import OTPvalidation from "./_components/_OTPvalidation/OTPvalidation.jsx";
 import Setpassword from "./_components/_Setpassword/Setpassword.jsx";
 
+// auth middleware
+
+import { AuthorizeUser } from "./middleware/auth.jsx";
 
 function App() {
   return (
@@ -16,7 +19,14 @@ function App() {
       <div>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Homepage />} />
+            <Route
+              path="/"
+              element={
+                <AuthorizeUser>
+                  <Homepage />
+                </AuthorizeUser>
+              }
+            />
             <Route path="/Registerpage" element={<Registerpage />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/emailverification" element={<_Emailvarification />} />
