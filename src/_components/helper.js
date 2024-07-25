@@ -43,10 +43,17 @@ export const registerUser = async (userData) => {
 export const loginUser = async (userData) => {
   try {
     const response = await axios.post(`${baseURL}/login`, userData);
-    console.log("login success");
+    // console.log("login success");
+
+    //storing token in localstorage
+    const { token } = response.data;
+    localStorage.setItem("authToken", token);
     return response.data;
   } catch (error) {
-    console.error("Error logging in user:", error.response.data);
+    console.error(
+      "Error logging in user:",
+      error.response?.data || error.message
+    );
     throw error;
   }
 };
