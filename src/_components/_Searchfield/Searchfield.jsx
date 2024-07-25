@@ -37,7 +37,7 @@ const Searchfield = () => {
           <h6>Home services at your doorstep!</h6>
         </div>
 
-        <Form inline>
+        <Form>
           <Row className="pt-5 d-flex justify-content-center">
             <Col xs="auto p-2">
               <Form.Control
