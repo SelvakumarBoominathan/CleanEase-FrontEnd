@@ -51,13 +51,21 @@ const Header = () => {
               </Nav.Link>
             ))}
           </Nav>
-          <Nav className="ms-auto justify-content-around">
-            <Link to="/Registerpage" className="btn btn-success mx-2">
-              Sign Up
-            </Link>
-            <Link to="/login" className="btn btn-danger" onClick={handleLogout}>
-              Logout
-            </Link>
+          <Nav className="ms-auto w-30">
+            <Nav className="ms-auto  mt-1 mx-1">
+              <Link to="/Registerpage" className="btn btn-success">
+                Sign up
+              </Link>
+            </Nav>
+            <Nav className="ms-auto mt-1 mx-1">
+              <Link
+                to="/login"
+                className="btn btn-danger"
+                onClick={handleLogout}
+              >
+                Logout
+              </Link>
+            </Nav>
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -22,9 +22,9 @@ function App() {
             <Route
               path="/"
               element={
-                // <AuthUser>
-                <Homepage />
-                // </AuthUser>
+                <AuthUser>
+                  <Homepage />
+                </AuthUser>
               }
             />
             <Route path="/Registerpage" element={<Registerpage />} />
