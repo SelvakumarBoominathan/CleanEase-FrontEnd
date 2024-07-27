@@ -32,9 +32,9 @@ function App() {
             <Route
               path="/emailverification"
               element={
-                <AuthUser>
-                  <_Emailvarification />
-                </AuthUser>
+                // <AuthUser>
+                <_Emailvarification />
+                // </AuthUser>
               }
             />
             <Route
