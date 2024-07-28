@@ -25,7 +25,7 @@ const Login = () => {
       setPassword("");
       navigate("/");
     } catch (error) {
-      console.error("Login error:", error); // Log error
+      console.error("Login error:", error , " login handle submit"); // Log error
       dispatch(loginFailure("Incorrect username or password."));
     }
   };
