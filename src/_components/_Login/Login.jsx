@@ -19,7 +19,7 @@ const Login = () => {
     try {
       const userData = { username: userName, password: password };
       const response = await loginUser(userData);
-      // console.log("Login response:", response);  Log response from loginUser
+      // console.log("Login response:", response);  //Log response from loginUser
       dispatch(loginSuccess(response));
       setUsername("");
       setPassword("");

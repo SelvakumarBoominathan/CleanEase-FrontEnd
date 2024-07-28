@@ -35,6 +35,7 @@ const Registerpage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("Form submitted with:", formInput);
     const form = event.currentTarget;
 
     const errors = await passwordvalidate({ password: formInput.password });
@@ -73,6 +74,7 @@ const Registerpage = () => {
       });
       setValidationError("");
       setRegistrationSuccess(true); // Set success state
+
       setTimeout(() => {
         Navigate("/Login");
       }, 3000);
