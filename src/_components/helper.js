@@ -34,7 +34,16 @@ export const registerUser = async (userData) => {
     const response = await axios.post(`${baseURL}/register`, userData);
     return response.data;
   } catch (error) {
-    console.error("Error registering user:", error.response.data);
+    if (error.response) {
+      // Server responded with a status other than 200 range
+      console.error("Error logging in user:", error.response.data);
+    } else if (error.request) {
+      // Request was made but no response was received
+      console.error("No response received:", error.request);
+    } else {
+      // Something happened in setting up the request
+      console.error("Error setting up request:", error.message);
+    }
     throw error;
   }
 };
@@ -43,17 +52,23 @@ export const registerUser = async (userData) => {
 export const loginUser = async (userData) => {
   try {
     const response = await axios.post(`${baseURL}/login`, userData);
-    console.log("login success");
+    console.log("login successful");
 
     //storing token in localstorage
     const { token } = response.data;
     localStorage.setItem("authToken", token);
     return response.data;
   } catch (error) {
-    console.error(
-      "Error logging in user:",
-      error.response?.data || error.message
-    );
+    if (error.response) {
+      // Server responded with a status other than 200 range
+      console.error("Error logging in user:", error.response.data);
+    } else if (error.request) {
+      // Request was made but no response was received
+      console.error("No response received:", error.request);
+    } else {
+      // Something happened in setting up the request
+      console.error("Error setting up request:", error.message);
+    }
     throw error;
   }
 };
