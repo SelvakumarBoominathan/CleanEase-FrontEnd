@@ -27,7 +27,7 @@ const OTPvalidation = () => {
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicotp">
               <Form.Label>Enter OTP received in email</Form.Label>
-              <Form.Control
+              <Form.Control 
                 type="text"
                 placeholder="Enter OTP"
                 value={otp}
