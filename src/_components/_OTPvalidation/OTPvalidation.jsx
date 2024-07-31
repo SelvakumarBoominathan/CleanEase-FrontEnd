@@ -10,8 +10,7 @@ const OTPvalidation = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Logic to send OTP to the entered otp
-    // Example: sendOtp(otp);
+    
     setshowToast(true);
     console.log({ otp: otp });
     //to navigate to another component
