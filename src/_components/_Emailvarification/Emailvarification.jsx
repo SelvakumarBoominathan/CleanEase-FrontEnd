@@ -19,7 +19,7 @@ const Email_verification = () => {
       await sendRegisterMail(email);
       // Show alert for email submission
       setShowAlert(true);
-      console.log({ email: email });
+      // console.log({ email: email });
 
       // Navigate to another component after some time
       setTimeout(() => {
