@@ -3,16 +3,21 @@ import React, { useState } from "react";
 import { Container, Form, Button, Row, Toast, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { passwordvalidate } from "../validate.js";
+import { createResetSession, resetPassword } from "../helper.js";
 
 const Setpassword = () => {
   const [newpassword, setNewpassword] = useState("");
   const [reenterpassword, setReenterpassword] = useState("");
-  const [showToast, setshowToast] = useState(false);
+  // const [showToast, setshowToast] = useState(false);
   const [validationError, setValidationError] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     // Validate passwords
     const errors = await passwordvalidate({ password: newpassword });
@@ -30,16 +35,35 @@ const Setpassword = () => {
     // Reset validation error
     setValidationError("");
 
+    try {
+      createResetSession();
+      await resetPassword(newpassword);
+
+      // Show alert for password submission
+      setShowAlert(true);
+
+      // settimeout to redirect to Login page automatically
+      setTimeout(() => {
+        setShowAlert(false); // Hide alert after some time
+        navigate("/Login");
+      }, 3000);
+    } catch (error) {
+      console.error(
+        "Error resetting password!",
+        error.response?.data || error.message
+      );
+      setError("Failed to reseting password!");
+      setTimeout(() => {
+        setError("");
+      }, 3000);
+    } finally {
+      setLoading(false);
+    }
+
     // Logic to send OTP to the entered email
     // Example: sendOtp(email);
-    setshowToast(true);
 
     console.log({ newpassword: newpassword, reenterpassword: reenterpassword });
-
-    // settimeout to redirect to loginpage automatically
-    setTimeout(() => {
-      navigate("/Login");
-    }, 3000);
   };
 
   return (
