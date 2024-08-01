@@ -73,7 +73,7 @@ export const loginUser = async (userData) => {
   }
 };
 
-// Send OTP to email for registration
+// Send OTP to email for password change
 export const sendRegisterMail = async (email) => {
   try {
     const response = await axios.post(`${baseURL}/registermail`, { email });
@@ -98,33 +98,6 @@ export const authenticateUser = async (username) => {
   }
 };
 
-// Generate OTP
-// export const generateOTP = async (username) => {
-//   try {
-//     const response = await axios.get(`${baseURL}/generateOTP`, {
-//       params: { username },
-//     });
-//     return response.data;
-//   } catch (error) {
-//     console.error(
-//       "Error generating OTP:",
-//       error.response?.data || error.message
-//     );
-//     throw error;
-//   }
-// };
-
-// // Send OTP to email for registration
-// export const sendRegisterMail = async (mailData) => {
-//   try {
-//     const response = await axios.post(`${baseURL}/registermail`, mailData);
-//     return response.data;
-//   } catch (error) {
-//     console.error("Error sending register mail:", error.response?.data || error.message);
-//     throw error;
-//   }
-// };
-
 // OTP validation route
 export const validateOTP = async (otp) => {
   try {
@@ -135,6 +108,7 @@ export const validateOTP = async (otp) => {
     throw error;
   }
 };
+
 
 // Get user details
 export const getUserDetails = async (username) => {
@@ -147,18 +121,18 @@ export const getUserDetails = async (username) => {
   }
 };
 
-// Verify OTP
-export const verifyOTP = async (code) => {
-  try {
-    const response = await axios.get(`${baseURL}/verifyOTP`, {
-      params: { code },
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error verifying OTP:", error.response.data);
-    throw error;
-  }
-};
+// // Verify OTP
+// export const verifyOTP = async (code) => {
+//   try {
+//     const response = await axios.get(`${baseURL}/verifyOTP`, {
+//       params: { code },
+//     });
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error verifying OTP:", error.response.data);
+//     throw error;
+//   }
+// };
 
 // Create reset session
 export const createResetSession = async () => {
