@@ -73,33 +73,6 @@ export const loginUser = async (userData) => {
   }
 };
 
-// Generate OTP
-export const generateOTP = async (username) => {
-  try {
-    const response = await axios.get(`${baseURL}/generateOTP`, {
-      params: { username },
-    });
-    return response.data;
-  } catch (error) {
-    console.error(
-      "Error generating OTP:",
-      error.response?.data || error.message
-    );
-    throw error;
-  }
-};
-
-// // Send OTP to email for registration
-// export const sendRegisterMail = async (mailData) => {
-//   try {
-//     const response = await axios.post(`${baseURL}/registermail`, mailData);
-//     return response.data;
-//   } catch (error) {
-//     console.error("Error sending register mail:", error.response?.data || error.message);
-//     throw error;
-//   }
-// };
-
 // Send OTP to email for registration
 export const sendRegisterMail = async (email) => {
   try {
@@ -124,6 +97,33 @@ export const authenticateUser = async (username) => {
     throw error;
   }
 };
+
+// Generate OTP
+// export const generateOTP = async (username) => {
+//   try {
+//     const response = await axios.get(`${baseURL}/generateOTP`, {
+//       params: { username },
+//     });
+//     return response.data;
+//   } catch (error) {
+//     console.error(
+//       "Error generating OTP:",
+//       error.response?.data || error.message
+//     );
+//     throw error;
+//   }
+// };
+
+// // Send OTP to email for registration
+// export const sendRegisterMail = async (mailData) => {
+//   try {
+//     const response = await axios.post(`${baseURL}/registermail`, mailData);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error sending register mail:", error.response?.data || error.message);
+//     throw error;
+//   }
+// };
 
 // OTP validation route
 export const validateOTP = async (otp) => {
