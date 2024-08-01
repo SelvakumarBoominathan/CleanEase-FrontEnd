@@ -2,21 +2,32 @@ import "./OTPvalidation-styles.css";
 import React, { useState } from "react";
 import { Container, Form, Button, Row, Col, Toast } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { validateOTP } from "../helper";
 
 const OTPvalidation = () => {
   const [otp, setotp] = useState("");
   const [showToast, setshowToast] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    setshowToast(true);
-    console.log({ otp: otp });
-    //to navigate to another component
-    setTimeout(() => {
-      navigate("/setpassword");
-    }, 3000);
+    setLoading(true);
+    try {
+      setshowToast(true);
+      validateOTP(otp);
+      //to navigate to another component
+      setTimeout(() => {
+        navigate("/setpassword");
+      }, 3000);
+    } catch (error) {
+      console.error(
+        "Error validate OTP:",
+        error.response?.data || error.message
+      );
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-100">
@@ -26,7 +37,7 @@ const OTPvalidation = () => {
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicotp">
               <Form.Label>Enter OTP received in email</Form.Label>
-              <Form.Control 
+              <Form.Control
                 type="text"
                 placeholder="Enter OTP"
                 value={otp}
@@ -35,8 +46,17 @@ const OTPvalidation = () => {
               />
             </Form.Group>
             <div className="d-flex flex-column justify-content-center align-items-center mt-4">
-              <Button variant="primary" type="submit" className="w-30">
-                Verify OTP
+              <Button
+                variant="primary"
+                type="submit"
+                className="w-30"
+                disabled={loading}
+              >
+                {loading ? (
+                  <Spinner animation="border" size="sm" />
+                ) : (
+                  "Verify OTP"
+                )}
               </Button>
             </div>
           </Form>

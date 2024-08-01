@@ -126,9 +126,9 @@ export const authenticateUser = async (username) => {
 };
 
 // OTP validation route
-export const validateOTP = async () => {
+export const validateOTP = async (otp) => {
   try {
-    const response = await axios.post(`${baseURL}/otpvalidation`);
+    const response = await axios.post(`${baseURL}/otpvalidation`, { otp });
     return response.data;
   } catch (error) {
     console.error("Error validating OTP:", error.response.data);
