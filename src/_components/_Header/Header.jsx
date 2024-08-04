@@ -4,8 +4,18 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Header = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+    if (authToken) {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
   const metaData = [
     {
       path: "/",
@@ -27,6 +37,7 @@ const Header = () => {
 
   function handleLogout() {
     localStorage.removeItem("authToken");
+    setIsAuthenticated(false);
   }
 
   return (
@@ -52,18 +63,20 @@ const Header = () => {
             ))}
           </Nav>
           <Nav className="ms-auto w-30">
-            <Nav className="ms-auto  mt-1 mx-1">
-              <Link to="/Registerpage" className="btn btn-success">
-                Sign up
-              </Link>
-            </Nav>
+            {!isAuthenticated ? (
+              <Nav className="ms-auto  mt-1 mx-1">
+                <Link to="/Registerpage" className="btn btn-success">
+                  Sign up
+                </Link>
+              </Nav>
+            ) : null}
             <Nav className="ms-auto mt-1 mx-1">
               <Link
                 to="/login"
                 className="btn btn-danger"
                 onClick={handleLogout}
               >
-                Logout
+                {isAuthenticated ? "Logout" : "Login"}
               </Link>
             </Nav>
           </Nav>
