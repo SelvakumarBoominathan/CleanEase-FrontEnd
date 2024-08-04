@@ -104,7 +104,7 @@ const Setpassword = () => {
       </Form>
       <Toast
         onClose={() => setshowToast(false)}
-        show={showToast}
+        show={showAlert}
         delay={3000}
         autohide
         className="position-fixed top-0 center-0 m-3"
