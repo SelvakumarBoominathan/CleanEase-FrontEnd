@@ -69,7 +69,13 @@ const Header = () => {
                   Sign up
                 </Link>
               </Nav>
-            ) : null}
+            ) : (
+              <Nav className="ms-auto  mt-1 mx-1">
+                <Link to="/emailverification" className="btn btn-success">
+                  Reset Password
+                </Link>
+              </Nav>
+            )}
             <Nav className="ms-auto mt-1 mx-1">
               <Link
                 to="/login"
