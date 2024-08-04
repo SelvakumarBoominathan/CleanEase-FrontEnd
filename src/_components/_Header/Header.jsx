@@ -5,10 +5,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  const username = useSelector((state) => state.logininfo.user);
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
     if (authToken) {
@@ -71,7 +72,11 @@ const Header = () => {
               </Nav>
             ) : (
               <Nav className="ms-auto  mt-1 mx-1">
-                <Link to="/emailverification" className="btn btn-success">
+                <Link
+                  to={`/emailverification?user=${username}`}
+                  // to="/emailverification"
+                  className="btn btn-success"
+                >
                   Reset Password
                 </Link>
               </Nav>

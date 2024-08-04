@@ -3,6 +3,7 @@ import { Container, Form, Button, Row, Col, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { sendRegisterMail } from "../helper";
 import "./Emailvarification-styles.css";
+import { useSelector } from "react-redux";
 
 const Email_verification = () => {
   const [email, setEmail] = useState("");
@@ -10,10 +11,14 @@ const Email_verification = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const user = useSelector((state) => state.logininfo.user);
+  const username = user ? user.username : "";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    //Access username from redux
+
     try {
       // Send OTP to the entered email using the helper function
       await sendRegisterMail(email);
@@ -24,7 +29,7 @@ const Email_verification = () => {
       // Navigate to another component after some time
       setTimeout(() => {
         setShowAlert(false); // Hide alert after some time
-        navigate("/otpvalidation");
+        navigate(`/otpvalidation?user=${username}`);
       }, 3000);
     } catch (error) {
       console.error(

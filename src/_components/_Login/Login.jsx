@@ -25,7 +25,7 @@ const Login = () => {
       dispatch(loginSuccess(response));
       setUsername("");
       setPassword("");
-      navigate(`/?userName=${userName}`);
+      navigate(`/?user=${userName}`);
     } catch (error) {
       console.error("Login error:", error); // Log error
       dispatch(loginFailure("Incorrect username or password."));

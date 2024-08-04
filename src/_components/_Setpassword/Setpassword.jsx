@@ -4,6 +4,7 @@ import { Container, Form, Button, Row, Toast, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { passwordvalidate } from "../validate.js";
 import { createResetSession, resetPassword } from "../helper.js";
+import { useSelector } from "react-redux";
 
 const Setpassword = () => {
   const [newpassword, setNewpassword] = useState("");
@@ -13,6 +14,7 @@ const Setpassword = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const username = useSelector((state) => state.logininfo.user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,7 +40,8 @@ const Setpassword = () => {
 
     try {
       createResetSession();
-      await resetPassword(newpassword);
+      const data = { username: String(username), password: newpassword };
+      await resetPassword(data);
 
       // Show alert for password submission
       setShowAlert(true);
@@ -60,9 +63,6 @@ const Setpassword = () => {
     } finally {
       setLoading(false);
     }
-
-    // Logic to send OTP to the entered email
-    // Example: sendOtp(email);
 
     console.log({ newpassword: newpassword, reenterpassword: reenterpassword });
   };

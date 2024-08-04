@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { validateOTP } from "../helper";
+import { useSelector } from "react-redux";
 
 const OTPvalidation = () => {
   const [otp, setotp] = useState("");
@@ -18,7 +19,8 @@ const OTPvalidation = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
+  const user = useSelector((state) => state.logininfo.user);
+  const username = user ? user.username : "";
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -27,7 +29,7 @@ const OTPvalidation = () => {
       setShowAlert(true);
       //to navigate to another component
       setTimeout(() => {
-        navigate("/setpassword");
+        navigate(`/setpassword?user=${username}`);
       }, 3000);
     } catch (error) {
       console.error(
