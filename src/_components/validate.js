@@ -18,7 +18,7 @@ let passwordVerify = (values) => {
   if (!hasUpperCase) {
     return "Password must contain at least one uppercase letter";
   }
-  if (!hasLowerCase) { 
+  if (!hasLowerCase) {
     return "Password must contain at least one lowercase letter";
   }
   if (!hasNumbers) {

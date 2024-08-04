@@ -23,11 +23,13 @@ const Setpassword = () => {
 
     if (errors !== "Password is strong") {
       setValidationError(errors);
+      setLoading(false);
       return;
     }
 
     if (newpassword !== reenterpassword) {
       setValidationError("Passwords do not match");
+      setLoading(false);
       return;
     }
 
