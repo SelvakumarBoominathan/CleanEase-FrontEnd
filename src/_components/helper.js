@@ -109,7 +109,6 @@ export const validateOTP = async (otp) => {
   }
 };
 
-
 // Get user details
 export const getUserDetails = async (username) => {
   try {
