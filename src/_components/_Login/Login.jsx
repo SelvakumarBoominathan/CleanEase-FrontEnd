@@ -12,6 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  // const history = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,7 +25,7 @@ const Login = () => {
       dispatch(loginSuccess(response));
       setUsername("");
       setPassword("");
-      navigate("/");
+      navigate(`/?userName=${userName}`);
     } catch (error) {
       console.error("Login error:", error); // Log error
       dispatch(loginFailure("Incorrect username or password."));
