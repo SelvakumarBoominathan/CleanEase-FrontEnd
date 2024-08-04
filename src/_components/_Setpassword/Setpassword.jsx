@@ -8,7 +8,6 @@ import { createResetSession, resetPassword } from "../helper.js";
 const Setpassword = () => {
   const [newpassword, setNewpassword] = useState("");
   const [reenterpassword, setReenterpassword] = useState("");
-  // const [showToast, setshowToast] = useState(false);
   const [validationError, setValidationError] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [error, setError] = useState("");
@@ -68,6 +67,21 @@ const Setpassword = () => {
 
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-90">
+      {showAlert && (
+        <div className="alert-overlay">
+          <div className="alert alert-success" role="alert">
+            Password has been changed!
+          </div>
+        </div>
+      )}
+      {error && (
+        <div className="alert-overlay">
+          <div className="alert alert-danger" role="alert">
+            {error}
+          </div>
+        </div>
+      )}
+
       <h1>Enter New Password</h1>
 
       <Form onSubmit={handleSubmit} className="Form-Register shadow">
@@ -96,8 +110,13 @@ const Setpassword = () => {
             <div className="text-danger">{validationError}</div>
           )}
           <div className="d-flex flex-column justify-content-center align-items-center mt-4">
-            <Button variant="primary" type="submit" className="w-30 px-3 py-2">
-              Reset
+            <Button
+              variant="primary"
+              type="submit"
+              className="w-30 px-3 py-2"
+              disabled={loading}
+            >
+              {loading ? <Spinner animation="border" size="sm" /> : "Reset"}
             </Button>
           </div>
         </Row>
