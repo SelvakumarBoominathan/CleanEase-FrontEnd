@@ -120,30 +120,6 @@ export const getUserDetails = async (username) => {
   }
 };
 
-// // Verify OTP
-// export const verifyOTP = async (code) => {
-//   try {
-//     const response = await axios.get(`${baseURL}/verifyOTP`, {
-//       params: { code },
-//     });
-//     return response.data;
-//   } catch (error) {
-//     console.error("Error verifying OTP:", error.response.data);
-//     throw error;
-//   }
-// };
-
-// Create reset session
-export const createResetSession = async () => {
-  try {
-    const response = await axios.get(`${baseURL}/ResetSession`);
-    return response.data;
-  } catch (error) {
-    console.error("Error creating reset session:", error.response.data);
-    throw error;
-  }
-};
-
 // Reset password
 export const resetPassword = async (resetData) => {
   try {

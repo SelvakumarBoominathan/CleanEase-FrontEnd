@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Container, Form, Button, Row, Toast, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { passwordvalidate } from "../validate.js";
-import { createResetSession, resetPassword } from "../helper.js";
+import { resetPassword } from "../helper.js";
 import { useSelector } from "react-redux";
 
 const Setpassword = () => {
@@ -14,7 +14,7 @@ const Setpassword = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const username = useSelector((state) => state.logininfo.user);
+  const username = useSelector((state) => state.logininfo.user.username);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +39,7 @@ const Setpassword = () => {
     setValidationError("");
 
     try {
-      createResetSession();
+      // createResetSession();
       const data = { username: String(username), password: newpassword };
       await resetPassword(data);
 
@@ -49,6 +49,7 @@ const Setpassword = () => {
       // settimeout to redirect to Login page automatically
       setTimeout(() => {
         setShowAlert(false); // Hide alert after some time
+        localStorage.removeItem("authToken");
         navigate("/Login");
       }, 3000);
     } catch (error) {
