@@ -3,7 +3,6 @@ import { Container, Form, Button, Row, Col, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { sendRegisterMail } from "../helper";
 import "./Emailvarification-styles.css";
-import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
 const Email_verification = () => {
@@ -12,11 +11,9 @@ const Email_verification = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  // const user = useSelector((state) => state.logininfo.user);
-  // const username = user ? user.username : "";
 
-  const [searchParams] = useSearchParams();
-  const username = searchParams.get("user");
+  // const [searchParams] = useSearchParams();
+  // const username = searchParams.get("user");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +22,8 @@ const Email_verification = () => {
 
     try {
       // Send OTP to the entered email using the helper function
-      await sendRegisterMail(email);
+      const userdata = await sendRegisterMail(email);
+      const username = userdata.user;
       // Show alert for email submission
       setShowAlert(true);
       // console.log({ email: email });
