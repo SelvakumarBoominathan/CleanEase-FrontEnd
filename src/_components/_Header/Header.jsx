@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const username = useSelector((state) => state.logininfo.user);
+  const username = useSelector((state) => state.logininfo.user.username);
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
     if (authToken) {

@@ -11,7 +11,7 @@ import Setpassword from "./_components/_Setpassword/Setpassword.jsx";
 
 // auth middleware
 
-import { AuthUser } from "./middleware/auth.jsx";
+// import { AuthUser } from "./middleware/auth.jsx";
 
 function App() {
   return (
@@ -29,30 +29,9 @@ function App() {
             />
             <Route path="/Registerpage" element={<Registerpage />} />
             <Route path="/Login" element={<Login />} />
-            <Route
-              path="/emailverification"
-              element={
-                // <AuthUser>
-                <_Emailvarification />
-                // </AuthUser>
-              }
-            />
-            <Route
-              path="/otpvalidation"
-              element={
-                <AuthUser>
-                  <OTPvalidation />
-                </AuthUser>
-              }
-            />
-            <Route
-              path="/setpassword"
-              element={
-                <AuthUser>
-                  <Setpassword />
-                </AuthUser>
-              }
-            />
+            <Route path="/emailverification" element={<_Emailvarification />} />
+            <Route path="/otpvalidation" element={<OTPvalidation />} />
+            <Route path="/setpassword" element={<Setpassword />} />
           </Routes>
         </BrowserRouter>
       </div>
