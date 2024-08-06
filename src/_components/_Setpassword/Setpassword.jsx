@@ -5,17 +5,19 @@ import { useNavigate } from "react-router-dom";
 import { passwordvalidate } from "../validate.js";
 import { resetPassword } from "../helper.js";
 import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 
 const Setpassword = () => {
   const [newpassword, setNewpassword] = useState("");
   const [reenterpassword, setReenterpassword] = useState("");
   const [validationError, setValidationError] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [searchparams] = useSearchParams();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const username = useSelector((state) => state.logininfo.user.username);
-
+  //const username = useSelector((state) => state.logininfo.user.username);
+  const username = searchparams.get("user");
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -125,7 +127,7 @@ const Setpassword = () => {
         </Row>
       </Form>
       <Toast
-        onClose={() => setshowToast(false)}
+        onClose={() => setShowAlert(false)}
         show={showAlert}
         delay={3000}
         autohide

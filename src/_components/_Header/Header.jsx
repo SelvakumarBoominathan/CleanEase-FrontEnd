@@ -6,10 +6,13 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const username = useSelector((state) => state.logininfo.user.username);
+  // const username = useSelector((state) => state.logininfo.user.username);
+  const [searchParams] = useSearchParams();
+  const username = searchParams.get("user");
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
     if (authToken) {

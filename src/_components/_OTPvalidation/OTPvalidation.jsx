@@ -12,6 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { validateOTP } from "../helper";
 import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 
 const OTPvalidation = () => {
   const [otp, setotp] = useState("");
@@ -19,8 +20,10 @@ const OTPvalidation = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const user = useSelector((state) => state.logininfo.user);
-  const username = user ? user.username : "";
+  // const user = useSelector((state) => state.logininfo.user);
+  // const username = user ? user.username : "";
+  const [searchParams] = useSearchParams();
+  const username = searchParams.get("user");
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
