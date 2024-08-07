@@ -5,10 +5,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./Searchfield-styles.css";
 import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const Searchfield = () => {
   // place holder effect using useState and useEffect
   const [placeholder, setPlaceholder] = useState('Search "Fan Cleaning"');
+  const [searchParams] = useSearchParams();
+  const username = searchParams.get("user");
 
   useEffect(() => {
     const options = [
@@ -34,7 +37,9 @@ const Searchfield = () => {
           <h1>
             Search for <span className="Span">SERVICES</span>
           </h1>
-          <h6>Home services at your doorstep!</h6>
+          <h6>
+            Welcome <b>{username}</b>! Home services at your doorstep.
+          </h6>
         </div>
 
         <Form>
