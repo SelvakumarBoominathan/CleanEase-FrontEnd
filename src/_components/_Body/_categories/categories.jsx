@@ -1,6 +1,6 @@
 // import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+// import Row from "react-bootstrap/Row";
+// import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import "./categories-styles.css";
@@ -15,6 +15,7 @@ const categories = () => {
       name: "Lakshmi",
       city: "Chennai",
       id: 1,
+      price: "300.00 INR",
     },
     {
       image:
@@ -24,6 +25,7 @@ const categories = () => {
       name: "Rajiv",
       city: "Chennai",
       id: 2,
+      price: "600.00 INR",
     },
     {
       image:
@@ -32,6 +34,7 @@ const categories = () => {
       name: "Perumal",
       city: "Thiruvallur",
       id: 3,
+      price: "300.00 INR",
     },
     {
       image:
@@ -40,6 +43,7 @@ const categories = () => {
       name: "Lakshmi",
       city: "Chennai",
       id: 4,
+      price: "600.00 INR",
     },
     {
       image:
@@ -48,6 +52,7 @@ const categories = () => {
       name: "Revathi",
       city: "Thiruvallur",
       id: 5,
+      price: "700.00 INR",
     },
     {
       image:
@@ -56,6 +61,7 @@ const categories = () => {
       name: "Muthu",
       city: "Chennai",
       id: 6,
+      price: "400.00 INR",
     },
     {
       image:
@@ -64,6 +70,7 @@ const categories = () => {
       name: "Muthu",
       city: "Chennai",
       id: 7,
+      price: "200.00 INR",
     },
     {
       image:
@@ -72,6 +79,7 @@ const categories = () => {
       name: "Muthu",
       city: "Chennai",
       id: 8,
+      price: "300.00 INR",
     },
     {
       image:
@@ -80,6 +88,7 @@ const categories = () => {
       name: "Muthu",
       city: "Chennai",
       id: 9,
+      price: "600.00 INR",
     },
   ];
 
@@ -93,9 +102,10 @@ const categories = () => {
           <Card.Img variant="top" src={worker.image} />
           <Card.Body>
             <Card.Title>Name: {worker.name}</Card.Title>
-            <Card.Text>Name: {worker.name}</Card.Text>
+
             <Card.Text>Category: {worker.category}</Card.Text>
             <Card.Text>City: {worker.city}</Card.Text>
+            <Card.Text>Price: {worker.price}</Card.Text>
             <Button variant="primary">Book Now</Button>
           </Card.Body>
         </Card>
