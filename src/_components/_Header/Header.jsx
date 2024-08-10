@@ -80,7 +80,7 @@ const Header = () => {
             ) : (
               <Nav className="ms-auto  mt-1 mx-1">
                 <Link
-                  to={`/emailverification?user=${username}`}
+                  to={`/emailverification/${username}`}
                   // to="/emailverification"
                   className="btn btn-success"
                 >
@@ -89,7 +89,7 @@ const Header = () => {
 
                 {isAdmin ? (
                   <Link
-                    to={`/emailverification?user=${username}`}
+                    to={`/emailverification/${username}`}
                     // to="/emailverification"
                     className="btn btn-success mx-1"
                   >

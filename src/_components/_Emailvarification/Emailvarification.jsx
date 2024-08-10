@@ -31,7 +31,7 @@ const Email_verification = () => {
       // Navigate to another component after some time
       setTimeout(() => {
         setShowAlert(false); // Hide alert after some time
-        navigate(`/otpvalidation?user=${username}`);
+        navigate(`/otpvalidation/${username}`);
       }, 3000);
     } catch (error) {
       console.error(
