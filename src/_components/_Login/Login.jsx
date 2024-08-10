@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Button, Form, Row } from "react-bootstrap";
+import { Container, Button, Form, Row, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../helper.js";
@@ -12,10 +12,12 @@ const Login = () => {
   const navigate = useNavigate();
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   // const history = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     try {
       const userData = { username: userName, password: password };

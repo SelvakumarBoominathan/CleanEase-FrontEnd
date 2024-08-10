@@ -84,21 +84,9 @@ const Header = () => {
                   // to="/emailverification"
                   className="btn btn-success"
                 >
-                  {isAdmin ? "Users" : "Reset Password"}
+                  {/* {isAdmin ? "Manage data" : "Reset Password"} */}
+                  Reset Password
                 </Link>
-
-                {isAdmin ? (
-                  <Link
-                    to={`/emailverification/?user=${username}`}
-                    // to="/emailverification"
-                    className="btn btn-success mx-1"
-                  >
-                    Employees
-                    {/* {isAdmin ? "Employees" : ""} */}
-                  </Link>
-                ) : (
-                  ""
-                )}
               </Nav>
             )}
             <Nav className="ms-auto mt-1 mx-1">
