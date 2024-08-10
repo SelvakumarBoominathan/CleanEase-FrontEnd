@@ -19,13 +19,13 @@ const Login = () => {
 
     try {
       const userData = { username: userName, password: password };
-      console.log("Sending user data:", userData);
+      // console.log("Sending user data:", userData);
       const response = await loginUser(userData);
-      console.log("Login response:", response); //Log response from loginUser
+      // console.log("Login response:", response); //Log response from loginUser
       dispatch(loginSuccess(response));
       setUsername("");
       setPassword("");
-      navigate(`/${userName}`);
+      navigate(`/?user=${userName}`);
     } catch (error) {
       console.error("Login error:", error); // Log error
       dispatch(loginFailure("Incorrect username or password."));

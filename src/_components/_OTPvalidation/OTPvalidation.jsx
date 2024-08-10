@@ -32,7 +32,7 @@ const OTPvalidation = () => {
       setShowAlert(true);
       //to navigate to another component
       setTimeout(() => {
-        navigate(`/setpassword/${username}`);
+        navigate(`/setpassword/?user=${username}`);
       }, 3000);
     } catch (error) {
       console.error(
