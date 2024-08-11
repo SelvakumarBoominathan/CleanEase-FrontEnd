@@ -3,7 +3,7 @@ import { Container, Form, Button, Row, Col, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { sendRegisterMail } from "../helper";
 import "./Emailvarification-styles.css";
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 
 const Email_verification = () => {
   const [email, setEmail] = useState("");
@@ -26,7 +26,6 @@ const Email_verification = () => {
       const username = userdata.user;
       // Show alert for email submission
       setShowAlert(true);
-      // console.log({ email: email });
 
       // Navigate to another component after some time
       setTimeout(() => {

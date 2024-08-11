@@ -4,10 +4,16 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import "./categories-styles.css";
+import { useSearchParams } from "react-router-dom";
 
 import React from "react";
 
 const categories = () => {
+  const [searchParams] = useSearchParams();
+  const username = searchParams.get("user");
+
+  const isAdmin = username === "admin" ? true : false;
+
   const Workers = [
     {
       image: "https://im.hunt.in/cg/Tirupur/City-Guide/house.jpg",
@@ -106,7 +112,11 @@ const categories = () => {
             <Card.Text>Category: {worker.category}</Card.Text>
             <Card.Text>City: {worker.city}</Card.Text>
             <Card.Text>Price: {worker.price}</Card.Text>
-            <Button variant="primary">Book Now</Button>
+            {isAdmin ? (
+              <Button variant="primary">Delete</Button>
+            ) : (
+              <Button variant="primary">Book Now</Button>
+            )}
           </Card.Body>
         </Card>
         // </Col>
