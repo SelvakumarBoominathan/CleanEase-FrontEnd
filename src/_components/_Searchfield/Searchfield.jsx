@@ -1,13 +1,11 @@
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Form";
 import "./Searchfield-styles.css";
-import React, { useState, useCallback } from "react";
+import React, { useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 
-const Searchfield = () => {
-  const [service, setService] = useState("All");
-  const [cost, setCost] = useState("All");
+const Searchfield = ({ service, cost, setService, setCost }) => {
   const [searchParams] = useSearchParams();
   const username = searchParams.get("user");
   const service_options = [
@@ -23,28 +21,29 @@ const Searchfield = () => {
   ];
   const cost_options = ["All", 300, 500, 700, 1000];
 
-  const handleServiceChange = useCallback((Service) => {
-    setService(Service);
+  const handleServiceChange = useCallback((service_name) => {
+    // console.log(service_name);
+    setService(service_name);
   }, []);
 
-  const handleCostChange = useCallback((Cost) => {
-    setCost(Cost);
+  const handleCostChange = useCallback((cost_value) => {
+    // console.log(cost_value);
+    setCost(cost_value);
   }, []);
 
   return (
     <div>
       <Navbar className="bg-body-tertiary justify-content-center align-items-center d-flex flex-column p-5 ">
         <div className="text-field">
-          <h1>
-            Filter for <span className="Span">SERVICES</span>
-          </h1>
+          <h1>Home services at your doorstep</h1>
           <h6>
-            Welcome <b>{username}</b>! Home services at your doorstep.
+            Welcome <b>{username}</b>! Filter for{" "}
+            <span className="Span">SERVICES</span>
           </h6>
         </div>
-        <Container className="d-flex align-items-center justify-content-between mt-3 gap-4">
+        <Container className="d-flex align-items-center justify-content-between mt-3 gap-4 container1">
           <Dropdown className="d-grid place-items-center">
-            Filter by service :
+            Service :
             <Dropdown.Toggle
               variant="success"
               id="dropdown-basic"

@@ -24,3 +24,9 @@ b {
   width: 180px;
 }
 
+@media (max-width: 600px) {
+  .container1 {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

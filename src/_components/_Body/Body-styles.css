@@ -2,3 +2,12 @@
   width: 100%;
   padding: 0, 10%, 0 10%;
 }
+
+.grid-sys {
+  display: grid;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  place-items: center;
+}
