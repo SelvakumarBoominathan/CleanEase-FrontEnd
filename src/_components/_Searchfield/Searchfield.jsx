@@ -18,9 +18,9 @@ const Searchfield = () => {
   const service_options = [
     { label: "All", value: 0 },
     { label: "House Cleaner", value: 1 },
-    { label: "Bathroom Cleaner", value: 2 },
+    { label: "Car Cleaner", value: 2 },
     { label: "Kitchen Cleaner", value: 3 },
-    { label: "Garden Maintenance", value: 4 },
+    { label: "Gardener", value: 4 },
     { label: "Electrition", value: 5 },
     { label: "Plumber", value: 6 },
     { label: "AC service", value: 7 },

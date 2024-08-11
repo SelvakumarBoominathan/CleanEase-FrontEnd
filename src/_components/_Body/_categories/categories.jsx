@@ -11,36 +11,35 @@ import React from "react";
 const categories = () => {
   const [searchParams] = useSearchParams();
   const username = searchParams.get("user");
-
   const isAdmin = username === "admin" ? true : false;
 
   const Workers = [
     {
       image: "https://im.hunt.in/cg/Tirupur/City-Guide/house.jpg",
-      category: "House Clean",
+      category: "House Cleaner",
       name: "Lakshmi",
       city: "Chennai",
       id: 1,
-      price: "300.00 INR",
+      price: "300",
     },
     {
       image:
         "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
       category: "Vessel Wash",
-      sub_category: "House Cleaning",
+      sub_category: "Car Cleaner",
       name: "Rajiv",
       city: "Chennai",
       id: 2,
-      price: "600.00 INR",
+      price: "600",
     },
     {
       image:
         "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "Cloth Wash",
-      name: "Perumal",
+      category: "Kitchen Cleaner",
+      name: "Electrition",
       city: "Thiruvallur",
       id: 3,
-      price: "300.00 INR",
+      price: "300",
     },
     {
       image:
@@ -49,52 +48,52 @@ const categories = () => {
       name: "Lakshmi",
       city: "Chennai",
       id: 4,
-      price: "600.00 INR",
+      price: "600",
     },
     {
       image:
         "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "Bothroom Clean",
+      category: "Gardener",
       name: "Revathi",
       city: "Thiruvallur",
       id: 5,
-      price: "700.00 INR",
+      price: "700",
     },
     {
       image:
         "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "Garden Clean",
-      name: "Muthu",
+      category: "Plumber",
+      name: "Raj kumar",
       city: "Chennai",
       id: 6,
-      price: "400.00 INR",
+      price: "400",
     },
     {
       image:
         "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "Car Clean",
-      name: "Muthu",
+      category: "AC service",
+      name: "Vignesh",
       city: "Chennai",
       id: 7,
-      price: "200.00 INR",
+      price: "200",
     },
     {
       image:
         "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
       category: "Pet Clean",
-      name: "Muthu",
+      name: "Muthukumar",
       city: "Chennai",
       id: 8,
-      price: "300.00 INR",
+      price: "300",
     },
     {
       image:
         "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "Basement Clean",
-      name: "Muthu",
+      category: "Vessel Washer",
+      name: "Latha",
       city: "Chennai",
       id: 9,
-      price: "600.00 INR",
+      price: "600",
     },
   ];
 
@@ -111,7 +110,7 @@ const categories = () => {
 
             <Card.Text>Category: {worker.category}</Card.Text>
             <Card.Text>City: {worker.city}</Card.Text>
-            <Card.Text>Price: {worker.price}</Card.Text>
+            <Card.Text>Price: {worker.price} INR</Card.Text>
             {isAdmin ? (
               <Button variant="primary">Delete</Button>
             ) : (
