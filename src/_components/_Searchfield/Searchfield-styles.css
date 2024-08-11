@@ -19,3 +19,7 @@ h6 * {
 b {
   color: red;
 }
+
+.dropdown-Width {
+  width: 180px;
+}

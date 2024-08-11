@@ -1,16 +1,11 @@
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import "./Searchfield-styles.css";
 import React, { useState, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 
 const Searchfield = () => {
-  // place holder effect using useState and useEffect
-  // const [placeholder, setPlaceholder] = useState('Search "Fan Cleaning"');
   const [service, setService] = useState("All");
   const [cost, setCost] = useState("All");
   const [searchParams] = useSearchParams();
@@ -26,7 +21,7 @@ const Searchfield = () => {
     { label: "AC service", value: 7 },
     { label: "Vessel Washer", value: 8 },
   ];
-  const cost_options = [300, 500, 700, 1000];
+  const cost_options = ["All", 300, 500, 700, 1000];
 
   const handleServiceChange = useCallback((Service) => {
     setService(Service);
@@ -38,7 +33,7 @@ const Searchfield = () => {
 
   return (
     <div>
-      <Navbar className="bg-body-tertiary justify-content-center d-flex flex-column p-5 ">
+      <Navbar className="bg-body-tertiary justify-content-center align-items-center d-flex flex-column p-5 ">
         <div className="text-field">
           <h1>
             Filter for <span className="Span">SERVICES</span>
@@ -47,16 +42,16 @@ const Searchfield = () => {
             Welcome <b>{username}</b>! Home services at your doorstep.
           </h6>
         </div>
-        <Container className="d-flex mt-3">
-          <Dropdown>
+        <Container className="d-flex align-items-center justify-content-between mt-3 gap-4">
+          <Dropdown className="d-grid place-items-center">
+            Filter by service :
             <Dropdown.Toggle
               variant="success"
               id="dropdown-basic"
-              className="ms-auto  mt-1 mx-2"
+              className="ms-auto mt-1 mx-2 dropdown-Width"
             >
-              Filter by service : {service}
+              {service}
             </Dropdown.Toggle>
-
             <Dropdown.Menu>
               {service_options.map((service_option) => (
                 <Dropdown.Item
@@ -69,15 +64,15 @@ const Searchfield = () => {
               ))}
             </Dropdown.Menu>
           </Dropdown>
-          <Dropdown>
+          <Dropdown className="d-grid place-items-center">
+            Filter by cost :
             <Dropdown.Toggle
               variant="success"
               id="dropdown-basic"
-              className="ms-auto  mt-1 w-100"
+              className="ms-auto mt-1 mx-2 dropdown-Width"
             >
-              Filter by cost : {cost}
+              {cost}
             </Dropdown.Toggle>
-
             <Dropdown.Menu>
               {cost_options.map((cost_option, index) => (
                 <Dropdown.Item
@@ -97,37 +92,3 @@ const Searchfield = () => {
 };
 
 export default Searchfield;
-
-// useEffect(() => {
-// const options = [
-//   "Fan Cleaning",
-//   "Bathroom Cleaning",
-//   "Kitchen Cleaning",
-//   "Hall Cleaning",
-// ];
-// let index = 0;
-// const interval = setInterval(() => {
-//   index = (index + 1) % options.length;
-//   setPlaceholder(`Search "${options[index]}"`);
-// }, 1500);
-// return () => clearInterval(interval); // Cleanup interval on component unmount
-// }, []);
-
-{
-  /* <Form>
-          <Row className="pt-5 d-flex justify-content-center">
-            <Col xs="auto p-2">
-              <Form.Control
-                type="text"
-                placeholder={placeholder}
-                className="mr-sm-4"
-              />
-            </Col>
-            <Col xs="auto p-2">
-              <Button type="submit" className="d-flex justify-content-between">
-                <img src="search.svg" />
-              </Button>
-            </Col>
-          </Row>
-        </Form> */
-}
