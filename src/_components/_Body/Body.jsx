@@ -8,7 +8,7 @@ const Body = ({ service, cost }) => {
   const [searchParams] = useSearchParams();
   const username = searchParams.get("user");
   const isAdmin = username === "admin" ? true : false;
-  console.log(service, cost);
+  // console.log(service, cost);
 
   const Workers = [
     {
@@ -138,14 +138,21 @@ const Body = ({ service, cost }) => {
       price: "600",
     },
   ];
-  const filteredWorkers = Workers.filter((worker) => {
-    const maxCost = cost !== "All" ? parseInt(cost, 10) : null;
 
-    // If cost is "All", ignore cost filtering, otherwise filter by cost and service
-    return (
-      (worker.category === service && maxCost === null) ||
-      parseInt(worker.price, 10) <= maxCost
-    );
+  const filteredWorkers = Workers.filter((worker) => {
+    if (service === "All" && cost === "All") {
+      return true;
+    }
+
+    if (service === "All") {
+      return parseInt(worker.price) <= cost;
+    }
+
+    if (cost === "All") {
+      return worker.category === service;
+    }
+
+    return worker.category === service && worker.price <= cost;
   });
 
   console.log("Filtered Workers:", filteredWorkers);
