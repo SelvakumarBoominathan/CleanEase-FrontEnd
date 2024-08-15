@@ -155,7 +155,7 @@ const Body = ({ service, cost }) => {
     return worker.category === service && worker.price <= cost;
   });
 
-  console.log("Filtered Workers:", filteredWorkers);
+  // console.log("Filtered Workers:", filteredWorkers);
 
   return (
     <div className="container-body">
