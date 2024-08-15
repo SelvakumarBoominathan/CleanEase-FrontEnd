@@ -130,3 +130,20 @@ export const resetPassword = async (resetData) => {
     throw error;
   }
 };
+
+//get Employees
+
+export const getEmployeeData = async () => {
+  try {
+    const response = await fetch("/employees");
+    if (!response.ok) {
+      // Check if the response status is not OK (200-299)
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching users", error);
+    throw error;
+  }
+};
