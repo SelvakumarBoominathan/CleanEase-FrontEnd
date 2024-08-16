@@ -1,159 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import "./Body-styles.css";
+import { getAllEmployee } from "../helper.js";
 
 import { useSearchParams } from "react-router-dom";
 
 const Body = ({ service, cost }) => {
   const [searchParams] = useSearchParams();
+  const [employees, setEmployees] = useState();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const username = searchParams.get("user");
   const isAdmin = username === "admin" ? true : false;
   // console.log(service, cost);
+  useEffect(() => {
+    const fetchEmployees = async () => {
+      try {
+        const employeeData = await getAllEmployee();
+        setEmployees(employeeData);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchEmployees();
+  }, []);
 
-  const Workers = [
-    {
-      image: "https://im.hunt.in/cg/Tirupur/City-Guide/house.jpg",
-      category: "House Cleaner",
-      name: "Lakshmi",
-      city: "Chennai",
-      id: 1,
-      price: "300",
-    },
-    {
-      image:
-        "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "Vessel Wash",
-      sub_category: "Car Cleaner",
-      name: "Rajiv",
-      city: "Chennai",
-      id: 2,
-      price: "600",
-    },
-    {
-      image:
-        "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "Kitchen Cleaner",
-      name: "Electrition",
-      city: "Thiruvallur",
-      id: 3,
-      price: "300",
-    },
-    {
-      image:
-        "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "House Clean",
-      name: "Lakshmi",
-      city: "Chennai",
-      id: 4,
-      price: "600",
-    },
-    {
-      image:
-        "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "Gardener",
-      name: "Revathi",
-      city: "Thiruvallur",
-      id: 5,
-      price: "700",
-    },
-    {
-      image:
-        "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "Plumber",
-      name: "Raj kumar",
-      city: "Chennai",
-      id: 6,
-      price: "400",
-    },
-    {
-      image:
-        "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "Plumber",
-      name: "Raj kumar",
-      city: "Chennai",
-      id: 7,
-      price: "400",
-    },
-    {
-      image:
-        "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "Plumber",
-      name: "Raj kumar",
-      city: "Chennai",
-      id: 8,
-      price: "200",
-    },
-    {
-      image:
-        "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "AC service",
-      name: "Vignesh",
-      city: "Chennai",
-      id: 9,
-      price: "200",
-    },
-    {
-      image:
-        "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "Pet Clean",
-      name: "Muthukumar",
-      city: "Chennai",
-      id: 10,
-      price: "300",
-    },
-    {
-      image:
-        "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "Vessel Washer",
-      name: "Latha",
-      city: "Chennai",
-      id: 11,
-      price: "600",
-    },
-    {
-      image:
-        "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "Vessel Washer",
-      name: "Kayal",
-      city: "Chennai",
-      id: 12,
-      price: "600",
-    },
-    {
-      image:
-        "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "Vessel Washer",
-      name: "Latha",
-      city: "Chennai",
-      id: 13,
-      price: "600",
-    },
-    {
-      image:
-        "https://www.shutterstock.com/image-photo/middle-age-man-beard-smiling-260nw-1917255131.jpg",
-      category: "Vessel Washer",
-      name: "Latha",
-      city: "Chennai",
-      id: 14,
-      price: "600",
-    },
-  ];
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
-  const filteredWorkers = Workers.filter((worker) => {
+  const filteredWorkers = employees.filter((employee) => {
     if (service === "All" && cost === "All") {
       return true;
     }
 
     if (service === "All") {
-      return parseInt(worker.price) <= cost;
+      return parseInt(employee.price) <= cost;
     }
 
     if (cost === "All") {
-      return worker.category === service;
+      return employee.category === service;
     }
 
-    return worker.category === service && worker.price <= cost;
+    return employee.category === service && employee.price <= cost;
   });
 
   // console.log("Filtered Workers:", filteredWorkers);
