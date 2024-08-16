@@ -147,3 +147,5 @@ export const getAllEmployee = async () => {
     throw error;
   }
 };
+
+//Delete Employee
