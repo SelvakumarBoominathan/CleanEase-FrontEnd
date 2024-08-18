@@ -186,7 +186,11 @@ const Body = ({ service, cost }) => {
   return (
     <div className="container-body">
       {isAdmin && (
-        <Button variant="primary" onClick={() => setShowModal(true)}>
+        <Button
+          variant="primary"
+          className="d-flex justify-content-center mx-auto mt-3 mb-3"
+          onClick={() => setShowModal(true)}
+        >
           Add New Employee
         </Button>
       )}
