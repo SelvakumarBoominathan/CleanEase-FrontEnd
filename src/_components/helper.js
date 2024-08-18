@@ -161,3 +161,10 @@ export const deleteEmployee = async (id) => {
     throw error;
   }
 };
+
+//Add Employee
+
+export const addEmployee = async () => {
+  try {
+  } catch (error) {}
+};
