@@ -47,22 +47,28 @@ const Body = ({ service, cost }) => {
     return employee.category === service && employee.price <= cost;
   });
 
+  const handleDetete = (id)=>{
+    
+  }
+
   // console.log("Filtered Workers:", filteredWorkers);
 
   return (
     <div className="container-body">
       <div className="grid-sys">
-        {filteredWorkers.map((worker) => (
-          <Card style={{ width: "18rem" }} key={worker.id}>
-            <Card.Img variant="top" src={worker.image} />
+        {filteredWorkers.map((emp) => (
+          <Card style={{ width: "18rem" }} key={emp.id}>
+            <Card.Img variant="top" src={emp.image} />
             <Card.Body>
-              <Card.Title>Name: {worker.name}</Card.Title>
+              <Card.Title>Name: {emp.name}</Card.Title>
 
-              <Card.Text>Category: {worker.category}</Card.Text>
-              <Card.Text>City: {worker.city}</Card.Text>
-              <Card.Text>Price: {worker.price} INR</Card.Text>
+              <Card.Text>Category: {emp.category}</Card.Text>
+              <Card.Text>City: {emp.city}</Card.Text>
+              <Card.Text>Price: {emp.price} INR</Card.Text>
               {isAdmin ? (
-                <Button variant="primary">Delete</Button>
+                <Button variant="primary" onClick={() => handleDetete(emp.id)}>
+                  Delete
+                </Button>
               ) : (
                 <Button variant="primary">Book Now</Button>
               )}
