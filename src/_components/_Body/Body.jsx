@@ -184,7 +184,7 @@ const Body = ({ service, cost }) => {
   };
 
   return (
-    <div className="container-body">
+    <div className="container-body overflow-scroll">
       {isAdmin && (
         <Button
           variant="primary"
