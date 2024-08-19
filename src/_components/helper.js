@@ -165,7 +165,7 @@ export const deleteEmployee = async (id) => {
 //Update Employee
 export const updateEmployee = async (id) => {
   try {
-    const response = await axios.delete(`${baseURL}/deleteEmployee/${id}`);
+    const response = await axios.put(`${baseURL}/updateEmployee/${id}`);
     return response.data;
   } catch (error) {
     console.error(

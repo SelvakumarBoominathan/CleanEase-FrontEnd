@@ -4,16 +4,30 @@ import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import "./Body-styles.css";
-import { getAllEmployee, deleteEmployee, addEmployee, updateEmployee } from "../helper.js"; // Import addEmployee function
+import {
+  getAllEmployee,
+  deleteEmployee,
+  addEmployee,
+  updateEmployee,
+} from "../helper.js"; // Import addEmployee function
 import { useSearchParams } from "react-router-dom";
 
 const Body = ({ service, cost }) => {
   const [searchParams] = useSearchParams();
-  const [employees, setEmployees] = useState([]);
+  const [employee, setEmployee] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false); // For modal visibility
+  const [showUpdateModal, setUpdateShowModal] = useState(false); // For modal visibility
   const [newEmployee, setNewEmployee] = useState({
+    image: "",
+    category: "",
+    name: "",
+    city: "",
+    id: "",
+    price: "",
+  });
+  const [updateEmployee, setUpdateEmployee] = useState({
     image: "",
     category: "",
     name: "",
@@ -28,7 +42,12 @@ const Body = ({ service, cost }) => {
     const fetchEmployees = async () => {
       try {
         const employeeData = await getAllEmployee();
-        setEmployees(employeeData);
+        setEmployee(employeeData);
+        
+        const employeeToUpdate = employeeData.find(emp => emp.id === )
+
+
+
       } catch (error) {
         setError(error.message);
       } finally {
@@ -41,7 +60,7 @@ const Body = ({ service, cost }) => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  const filteredWorkers = employees.filter((employee) => {
+  const filteredWorkers = employee.filter((employee) => {
     if (service === "All" && cost === "All") {
       return true;
     }
@@ -63,7 +82,7 @@ const Body = ({ service, cost }) => {
   const handleDelete = async (id) => {
     try {
       await deleteEmployee(id);
-      setEmployees(employees.filter((employee) => employee.id !== id));
+      setEmployee(employee.filter((emp) => emp.id !== id));
       alert("Employee deleted successfully");
     } catch (error) {
       alert("Failed to delete employee");
@@ -71,21 +90,24 @@ const Body = ({ service, cost }) => {
     }
   };
 
-  const handleUpdate = async (id) => {
+  const handleUpdate = async (empData) => {
     try {
-      await updateEmployee(id);
-      setEmployees(employees.filter((employee) => employee.id === id));
-      // alert("Employee Updated successfully");
+      // const EmployeeData = employee.filter((emp) => emp.id === empData.id);
+      setUpdateEmployee(empData)
+      setUpdateShowModal(true);
+      // await updateEmployee(id);
+
+      alert("Employee Updated successfully");
     } catch (error) {
-      alert("Failed to delete employee");
-      console.error("Error deleting employee:", error);
+      alert("Failed to update employee");
+      console.error("Error updating employee:", error);
     }
   };
 
   const handleAddEmployee = async () => {
     try {
       await addEmployee(newEmployee);
-      setEmployees([...employees, newEmployee]);
+      setEmployee([...employee, newEmployee]);
       setShowModal(false);
       setNewEmployee({
         image: "",
@@ -126,7 +148,8 @@ const Body = ({ service, cost }) => {
                 <>
                   <Button
                     variant="secondary"
-                    onClick={() => handleUpdate(emp.id)}
+                    className="mx-4"
+                    onClick={() => handleUpdate(emp)}
                   >
                     Update
                   </Button>
@@ -146,6 +169,91 @@ const Body = ({ service, cost }) => {
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Add New Employee</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formImage">
+              <Form.Label>Image URL</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter image URL"
+                value={newEmployee.image}
+                onChange={(e) =>
+                  setNewEmployee({ ...newEmployee, image: e.target.value })
+                }
+              />
+            </Form.Group>
+            <Form.Group controlId="formCategory">
+              <Form.Label>Category</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter category"
+                value={newEmployee.category}
+                onChange={(e) =>
+                  setNewEmployee({ ...newEmployee, category: e.target.value })
+                }
+              />
+            </Form.Group>
+            <Form.Group controlId="formName">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter name"
+                value={newEmployee.name}
+                onChange={(e) =>
+                  setNewEmployee({ ...newEmployee, name: e.target.value })
+                }
+              />
+            </Form.Group>
+            <Form.Group controlId="formCity">
+              <Form.Label>City</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter city"
+                value={newEmployee.city}
+                onChange={(e) =>
+                  setNewEmployee({ ...newEmployee, city: e.target.value })
+                }
+              />
+            </Form.Group>
+            <Form.Group controlId="formId">
+              <Form.Label>ID</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter ID"
+                value={newEmployee.id}
+                onChange={(e) =>
+                  setNewEmployee({ ...newEmployee, id: e.target.value })
+                }
+              />
+            </Form.Group>
+            <Form.Group controlId="formPrice">
+              <Form.Label>Price</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter price"
+                value={newEmployee.price}
+                onChange={(e) =>
+                  setNewEmployee({ ...newEmployee, price: e.target.value })
+                }
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleAddEmployee}>
+            Submit
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal for Update Employee */}
+      <Modal show={showUpdateModal} onHide={() => setUpdateShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Update Employee</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
