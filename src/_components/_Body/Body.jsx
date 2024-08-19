@@ -1,102 +1,10 @@
-// import React, { useEffect, useState } from "react";
-// import Button from "react-bootstrap/Button";
-// import Card from "react-bootstrap/Card";
-// import "./Body-styles.css";
-// import { getAllEmployee, deleteEmployee } from "../helper.js";
-
-// import { useSearchParams } from "react-router-dom";
-
-// const Body = ({ service, cost }) => {
-//   const [searchParams] = useSearchParams();
-//   const [employees, setEmployees] = useState();
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-//   const username = searchParams.get("user");
-//   const isAdmin = username === "admin" ? true : false;
-//   // console.log(service, cost);
-//   useEffect(() => {
-//     const fetchEmployees = async () => {
-//       try {
-//         const employeeData = await getAllEmployee();
-//         setEmployees(employeeData);
-//       } catch (error) {
-//         setError(error.message);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-//     fetchEmployees();
-//   }, []);
-
-//   if (loading) return <div>Loading...</div>;
-//   if (error) return <div>Error: {error}</div>;
-
-//   const filteredWorkers = employees.filter((employee) => {
-//     if (service === "All" && cost === "All") {
-//       return true;
-//     }
-
-//     if (service === "All") {
-//       return parseInt(employee.price) <= cost;
-//     }
-
-//     if (cost === "All") {
-//       return employee.category === service;
-//     }
-
-//     return employee.category === service && employee.price <= cost;
-//   });
-
-//   const handleDelete = async (id) => {
-//     try {
-//       await deleteEmployee(id);
-//       setEmployees(employees.filter((employee) => employee.id !== id));
-//       alert("Employee deleted successfully");
-//       // Optionally, refresh the employee list or update state
-//     } catch (error) {
-//       alert("Failed to delete employee");
-//       console.error("Error deleting employee:", error);
-//     }
-//   };
-
-//   // console.log("Filtered Workers:", filteredWorkers);
-
-//   return (
-//     <div className="container-body">
-//       <div className="grid-sys">
-//         {filteredWorkers.map((emp) => (
-//           <Card style={{ width: "18rem" }} key={emp.id}>
-//             <Card.Img variant="top" src={emp.image} />
-//             <Card.Body>
-//               <Card.Title>Name: {emp.name}</Card.Title>
-
-//               <Card.Text>Category: {emp.category}</Card.Text>
-//               <Card.Text>City: {emp.city}</Card.Text>
-//               <Card.Text>Price: {emp.price} INR</Card.Text>
-//               {isAdmin ? (
-//                 <Button variant="primary" onClick={() => handleDelete(emp.id)}>
-//                   Delete
-//                 </Button>
-//               ) : (
-//                 <Button variant="primary">Book Now</Button>
-//               )}
-//             </Card.Body>
-//           </Card>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Body;
-
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import "./Body-styles.css";
-import { getAllEmployee, deleteEmployee, addEmployee } from "../helper.js"; // Import addEmployee function
+import { getAllEmployee, deleteEmployee, addEmployee, updateEmployee } from "../helper.js"; // Import addEmployee function
 import { useSearchParams } from "react-router-dom";
 
 const Body = ({ service, cost }) => {
@@ -163,6 +71,17 @@ const Body = ({ service, cost }) => {
     }
   };
 
+  const handleUpdate = async (id) => {
+    try {
+      await updateEmployee(id);
+      setEmployees(employees.filter((employee) => employee.id === id));
+      // alert("Employee Updated successfully");
+    } catch (error) {
+      alert("Failed to delete employee");
+      console.error("Error deleting employee:", error);
+    }
+  };
+
   const handleAddEmployee = async () => {
     try {
       await addEmployee(newEmployee);
@@ -204,9 +123,17 @@ const Body = ({ service, cost }) => {
               <Card.Text>City: {emp.city}</Card.Text>
               <Card.Text>Price: {emp.price} INR</Card.Text>
               {isAdmin ? (
-                <Button variant="danger" onClick={() => handleDelete(emp.id)}>
-                  Delete
-                </Button>
+                <>
+                  <Button
+                    variant="secondary"
+                    onClick={() => handleUpdate(emp.id)}
+                  >
+                    Update
+                  </Button>
+                  <Button variant="danger" onClick={() => handleDelete(emp.id)}>
+                    Delete
+                  </Button>
+                </>
               ) : (
                 <Button variant="primary">Book Now</Button>
               )}

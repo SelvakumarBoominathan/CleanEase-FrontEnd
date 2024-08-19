@@ -162,6 +162,20 @@ export const deleteEmployee = async (id) => {
   }
 };
 
+//Update Employee
+export const updateEmployee = async (id) => {
+  try {
+    const response = await axios.delete(`${baseURL}/deleteEmployee/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error in deleting employee:",
+      error.response?.data || error.message
+    );
+    throw error;
+  }
+};
+
 //Add Employee
 
 export const addEmployee = async (newEmployee) => {
