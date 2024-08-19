@@ -163,13 +163,16 @@ export const deleteEmployee = async (id) => {
 };
 
 //Update Employee
-export const updateEmployee = async (id) => {
+export const updateEmp = async (id, empData) => {
   try {
-    const response = await axios.put(`${baseURL}/updateEmployee/${id}`);
+    const response = await axios.put(
+      `${baseURL}/updateEmployee/${id}`,
+      empData
+    );
     return response.data;
   } catch (error) {
     console.error(
-      "Error in deleting employee:",
+      "Error in updating employee:",
       error.response?.data || error.message
     );
     throw error;
