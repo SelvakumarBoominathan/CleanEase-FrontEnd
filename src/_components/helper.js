@@ -164,7 +164,14 @@ export const deleteEmployee = async (id) => {
 
 //Add Employee
 
-export const addEmployee = async () => {
+export const addEmployee = async (newEmployee) => {
   try {
-  } catch (error) {}
+    const response = await axios.post(`${baseURL}/addemployee`, newEmployee);
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error in adding new employee : ",
+      error.response?.data || error.message
+    );
+  }
 };
