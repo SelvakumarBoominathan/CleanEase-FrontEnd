@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
+import { ButtonGroup, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import { FaStar } from "react-icons/fa";
 import "./Body-styles.css";
 import {
   getAllEmployee,
@@ -19,7 +21,9 @@ const Body = ({ service, cost }) => {
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false); // For Add modal visibility
   const [showUpdateModal, setUpdateShowModal] = useState(false); // For Update modal visibility
-  const [showReviewModal, setShowReviewModal] = useState(false);
+  const [showReviewModal, setShowReviewModal] = useState(true);
+  const [rating, setRating] = useState(null);
+  const [hover, setHover] = useState(null);
   const [newEmployee, setNewEmployee] = useState({
     image: "",
     category: "",
@@ -143,27 +147,51 @@ const Body = ({ service, cost }) => {
         {filteredWorkers.map((emp) => (
           <Card style={{ width: "18rem" }} key={emp.id}>
             <Card.Img variant="top" src={emp.image} />
-            <Card.Body>
+            <Card.Body className="d-flex flex-column">
               <Card.Title>Name: {emp.name}</Card.Title>
               <Card.Text>Category: {emp.category}</Card.Text>
               <Card.Text>City: {emp.city}</Card.Text>
               <Card.Text>Price: {emp.price} INR</Card.Text>
-              {isAdmin ? (
-                <>
-                  <Button
-                    variant="secondary"
-                    className="mx-4"
-                    onClick={() => handleUpdate(emp)}
-                  >
-                    Update
-                  </Button>
-                  <Button variant="danger" onClick={() => handleDelete(emp.id)}>
-                    Delete
-                  </Button>
-                </>
-              ) : (
-                <Button variant="primary">Book Now</Button>
-              )}
+              <ButtonGroup area-label="Star rating">
+                {[...Array(5)].map((_, i) => {
+                  const ratingValue = i + 1;
+                  return (
+                    <Button
+                      key={i}
+                      variant={null}
+                      onClick={() => setShowReviewModal(true)}
+                      style={{ padding: 0 }}
+                    >
+                      <FaStar
+                        size={30}
+                        color={ratingValue <= rating ? "#ffc107" : "#e4e5e9"}
+                        style={{ cursor: "pointer" }}
+                      />
+                    </Button>
+                  );
+                })}
+              </ButtonGroup>
+              <ButtonGroup className="mt-4 w-50">
+                {isAdmin ? (
+                  <>
+                    <Button
+                      variant="secondary"
+                      className="mx-4 w-25"
+                      onClick={() => handleUpdate(emp)}
+                    >
+                      Update
+                    </Button>
+                    <Button
+                      variant="danger"
+                      onClick={() => handleDelete(emp.id)}
+                    >
+                      Delete
+                    </Button>
+                  </>
+                ) : (
+                  <Button variant="primary">Book Now</Button>
+                )}
+              </ButtonGroup>
             </Card.Body>
           </Card>
         ))}
@@ -351,10 +379,37 @@ const Body = ({ service, cost }) => {
       {/*Modal for add review */}
       <Modal show={showReviewModal} onHide={() => setShowReviewModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Rate {}</Modal.Title>
+          <Modal.Title>Rate {employee.name}</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body></Modal.Body>
+        <Modal.Body>
+          <div>
+            {[...Array(5)].map((_, i) => {
+              const ratingValue = i + 1;
+
+              return (
+                <label key={i}>
+                  <input
+                    type="radio"
+                    name="rating"
+                    value={ratingValue}
+                    onClick={() => setRating(ratingValue)}
+                    style={{ display: "none" }}
+                  />
+                  <FaStar
+                    size={30}
+                    color={
+                      ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
+                    }
+                    onMouseEnter={() => setHover(ratingValue)}
+                    onMouseLeave={() => setHover(null)}
+                    style={{ cursor: "pointer", transition: "color 200ms" }}
+                  />
+                </label>
+              );
+            })}
+          </div>
+        </Modal.Body>
 
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowReviewModal(false)}>
@@ -362,7 +417,6 @@ const Body = ({ service, cost }) => {
           </Button>
           <Button variant="primary" onClick={null}>
             Submit
-            
           </Button>
         </Modal.Footer>
       </Modal>
