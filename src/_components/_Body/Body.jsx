@@ -19,6 +19,7 @@ const Body = ({ service, cost }) => {
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false); // For Add modal visibility
   const [showUpdateModal, setUpdateShowModal] = useState(false); // For Update modal visibility
+  const [showReviewModal, setShowReviewModal] = useState(false);
   const [newEmployee, setNewEmployee] = useState({
     image: "",
     category: "",
@@ -343,6 +344,25 @@ const Body = ({ service, cost }) => {
           </Button>
           <Button variant="primary" onClick={handleUpdatesubmit}>
             Submit
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/*Modal for add review */}
+      <Modal show={showReviewModal} onHide={() => setShowReviewModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Rate {}</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body></Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowReviewModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={null}>
+            Submit
+            
           </Button>
         </Modal.Footer>
       </Modal>
