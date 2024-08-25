@@ -21,7 +21,7 @@ const Body = ({ service, cost }) => {
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false); // For Add modal visibility
   const [showUpdateModal, setUpdateShowModal] = useState(false); // For Update modal visibility
-  const [showReviewModal, setShowReviewModal] = useState(true);
+  const [showReviewModal, setShowReviewModal] = useState(false);
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
   const [newEmployee, setNewEmployee] = useState({
