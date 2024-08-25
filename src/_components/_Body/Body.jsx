@@ -152,11 +152,14 @@ const Body = ({ service, cost }) => {
               <Card.Text>Category: {emp.category}</Card.Text>
               <Card.Text>City: {emp.city}</Card.Text>
               <Card.Text>Price: {emp.price} INR</Card.Text>
-              <ButtonGroup area-label="Star rating">
+              <ButtonGroup
+                area-label="Star rating"
+                className="justify-content-between"
+              >
                 {[...Array(5)].map((_, i) => {
                   const ratingValue = i + 1;
                   return (
-                    <Button
+                    <div
                       key={i}
                       variant={null}
                       onClick={() => setShowReviewModal(true)}
@@ -167,9 +170,10 @@ const Body = ({ service, cost }) => {
                         color={ratingValue <= rating ? "#ffc107" : "#e4e5e9"}
                         style={{ cursor: "pointer" }}
                       />
-                    </Button>
+                    </div>
                   );
                 })}
+                <p className="pt-1 ">12 ratings</p>
               </ButtonGroup>
               <ButtonGroup className="mt-4 w-50">
                 {isAdmin ? (
