@@ -180,13 +180,14 @@ const Body = ({ service, cost }) => {
                   <>
                     <Button
                       variant="secondary"
-                      className="mx-4 w-25"
+                      className="mx-4 h-25 rounded"
                       onClick={() => handleUpdate(emp)}
                     >
                       Update
                     </Button>
                     <Button
                       variant="danger"
+                      className="rounded"
                       onClick={() => handleDelete(emp.id)}
                     >
                       Delete
