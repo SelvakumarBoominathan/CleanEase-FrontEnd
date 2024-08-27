@@ -33,6 +33,7 @@ const Body = ({ service, cost }) => {
     city: "",
     id: "",
     price: "",
+    rating: { average: 0, count: 0 },
   });
   const [updateEmployee, setUpdateEmployee] = useState({
     image: "",
@@ -110,6 +111,7 @@ const Body = ({ service, cost }) => {
         city: "",
         id: "",
         price: "",
+        rating: { average: 0, count: 0 },
       });
       alert("Employee added successfully");
     } catch (error) {
