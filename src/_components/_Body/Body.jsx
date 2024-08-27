@@ -160,16 +160,27 @@ const Body = ({ service, cost }) => {
                 className="justify-content-between"
               >
                 {[...Array(5)].map((_, i) => {
-                  // const ratingValue = i + 1;
-                  const ratingValue = emp.rating.average;
+                  // Calculate the current star's fill percentage
+                  const fullStars = Math.floor(emp.rating.average); // Number of fully filled stars
+                  const partialStar = emp.rating.average % 1; // Fractional part of the rating
+
+                  let fillPercentage = 0;
+
+                  if (i < fullStars) {
+                    fillPercentage = 100; // Fully filled star
+                  } else if (i === fullStars) {
+                    fillPercentage = partialStar * 100; // Partially filled star
+                  }
+
                   return (
                     <div
                       key={i}
                       onClick={() => setShowReviewModal(true)}
                       style={{
-                        padding: 0,
                         position: "relative",
                         display: "inline-block",
+                        width: 30, // Make sure the container has the same width as the star
+                        height: 30,
                       }}
                     >
                       <FaStar
@@ -182,37 +193,21 @@ const Body = ({ service, cost }) => {
                           top: 0,
                         }}
                       />
-                      <div
+                      <FaStar
+                        size={30}
+                        color="#ffc107" // Filled color
                         style={{
-                          width: `${Math.min(ratingValue, rating) * 20}%`, // Adjusts the fill percentage
-                          overflow: "hidden",
+                          cursor: "pointer",
                           position: "absolute",
                           left: 0,
                           top: 0,
+                          clipPath: `inset(0 ${100 - fillPercentage}% 0 0)`, // This clips the star based on the fill percentage
                         }}
-                      >
-                        <FaStar
-                          size={30}
-                          color="#ffc107" // Filled color
-                          style={{ cursor: "pointer" }}
-                        />
-                      </div>
+                      />
                     </div>
-                    // <div
-                    //   key={i}
-                    //   variant={null}
-                    //   onClick={() => setShowReviewModal(true)}
-                    //   style={{ padding: 0 }}
-                    // >
-                    //   <FaStar
-                    //     size={30}
-                    //     color={ratingValue <= rating ? "#ffc107" : "#e4e5e9"}
-                    //     style={{ cursor: "pointer" }}
-                    //   />
-                    // </div>
                   );
                 })}
-                <p className="pt-1 ">{`${emp.rating.count} ratings`}</p>
+                <p className="pt-1">{`${emp.rating.count} ratings`}</p>
               </ButtonGroup>
               <ButtonGroup className="mt-4 w-50">
                 {isAdmin ? (
