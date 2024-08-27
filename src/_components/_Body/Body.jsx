@@ -16,6 +16,8 @@ import { useSearchParams } from "react-router-dom";
 
 const Body = ({ service, cost }) => {
   const [searchParams] = useSearchParams();
+
+  //useState to handle all employee details
   const [employee, setEmployee] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -43,6 +45,7 @@ const Body = ({ service, cost }) => {
   const username = searchParams.get("user");
   const isAdmin = username === "admin";
 
+  //get all employee details
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
@@ -157,23 +160,59 @@ const Body = ({ service, cost }) => {
                 className="justify-content-between"
               >
                 {[...Array(5)].map((_, i) => {
-                  const ratingValue = i + 1;
+                  // const ratingValue = i + 1;
+                  const ratingValue = emp.rating.average;
                   return (
                     <div
                       key={i}
-                      variant={null}
                       onClick={() => setShowReviewModal(true)}
-                      style={{ padding: 0 }}
+                      style={{
+                        padding: 0,
+                        position: "relative",
+                        display: "inline-block",
+                      }}
                     >
                       <FaStar
                         size={30}
-                        color={ratingValue <= rating ? "#ffc107" : "#e4e5e9"}
-                        style={{ cursor: "pointer" }}
+                        color="#e4e5e9" // Base color for unfilled star
+                        style={{
+                          cursor: "pointer",
+                          position: "absolute",
+                          left: 0,
+                          top: 0,
+                        }}
                       />
+                      <div
+                        style={{
+                          width: `${Math.min(ratingValue, rating) * 20}%`, // Adjusts the fill percentage
+                          overflow: "hidden",
+                          position: "absolute",
+                          left: 0,
+                          top: 0,
+                        }}
+                      >
+                        <FaStar
+                          size={30}
+                          color="#ffc107" // Filled color
+                          style={{ cursor: "pointer" }}
+                        />
+                      </div>
                     </div>
+                    // <div
+                    //   key={i}
+                    //   variant={null}
+                    //   onClick={() => setShowReviewModal(true)}
+                    //   style={{ padding: 0 }}
+                    // >
+                    //   <FaStar
+                    //     size={30}
+                    //     color={ratingValue <= rating ? "#ffc107" : "#e4e5e9"}
+                    //     style={{ cursor: "pointer" }}
+                    //   />
+                    // </div>
                   );
                 })}
-                <p className="pt-1 ">12 ratings</p>
+                <p className="pt-1 ">{`${emp.rating.count} ratings`}</p>
               </ButtonGroup>
               <ButtonGroup className="mt-4 w-50">
                 {isAdmin ? (
