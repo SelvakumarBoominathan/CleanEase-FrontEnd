@@ -360,7 +360,7 @@ const Body = ({ service, cost }) => {
             </Form.Group>
             <Form.Group controlId="formName">
               <Form.Label>Name</Form.Label>
-              <Form.Control
+              <Form.Control 
                 type="text"
                 placeholder="Enter name"
                 value={updateEmployee.name}
@@ -420,36 +420,47 @@ const Body = ({ service, cost }) => {
       {/*Modal for add review */}
       <Modal show={showReviewModal} onHide={() => setShowReviewModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Rate {employee.name}</Modal.Title>
+          <Modal.Title>{`Rate ${employee.name}`}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          <div>
-            {[...Array(5)].map((_, i) => {
-              const ratingValue = i + 1;
+          <Form>
+            <Form.Group>
+              {[...Array(5)].map((_, i) => {
+                const ratingValue = i + 1;
 
-              return (
-                <label key={i}>
-                  <input
-                    type="radio"
-                    name="rating"
-                    value={ratingValue}
-                    onClick={() => setRating(ratingValue)}
-                    style={{ display: "none" }}
-                  />
-                  <FaStar
-                    size={30}
-                    color={
-                      ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
-                    }
-                    onMouseEnter={() => setHover(ratingValue)}
-                    onMouseLeave={() => setHover(null)}
-                    style={{ cursor: "pointer", transition: "color 200ms" }}
-                  />
-                </label>
-              );
-            })}
-          </div>
+                return (
+                  <Form.Label key={i}>
+                    <input
+                      type="radio"
+                      name="rating"
+                      value={ratingValue}
+                      onClick={() => setRating(ratingValue)}
+                      style={{ display: "none" }}
+                    />
+                    <FaStar
+                      size={30}
+                      color={
+                        ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
+                      }
+                      onMouseEnter={() => setHover(ratingValue)}
+                      onMouseLeave={() => setHover(null)}
+                      style={{ cursor: "pointer", transition: "color 200ms" }}
+                    />
+                  </Form.Label>
+                );
+              })}
+            </Form.Group>
+
+            <Form.Group className="mt-4">
+              <Form.Label>Provide review: </Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="Write your review here..."
+              ></Form.Control>
+            </Form.Group>
+          </Form>
         </Modal.Body>
 
         <Modal.Footer>
