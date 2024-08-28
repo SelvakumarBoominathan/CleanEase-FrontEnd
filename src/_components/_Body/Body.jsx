@@ -360,7 +360,7 @@ const Body = ({ service, cost }) => {
             </Form.Group>
             <Form.Group controlId="formName">
               <Form.Label>Name</Form.Label>
-              <Form.Control 
+              <Form.Control
                 type="text"
                 placeholder="Enter name"
                 value={updateEmployee.name}
