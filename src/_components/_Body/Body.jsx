@@ -26,6 +26,7 @@ const Body = ({ service, cost }) => {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
+  const [reviewtext, setReviewText] = useState("");
   const [newEmployee, setNewEmployee] = useState({
     image: "",
     category: "",
@@ -135,6 +136,14 @@ const Body = ({ service, cost }) => {
       alert("Failed to update employee");
       console.error("Error updating employee:", error);
     }
+  };
+
+  const handleReviewSubmit = (rating, reviewtext) => {
+    console.log("Rating:", rating);
+    console.log("Review:", reviewtext);
+    setShowReviewModal(false);
+    setRating(0);
+    setReviewText("");
   };
 
   return (
@@ -457,6 +466,8 @@ const Body = ({ service, cost }) => {
               <Form.Control
                 as="textarea"
                 rows={3}
+                value={reviewtext}
+                onChange={(e) => setReviewText(e.target.value)}
                 placeholder="Write your review here..."
               ></Form.Control>
             </Form.Group>
@@ -467,7 +478,10 @@ const Body = ({ service, cost }) => {
           <Button variant="secondary" onClick={() => setShowReviewModal(false)}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={null}>
+          <Button
+            variant="primary"
+            onClick={() => handleReviewSubmit(rating, reviewtext)}
+          >
             Submit
           </Button>
         </Modal.Footer>
