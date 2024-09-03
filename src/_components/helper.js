@@ -192,3 +192,22 @@ export const addEmployee = async (newEmployee) => {
     );
   }
 };
+
+//Add Review and Rating
+
+export const addReviewandRating = async (rating, reviewtext, username) => {
+  try {
+    const response = await axios.post(
+      `${baseURL}/rating`,
+      rating,
+      reviewtext,
+      username
+    );
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error in posting rating and review comments : ",
+      error.response?.data || error.message
+    );
+  }
+};

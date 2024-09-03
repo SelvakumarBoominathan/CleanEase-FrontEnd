@@ -11,6 +11,7 @@ import {
   deleteEmployee,
   addEmployee,
   updateEmp,
+  addReviewandRating,
 } from "../helper.js"; // Import addEmployee and updateEmployee functions
 import { useSearchParams } from "react-router-dom";
 
@@ -138,9 +139,11 @@ const Body = ({ service, cost }) => {
     }
   };
 
-  const handleReviewSubmit = (rating, reviewtext) => {
+  const handleReviewSubmit = (rating, reviewtext, username) => {
     console.log("Rating:", rating);
     console.log("Review:", reviewtext);
+    console.log("unsername:", username);
+    addReviewandRating(rating, reviewtext, username);
     setShowReviewModal(false);
     setRating(0);
     setReviewText("");
@@ -480,7 +483,7 @@ const Body = ({ service, cost }) => {
           </Button>
           <Button
             variant="primary"
-            onClick={() => handleReviewSubmit(rating, reviewtext)}
+            onClick={() => handleReviewSubmit(rating, reviewtext, username)}
           >
             Submit
           </Button>
