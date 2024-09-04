@@ -195,14 +195,19 @@ export const addEmployee = async (newEmployee) => {
 
 //Add Review and Rating
 
-export const addReviewandRating = async (rating, reviewtext, username) => {
+export const addReviewandRating = async (
+  rating,
+  reviewtext,
+  username,
+  empID
+) => {
   try {
-    const response = await axios.post(
-      `${baseURL}/rating`,
+    const response = await axios.post(`${baseURL}/rating`, {
       rating,
       reviewtext,
-      username
-    );
+      username,
+      empID,
+    });
     return response.data;
   } catch (error) {
     console.error(

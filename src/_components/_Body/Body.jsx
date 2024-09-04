@@ -28,6 +28,8 @@ const Body = ({ service, cost }) => {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
   const [reviewtext, setReviewText] = useState("");
+  const [empID, setEmpId] = useState(null);
+  const [empName, setEmpName] = useState(null);
   const [newEmployee, setNewEmployee] = useState({
     image: "",
     category: "",
@@ -189,7 +191,11 @@ const Body = ({ service, cost }) => {
                   return (
                     <div
                       key={i}
-                      onClick={() => setShowReviewModal(true)}
+                      onClick={() => {
+                        setEmpId(emp.id);
+                        setEmpName(emp.name);
+                        setShowReviewModal(true);
+                      }}
                       style={{
                         position: "relative",
                         display: "inline-block",
@@ -432,7 +438,7 @@ const Body = ({ service, cost }) => {
       {/*Modal for add review */}
       <Modal show={showReviewModal} onHide={() => setShowReviewModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>{`Rate ${employee.name}`}</Modal.Title>
+          <Modal.Title>{`Rate ${empName}`}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -483,7 +489,9 @@ const Body = ({ service, cost }) => {
           </Button>
           <Button
             variant="primary"
-            onClick={() => handleReviewSubmit(rating, reviewtext, username)}
+            onClick={() =>
+              handleReviewSubmit(rating, reviewtext, username, empID)
+            }
           >
             Submit
           </Button>
