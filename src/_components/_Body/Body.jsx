@@ -51,17 +51,18 @@ const Body = ({ service, cost }) => {
   const isAdmin = username === "admin";
 
   //get all employee details
+  const fetchEmployees = async () => {
+    try {
+      const employeeData = await getAllEmployee();
+      setEmployee(employeeData);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchEmployees = async () => {
-      try {
-        const employeeData = await getAllEmployee();
-        setEmployee(employeeData);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchEmployees();
   }, []);
 
@@ -141,14 +142,31 @@ const Body = ({ service, cost }) => {
     }
   };
 
-  const handleReviewSubmit = (rating, reviewtext, username) => {
-    console.log("Rating:", rating);
-    console.log("Review:", reviewtext);
-    console.log("unsername:", username);
-    addReviewandRating(rating, reviewtext, username);
-    setShowReviewModal(false);
-    setRating(0);
-    setReviewText("");
+  // const handleReviewSubmit = (rating, reviewtext, username, empID) => {
+  //   console.log("Rating:", rating);
+  //   console.log("Review:", reviewtext);
+  //   console.log("unsername:", username);
+  //   addReviewandRating(rating, reviewtext, username, empID);
+  //   setShowReviewModal(false);
+  //   setRating(0);
+  //   setReviewText("");
+  // };
+
+  const handleReviewSubmit = async (rating, reviewtext, username, empID) => {
+    try {
+      await addReviewandRating(rating, reviewtext, username, empID);
+
+      // Re-fetch the employee data to reflect the updates
+      await fetchEmployees();
+      setRating(0);
+      setReviewText("");
+
+      // Close the modal
+      setShowReviewModal(false);
+    } catch (error) {
+      console.error("Error submitting review:", error);
+      // Handle the error as needed
+    }
   };
 
   return (
