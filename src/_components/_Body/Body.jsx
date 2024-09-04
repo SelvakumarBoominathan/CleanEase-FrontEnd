@@ -142,30 +142,17 @@ const Body = ({ service, cost }) => {
     }
   };
 
-  // const handleReviewSubmit = (rating, reviewtext, username, empID) => {
-  //   console.log("Rating:", rating);
-  //   console.log("Review:", reviewtext);
-  //   console.log("unsername:", username);
-  //   addReviewandRating(rating, reviewtext, username, empID);
-  //   setShowReviewModal(false);
-  //   setRating(0);
-  //   setReviewText("");
-  // };
-
   const handleReviewSubmit = async (rating, reviewtext, username, empID) => {
     try {
       await addReviewandRating(rating, reviewtext, username, empID);
 
-      // Re-fetch the employee data to reflect the updates
+      // Refetch the employee data to reflect the updates
       await fetchEmployees();
       setRating(0);
       setReviewText("");
-
-      // Close the modal
       setShowReviewModal(false);
     } catch (error) {
       console.error("Error submitting review:", error);
-      // Handle the error as needed
     }
   };
 
