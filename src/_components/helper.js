@@ -208,11 +208,18 @@ export const addReviewandRating = async (
       username,
       empID,
     });
+    alert("Review submitted successfully!");
     return response.data;
   } catch (error) {
-    console.error(
-      "Error in posting rating and review comments : ",
-      error.response?.data || error.message
-    );
+    if (error.response && error.response.status === 409) {
+      console.error("Error : ", error.response.data);
+      alert("You have already submitted a review.");
+    } else {
+      console.error(
+        "Error in posting rating and review comments : ",
+        error.response?.data || error.message
+      );
+      alert("An error occurred. Please try again later.");
+    }
   }
 };
