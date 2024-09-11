@@ -193,8 +193,22 @@ export const addEmployee = async (newEmployee) => {
   }
 };
 
-//Add Review and Rating
+// get single Employee by ID
+export const getEmployeeById = async (id) => {
+  try {
+    const response = await fetch(`${baseURL}/employees/${id}`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch employee");
+    }
+    const employee = await response.json();
+    return employee;
+  } catch (error) {
+    console.error("Error fetching employee by ID:", error);
+    throw error;
+  }
+};
 
+//Add Review and Rating
 export const addReviewandRating = async (
   rating,
   reviewtext,

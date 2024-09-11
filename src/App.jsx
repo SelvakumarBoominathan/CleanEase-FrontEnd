@@ -28,7 +28,7 @@ function App() {
                 // </AuthUser>
               }
             />
-            <Route path="/Bookingpage" element={<Bookingpage />}></Route>
+            <Route path="/bookingpage/:id" element={<Bookingpage />}></Route>
             <Route path="/Registerpage" element={<Registerpage />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/emailverification" element={<Emailvarification />} />

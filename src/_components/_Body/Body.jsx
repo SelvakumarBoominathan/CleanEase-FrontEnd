@@ -159,8 +159,8 @@ const Body = ({ service, cost }) => {
     }
   };
 
-  const handleBookingClick = () => {
-    navigate("/Bookingpage"); // Navigate to booking page
+  const handleBookingClick = (id) => {
+    navigate(`/bookingpage/${id}`); // Navigate to booking page
   };
 
   return (
@@ -255,7 +255,10 @@ const Body = ({ service, cost }) => {
                     </Button>
                   </>
                 ) : (
-                  <Button variant="primary" onClick={handleBookingClick}>
+                  <Button
+                    variant="primary"
+                    onClick={handleBookingClick(emp.id)}
+                  >
                     Book Now
                   </Button>
                 )}
