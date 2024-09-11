@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { FaStar } from "react-icons/fa";
 import "./Body-styles.css";
+import { useNavigate } from "react-router-dom";
 import {
   getAllEmployee,
   deleteEmployee,
@@ -17,6 +18,7 @@ import { useSearchParams } from "react-router-dom";
 
 const Body = ({ service, cost }) => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   //useState to handle all employee details
   const [employee, setEmployee] = useState([]);
@@ -156,6 +158,10 @@ const Body = ({ service, cost }) => {
     }
   };
 
+  const handleBookingClick = () => {
+    navigate("/Bookingpage"); //navigate to booking page
+  };
+
   return (
     <div className="container-body overflow-scroll">
       {isAdmin && (
@@ -253,7 +259,9 @@ const Body = ({ service, cost }) => {
                     </Button>
                   </>
                 ) : (
-                  <Button variant="primary">Book Now</Button>
+                  <Button variant="primary" onClick={handleBookingClick}>
+                    Book Now
+                  </Button>
                 )}
               </ButtonGroup>
             </Card.Body>
