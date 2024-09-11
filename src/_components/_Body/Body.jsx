@@ -2,25 +2,30 @@ import React, { useEffect, useState } from "react";
 import { ButtonGroup, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
-import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
 import { FaStar } from "react-icons/fa";
 import "./Body-styles.css";
 import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+
+// Import helper functions
 import {
   getAllEmployee,
   deleteEmployee,
   addEmployee,
   updateEmp,
   addReviewandRating,
-} from "../helper.js"; // Import addEmployee and updateEmployee functions
-import { useSearchParams } from "react-router-dom";
+} from "../helper.js";
+
+// Import modals from the Modals folder
+import AddEmployeeModal from "./Modals/AddEmployeeModal";
+import ReviewModal from "./Modals/ReviewModal";
+import UpdateEmployeeModal from "./Modals/UpdateEmployeeModal";
 
 const Body = ({ service, cost }) => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  //useState to handle all employee details
+  // useState to handle employee details
   const [employee, setEmployee] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -52,7 +57,7 @@ const Body = ({ service, cost }) => {
   const username = searchParams.get("user");
   const isAdmin = username === "admin";
 
-  //get all employee details
+  // Get all employee details
   const fetchEmployees = async () => {
     try {
       const employeeData = await getAllEmployee();
@@ -71,25 +76,19 @@ const Body = ({ service, cost }) => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
+  // Filter employees based on service and cost
   const filteredWorkers = employee.filter((employee) => {
-    if (service === "All" && cost === "All") {
-      return true;
-    }
-
-    if (service === "All") {
+    if (service === "All" && cost === "All") return true;
+    if (service === "All")
       return parseInt(employee.price, 10) <= parseInt(cost, 10);
-    }
-
-    if (cost === "All") {
-      return employee.category === service;
-    }
-
+    if (cost === "All") return employee.category === service;
     return (
       employee.category === service &&
       parseInt(employee.price, 10) <= parseInt(cost, 10)
     );
   });
 
+  // Handle deleting employee
   const handleDelete = async (id) => {
     try {
       await deleteEmployee(id);
@@ -101,11 +100,13 @@ const Body = ({ service, cost }) => {
     }
   };
 
+  // Handle updating employee
   const handleUpdate = (empData) => {
     setUpdateEmployee(empData);
     setUpdateShowModal(true);
   };
 
+  // Handle adding new employee
   const handleAddEmployee = async () => {
     try {
       await addEmployee(newEmployee);
@@ -127,6 +128,7 @@ const Body = ({ service, cost }) => {
     }
   };
 
+  // Handle submitting update for employee
   const handleUpdatesubmit = async (e) => {
     e.preventDefault();
     try {
@@ -144,12 +146,11 @@ const Body = ({ service, cost }) => {
     }
   };
 
+  // Handle submitting review
   const handleReviewSubmit = async (rating, reviewtext, username, empID) => {
     try {
       await addReviewandRating(rating, reviewtext, username, empID);
-
-      // Refetch the employee data to reflect the updates
-      await fetchEmployees();
+      await fetchEmployees(); // Refetch the employee data to reflect the updates
       setRating(0);
       setReviewText("");
       setShowReviewModal(false);
@@ -159,7 +160,7 @@ const Body = ({ service, cost }) => {
   };
 
   const handleBookingClick = () => {
-    navigate("/Bookingpage"); //navigate to booking page
+    navigate("/Bookingpage"); // Navigate to booking page
   };
 
   return (
@@ -183,21 +184,16 @@ const Body = ({ service, cost }) => {
               <Card.Text>City: {emp.city}</Card.Text>
               <Card.Text>Price: {emp.price} INR</Card.Text>
               <ButtonGroup
-                area-label="Star rating"
+                aria-label="Star rating"
                 className="justify-content-between"
               >
                 {[...Array(5)].map((_, i) => {
-                  // Calculate the current star's fill percentage
-                  const fullStars = Math.floor(emp.rating.average); // Number of fully filled stars
-                  const partialStar = emp.rating.average % 1; // Fractional part of the rating
-
+                  const fullStars = Math.floor(emp.rating.average);
+                  const partialStar = emp.rating.average % 1;
                   let fillPercentage = 0;
 
-                  if (i < fullStars) {
-                    fillPercentage = 100; // Fully filled star
-                  } else if (i === fullStars) {
-                    fillPercentage = partialStar * 100; // Partially filled star
-                  }
+                  if (i < fullStars) fillPercentage = 100;
+                  else if (i === fullStars) fillPercentage = partialStar * 100;
 
                   return (
                     <div
@@ -210,13 +206,13 @@ const Body = ({ service, cost }) => {
                       style={{
                         position: "relative",
                         display: "inline-block",
-                        width: 30, // Make sure the container has the same width as the star
+                        width: 30,
                         height: 30,
                       }}
                     >
                       <FaStar
                         size={30}
-                        color="#e4e5e9" // Base color for unfilled star
+                        color="#e4e5e9"
                         style={{
                           cursor: "pointer",
                           position: "absolute",
@@ -226,13 +222,13 @@ const Body = ({ service, cost }) => {
                       />
                       <FaStar
                         size={30}
-                        color="#ffc107" // Filled color
+                        color="#ffc107"
                         style={{
                           cursor: "pointer",
                           position: "absolute",
                           left: 0,
                           top: 0,
-                          clipPath: `inset(0 ${100 - fillPercentage}% 0 0)`, // This clips the star based on the fill percentage
+                          clipPath: `inset(0 ${100 - fillPercentage}% 0 0)`,
                         }}
                       />
                     </div>
@@ -269,247 +265,37 @@ const Body = ({ service, cost }) => {
         ))}
       </div>
 
-      {/* Modal for Adding Employee */}
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add New Employee</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="formImage">
-              <Form.Label>Image URL</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter image URL"
-                value={newEmployee.image}
-                onChange={(e) =>
-                  setNewEmployee({ ...newEmployee, image: e.target.value })
-                }
-              />
-            </Form.Group>
-            <Form.Group controlId="formCategory">
-              <Form.Label>Category</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter category"
-                value={newEmployee.category}
-                onChange={(e) =>
-                  setNewEmployee({ ...newEmployee, category: e.target.value })
-                }
-              />
-            </Form.Group>
-            <Form.Group controlId="formName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter name"
-                value={newEmployee.name}
-                onChange={(e) =>
-                  setNewEmployee({ ...newEmployee, name: e.target.value })
-                }
-              />
-            </Form.Group>
-            <Form.Group controlId="formCity">
-              <Form.Label>City</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter city"
-                value={newEmployee.city}
-                onChange={(e) =>
-                  setNewEmployee({ ...newEmployee, city: e.target.value })
-                }
-              />
-            </Form.Group>
-            <Form.Group controlId="formId">
-              <Form.Label>ID</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter ID"
-                value={newEmployee.id}
-                onChange={(e) =>
-                  setNewEmployee({ ...newEmployee, id: e.target.value })
-                }
-              />
-            </Form.Group>
-            <Form.Group controlId="formPrice">
-              <Form.Label>Price</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter price"
-                value={newEmployee.price}
-                onChange={(e) =>
-                  setNewEmployee({ ...newEmployee, price: e.target.value })
-                }
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={handleAddEmployee}>
-            Submit
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      {/* Modals */}
+      <AddEmployeeModal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        newEmployee={newEmployee}
+        setNewEmployee={setNewEmployee}
+        handleAddEmployee={handleAddEmployee}
+      />
 
-      {/* Modal for Update Employee */}
-      <Modal show={showUpdateModal} onHide={() => setUpdateShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Update Employee</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="formImage">
-              <Form.Label>Image URL</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter image URL"
-                value={updateEmployee.image}
-                onChange={(e) =>
-                  setUpdateEmployee({
-                    ...updateEmployee,
-                    image: e.target.value,
-                  })
-                }
-              />
-            </Form.Group>
-            <Form.Group controlId="formCategory">
-              <Form.Label>Category</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter category"
-                value={updateEmployee.category}
-                onChange={(e) =>
-                  setUpdateEmployee({
-                    ...updateEmployee,
-                    category: e.target.value,
-                  })
-                }
-              />
-            </Form.Group>
-            <Form.Group controlId="formName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter name"
-                value={updateEmployee.name}
-                onChange={(e) =>
-                  setUpdateEmployee({ ...updateEmployee, name: e.target.value })
-                }
-              />
-            </Form.Group>
-            <Form.Group controlId="formCity">
-              <Form.Label>City</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter city"
-                value={updateEmployee.city}
-                onChange={(e) =>
-                  setUpdateEmployee({ ...updateEmployee, city: e.target.value })
-                }
-              />
-            </Form.Group>
-            <Form.Group controlId="formId">
-              <Form.Label>ID</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter ID"
-                value={updateEmployee.id}
-                onChange={(e) =>
-                  setUpdateEmployee({ ...updateEmployee, id: e.target.value })
-                }
-              />
-            </Form.Group>
-            <Form.Group controlId="formPrice">
-              <Form.Label>Price</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter price"
-                value={updateEmployee.price}
-                onChange={(e) =>
-                  setUpdateEmployee({
-                    ...updateEmployee,
-                    price: e.target.value,
-                  })
-                }
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setUpdateShowModal(false)}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={handleUpdatesubmit}>
-            Submit
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <UpdateEmployeeModal
+        show={showUpdateModal}
+        onHide={() => setUpdateShowModal(false)}
+        updateEmployee={updateEmployee}
+        setUpdateEmployee={setUpdateEmployee}
+        handleUpdatesubmit={handleUpdatesubmit}
+      />
 
-      {/*Modal for add review */}
-      <Modal show={showReviewModal} onHide={() => setShowReviewModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>{`Rate ${empName}`}</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <Form>
-            <Form.Group>
-              {[...Array(5)].map((_, i) => {
-                const ratingValue = i + 1;
-
-                return (
-                  <Form.Label key={i}>
-                    <input
-                      type="radio"
-                      name="rating"
-                      value={ratingValue}
-                      onClick={() => setRating(ratingValue)}
-                      style={{ display: "none" }}
-                    />
-                    <FaStar
-                      size={30}
-                      color={
-                        ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
-                      }
-                      onMouseEnter={() => setHover(ratingValue)}
-                      onMouseLeave={() => setHover(null)}
-                      style={{ cursor: "pointer", transition: "color 200ms" }}
-                    />
-                  </Form.Label>
-                );
-              })}
-            </Form.Group>
-
-            <Form.Group className="mt-4">
-              <Form.Label>Provide review: </Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                value={reviewtext}
-                onChange={(e) => setReviewText(e.target.value)}
-                placeholder="Write your review here..."
-              ></Form.Control>
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowReviewModal(false)}>
-            Cancel
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() =>
-              handleReviewSubmit(rating, reviewtext, username, empID)
-            }
-          >
-            Submit
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <ReviewModal
+        show={showReviewModal}
+        onHide={() => setShowReviewModal(false)}
+        empName={empName}
+        rating={rating}
+        setRating={setRating}
+        hover={hover}
+        setHover={setHover}
+        reviewtext={reviewtext}
+        setReviewText={setReviewText}
+        handleReviewSubmit={handleReviewSubmit}
+        empID={empID}
+        username={username}
+      />
     </div>
   );
 };
