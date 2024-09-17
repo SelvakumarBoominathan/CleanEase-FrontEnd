@@ -257,7 +257,7 @@ const Body = ({ service, cost }) => {
                 ) : (
                   <Button
                     variant="primary"
-                    onClick={handleBookingClick(emp.id)}
+                    onClick={() => handleBookingClick(emp.id)}
                   >
                     Book Now
                   </Button>
