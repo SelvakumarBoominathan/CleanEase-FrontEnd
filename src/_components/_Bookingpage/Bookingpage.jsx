@@ -64,18 +64,24 @@ const BookingPage = () => {
           <Calendar value={date} onChange={setDate} />
         </div>
         <div className="form-group">
-          <label>Select Time (30-minute intervals):</label>
+          <label>Select Time (One Hour intervals):</label>
           <select
             className="form-control"
             value={time}
             onChange={(e) => setTime(e.target.value)}
             required
+            style={{ maxHeight: "100px", overflowY: "auto" }}
           >
             <option value="">Select a time</option>
-            <option value="09:00 AM">09:00 AM</option>
-            <option value="09:30 AM">09:30 AM</option>
             <option value="10:00 AM">10:00 AM</option>
-            <option value="10:30 AM">10:30 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="12:00 AM">12:00 AM</option>
+            <option value="1:00 PM">1:00 PM</option>
+            <option value="2:00 PM">2:00 PM</option>
+            <option value="3:00 PM">3:00 PM</option>
+            <option value="4:00 PM">4:00 PM</option>
+            <option value="5:00 PM">5:00 PM</option>
+            <option value="6:00 PM">6:00 PM</option>
             {/* Add more time slots as needed */}
           </select>
         </div>
