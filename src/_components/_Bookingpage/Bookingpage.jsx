@@ -32,6 +32,13 @@ const BookingPage = () => {
     setBookingSuccess(true);
   };
 
+  // function to disable date
+  const disablePastDates = ({ date }) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return date <= today;
+  };
+
   if (!employee) return <div>Loading...</div>;
 
   return (
@@ -61,7 +68,11 @@ const BookingPage = () => {
       <form onSubmit={handleBookingSubmit}>
         <div className="form-group">
           <label>Select Date:</label>
-          <Calendar value={date} onChange={setDate} />
+          <Calendar
+            value={date}
+            onChange={setDate}
+            tileDisabled={disablePastDates}
+          />
         </div>
         <div className="form-group">
           <label>Select Time (One Hour intervals):</label>
@@ -75,14 +86,13 @@ const BookingPage = () => {
             <option value="">Select a time</option>
             <option value="10:00 AM">10:00 AM</option>
             <option value="11:00 AM">11:00 AM</option>
-            <option value="12:00 AM">12:00 AM</option>
+            <option value="12:00 PM">12:00 PM</option>{" "}
             <option value="1:00 PM">1:00 PM</option>
             <option value="2:00 PM">2:00 PM</option>
             <option value="3:00 PM">3:00 PM</option>
             <option value="4:00 PM">4:00 PM</option>
             <option value="5:00 PM">5:00 PM</option>
             <option value="6:00 PM">6:00 PM</option>
-            {/* Add more time slots as needed */}
           </select>
         </div>
         <button type="submit">Confirm Booking</button>
