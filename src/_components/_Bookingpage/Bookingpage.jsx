@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getEmployeeById } from "../helper";
+import { getEmployeeById, addBooking } from "../helper";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./Bookingpage-styles.css";
@@ -27,7 +27,17 @@ const BookingPage = () => {
 
   const handleBookingSubmit = (e) => {
     e.preventDefault();
-    // Handle booking logic here
+    // Booking data to send to BE
+    const bookingData = {
+      employeeName: employee.name,
+      employeeImage: employee.image,
+      city: employee.city,
+      date: date.toISOString(), // Convert the date to ISO format
+      time: time,
+      bookedBy: id,
+    };
+    addBooking(bookingData);
+
     console.log(`Booking for ${employee.name} on ${date} at ${time}`);
     setBookingSuccess(true);
   };

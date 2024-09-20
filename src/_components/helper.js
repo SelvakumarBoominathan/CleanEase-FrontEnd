@@ -237,3 +237,19 @@ export const addReviewandRating = async (
     }
   }
 };
+
+//Add booking details
+
+export const addBooking = async (bookingData) => {
+  try {
+    const response = await axios.post(`${baseURL}/booking`, bookingData);
+    alert("Booking done successfully!");
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error in booking service : ",
+      error.response?.data || error.message
+    );
+    alert("An error occurred. Please try again later.");
+  }
+};
