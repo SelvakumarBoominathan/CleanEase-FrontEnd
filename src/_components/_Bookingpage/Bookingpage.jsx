@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getEmployeeById, addBooking } from "../helper";
 import Calendar from "react-calendar";
+import { useSelector } from "react-redux";
 import "react-calendar/dist/Calendar.css";
 import "./Bookingpage-styles.css";
 
 const BookingPage = () => {
+  const user = useSelector((state) => state.logininfo?.user);
   const { id } = useParams();
   const navigate = useNavigate();
   const [employee, setEmployee] = useState(null);
-  const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState("");
+  const [selectedDate, setSelectedDate] = useState(new Date()); // Renamed from Date
+  const [selectedTime, setSelectedTime] = useState(""); // Renamed from Time
   const [bookingSuccess, setBookingSuccess] = useState(false);
 
   useEffect(() => {
@@ -35,22 +37,20 @@ const BookingPage = () => {
 
   const handleBookingSubmit = (e) => {
     e.preventDefault();
-    // Booking data to send to BE
-    const bookingData = {
-      employeeName: employee.name,
-      employeeImage: employee.image,
-      city: employee.city,
-      date: date.toISOString(), // Convert the date to ISO format
-      time: time,
-      bookedBy: id,
-    };
-    addBooking(bookingData);
 
-    console.log(`Booking for ${employee.name} on ${date} at ${time}`);
+    // Booking data to send to BE
+    const employeeId = id;
+    const username = user?.username;
+    const time = selectedTime;
+    const date = selectedDate.toISOString(); 
+
+    addBooking(employeeId, username, time, date);
+
+    console.log(employeeId, username, time, date);
     setBookingSuccess(true);
   };
 
-  // function to disable date
+  // Function to disable past dates
   const disablePastDates = ({ date }) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -87,8 +87,8 @@ const BookingPage = () => {
         <div className="form-group">
           <label>Select Date:</label>
           <Calendar
-            value={date}
-            onChange={setDate}
+            value={selectedDate} 
+            onChange={setSelectedDate}
             tileDisabled={disablePastDates}
           />
         </div>
@@ -96,8 +96,8 @@ const BookingPage = () => {
           <label>Select Time (One Hour intervals):</label>
           <select
             className="form-control"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
+            value={selectedTime} 
+            onChange={(e) => setSelectedTime(e.target.value)} 
             required
             style={{ maxHeight: "100px", overflowY: "auto" }}
           >

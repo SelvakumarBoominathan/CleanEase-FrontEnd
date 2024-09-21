@@ -10,10 +10,10 @@ export const AuthUser = ({ children }) => {
   return children;
 };
 
-// export const LogoutUser = () => {
-//   const removeToken = localStorage.removeItem("authToken") ? true : false;
+export const LogoutUser = () => {
+  const removeToken = localStorage.removeItem("authToken") ? true : false;
 
-//   if (removeToken) {
-//     return <Navigate to={"/login"} replace={true}></Navigate>;
-//   }
-// };
+  if (removeToken) {
+    return <Navigate to={"/login"} replace={true}></Navigate>;
+  }
+};
