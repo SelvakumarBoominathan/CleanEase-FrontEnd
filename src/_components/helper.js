@@ -239,7 +239,6 @@ export const addReviewandRating = async (
 };
 
 //Add booking details
-
 export const addBooking = async (bookingData) => {
   try {
     const response = await axios.post(`${baseURL}/booking`, bookingData);
