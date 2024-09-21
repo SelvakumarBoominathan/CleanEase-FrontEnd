@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getEmployeeById, addBooking } from "../helper";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -7,6 +7,7 @@ import "./Bookingpage-styles.css";
 
 const BookingPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [employee, setEmployee] = useState(null);
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState("");
@@ -24,6 +25,13 @@ const BookingPage = () => {
 
     fetchEmployeeDetails();
   }, [id]);
+
+  useEffect(() => {
+    if (bookingSuccess) {
+      alert("Booking confirmed!");
+      navigate("/");
+    }
+  }, [bookingSuccess, navigate]);
 
   const handleBookingSubmit = (e) => {
     e.preventDefault();
@@ -96,7 +104,7 @@ const BookingPage = () => {
             <option value="">Select a time</option>
             <option value="10:00 AM">10:00 AM</option>
             <option value="11:00 AM">11:00 AM</option>
-            <option value="12:00 PM">12:00 PM</option>{" "}
+            <option value="12:00 PM">12:00 PM</option>
             <option value="1:00 PM">1:00 PM</option>
             <option value="2:00 PM">2:00 PM</option>
             <option value="3:00 PM">3:00 PM</option>
