@@ -38,15 +38,22 @@ const BookingPage = () => {
   const handleBookingSubmit = (e) => {
     e.preventDefault();
 
-    // Booking data to send to BE
-    const employeeId = id;
-    const username = user?.username;
-    const time = selectedTime;
-    const date = selectedDate.toISOString(); 
+    // // Booking data to send to BE
+    // const employeeId = id;
+    // const username = user?.username;
+    // const time = selectedTime;
+    // const date = selectedDate.toISOString();
 
-    addBooking(employeeId, username, time, date);
+    const bookingData = {
+      employeeId: id,
+      username: user?.username,
+      time: selectedTime,
+      date: selectedDate.toISOString(),
+    };
 
-    console.log(employeeId, username, time, date);
+    addBooking(bookingData);
+
+    console.log(bookingData);
     setBookingSuccess(true);
   };
 
@@ -87,7 +94,7 @@ const BookingPage = () => {
         <div className="form-group">
           <label>Select Date:</label>
           <Calendar
-            value={selectedDate} 
+            value={selectedDate}
             onChange={setSelectedDate}
             tileDisabled={disablePastDates}
           />
@@ -96,8 +103,8 @@ const BookingPage = () => {
           <label>Select Time (One Hour intervals):</label>
           <select
             className="form-control"
-            value={selectedTime} 
-            onChange={(e) => setSelectedTime(e.target.value)} 
+            value={selectedTime}
+            onChange={(e) => setSelectedTime(e.target.value)}
             required
             style={{ maxHeight: "100px", overflowY: "auto" }}
           >
