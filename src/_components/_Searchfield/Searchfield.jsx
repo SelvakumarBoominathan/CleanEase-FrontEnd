@@ -6,7 +6,8 @@ import { useSelector } from "react-redux";
 import Dropdown from "react-bootstrap/Dropdown";
 
 const Searchfield = ({ service, cost, setService, setCost }) => {
-  const [searchParams] = useSearchParams();
+  // const [searchParams] = useSearchParams();
+
   const username = useSelector((state) => state.logininfo?.user.username);
   const service_options = [
     { label: "All", value: 0 },
