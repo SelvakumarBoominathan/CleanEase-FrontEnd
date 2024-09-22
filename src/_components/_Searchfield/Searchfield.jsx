@@ -2,12 +2,14 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Form";
 import "./Searchfield-styles.css";
 import React, { useCallback } from "react";
+import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 
 const Searchfield = ({ service, cost, setService, setCost }) => {
   const [searchParams] = useSearchParams();
-  const username = searchParams.get("user");
+  // const username = searchParams.get("user");
+  const username = useSelector((state) => state.logininfo?.user.username);
   const service_options = [
     { label: "All", value: 0 },
     { label: "House Cleaner", value: 1 },

@@ -35,14 +35,8 @@ const BookingPage = () => {
     }
   }, [bookingSuccess, navigate]);
 
-  const handleBookingSubmit = (e) => {
+  const handleBookingSubmit = async (e) => {
     e.preventDefault();
-
-    // // Booking data to send to BE
-    // const employeeId = id;
-    // const username = user?.username;
-    // const time = selectedTime;
-    // const date = selectedDate.toISOString();
 
     const bookingData = {
       employeeId: id,
@@ -51,10 +45,13 @@ const BookingPage = () => {
       date: selectedDate.toISOString(),
     };
 
-    addBooking(bookingData);
-
-    console.log(bookingData);
-    setBookingSuccess(true);
+    try {
+      await addBooking(bookingData);
+      console.log(bookingData);
+      setBookingSuccess(true);
+    } catch (error) {
+      console.error("Error during booking:", error);
+    }
   };
 
   // Function to disable past dates
