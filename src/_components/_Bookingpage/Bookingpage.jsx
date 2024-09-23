@@ -93,7 +93,7 @@ const BookingPage = () => {
         </div>
       </div>
       <div>
-        <h2>{category} Checklist</h2>
+        <h2>Promised Checklist</h2>
         <ul>
           {serviceList.map((checkPoint, index) => (
             <li key={index}>{checkPoint}</li>
