@@ -23,7 +23,8 @@ const BookingPage = () => {
         const employeeData = await getEmployeeById(id);
         setEmployee(employeeData);
         setCategory(employeeData.category);
-        // const serviceList = getChecklist(category);
+        // const checkpoints = getChecklist(category);
+        // setServiceList(checkpoints)
         setServiceList(["Cleaning", "Soaping", "Washing"]);
       } catch (error) {
         console.error("Failed to fetch employee details:", error);
