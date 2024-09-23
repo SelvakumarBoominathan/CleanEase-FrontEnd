@@ -12,6 +12,7 @@ const BookingPage = () => {
   const navigate = useNavigate();
   const [employee, setEmployee] = useState(null);
   const [category, setCategory] = useState(null);
+  const [serviceList, setServiceList] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date()); // Renamed from Date
   const [selectedTime, setSelectedTime] = useState(""); // Renamed from Time
   const [bookingSuccess, setBookingSuccess] = useState(false);
@@ -22,7 +23,8 @@ const BookingPage = () => {
         const employeeData = await getEmployeeById(id);
         setEmployee(employeeData);
         setCategory(employeeData.category);
-        const serviceList = getChecklist(category);
+        // const serviceList = getChecklist(category);
+        setServiceList(["Cleaning", "Soaping", "Washing"]);
       } catch (error) {
         console.error("Failed to fetch employee details:", error);
       }
@@ -89,6 +91,14 @@ const BookingPage = () => {
             {employee.rating.count} ratings)
           </p>
         </div>
+      </div>
+      <div>
+        <h2>{category} Checklist</h2>
+        <ul>
+          {serviceList.map((checkPoint, index) => (
+            <li key={index}>{checkPoint}</li>
+          ))}
+        </ul>
       </div>
       <form onSubmit={handleBookingSubmit}>
         <div className="form-group">
