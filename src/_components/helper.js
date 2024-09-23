@@ -252,3 +252,6 @@ export const addBooking = async (bookingData) => {
     alert("An error occurred. Please try again later.");
   }
 };
+
+//Get Checklist Data
+export const getChecklist = () => {};

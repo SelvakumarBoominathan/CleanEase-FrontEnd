@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getEmployeeById, addBooking } from "../helper";
+import { getEmployeeById, addBooking, getChecklist } from "../helper";
 import Calendar from "react-calendar";
 import { useSelector } from "react-redux";
 import "react-calendar/dist/Calendar.css";
@@ -11,6 +11,7 @@ const BookingPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [employee, setEmployee] = useState(null);
+  const [category, setCategory] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date()); // Renamed from Date
   const [selectedTime, setSelectedTime] = useState(""); // Renamed from Time
   const [bookingSuccess, setBookingSuccess] = useState(false);
@@ -20,6 +21,8 @@ const BookingPage = () => {
       try {
         const employeeData = await getEmployeeById(id);
         setEmployee(employeeData);
+        setCategory(employeeData.category);
+        const serviceList = getChecklist(category);
       } catch (error) {
         console.error("Failed to fetch employee details:", error);
       }
