@@ -99,6 +99,16 @@ const Header = () => {
               </Link>
             </Nav>
           </Nav>
+          <Navbar.Brand href="#home" className="mx-3">
+            <img
+              alt=""
+              src="shopping-cart.svg"
+              width="30"
+              height="30"
+              className="d-inline-block align-top mx-2"
+            />{" "}
+            <h6 className="title">Bookings</h6>
+          </Navbar.Brand>
         </Navbar.Collapse>
       </Container>
     </Navbar>
