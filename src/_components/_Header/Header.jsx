@@ -6,6 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import Button from "react-bootstrap/esm/Button";
 
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -100,14 +101,16 @@ const Header = () => {
             </Nav>
           </Nav>
           <Navbar.Brand href="#home" className="mx-3">
-            <img
-              alt=""
-              src="shopping-cart.svg"
-              width="30"
-              height="30"
-              className="d-inline-block align-top mx-2"
-            />{" "}
-            <h6 className="title">Bookings</h6>
+            <Button className="title">
+              {" "}
+              <img
+                alt="My Bookings"
+                src="shopping-cart.svg"
+                width="30"
+                height="30"
+                className="d-inline-block align-top mx-2"
+              />{" "}
+            </Button>
           </Navbar.Brand>
         </Navbar.Collapse>
       </Container>
