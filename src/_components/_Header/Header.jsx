@@ -101,7 +101,7 @@ const Header = () => {
             </Nav>
           </Nav>
           <Navbar.Brand href="#home" className="mx-3">
-            <Button className="title">
+            <Link to="/Cartpage" className="btn btn-success">
               {" "}
               <img
                 alt="My Bookings"
@@ -110,7 +110,7 @@ const Header = () => {
                 height="30"
                 className="d-inline-block align-top mx-2"
               />{" "}
-            </Button>
+            </Link>
           </Navbar.Brand>
         </Navbar.Collapse>
       </Container>

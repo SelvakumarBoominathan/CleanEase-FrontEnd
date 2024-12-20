@@ -253,5 +253,5 @@ export const addBooking = async (bookingData) => {
   }
 };
 
-//Get Checklist Data
-export const getChecklist = () => {};
+// //Get Checklist Data
+// export const getChecklist = () => {};

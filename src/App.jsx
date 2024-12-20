@@ -9,6 +9,7 @@ import Emailvarification from "./_components/_Emailvarification/Emailvarificatio
 import OTPvalidation from "./_components/_OTPvalidation/OTPvalidation.jsx";
 import Setpassword from "./_components/_Setpassword/Setpassword.jsx";
 import Bookingpage from "./_components/_Bookingpage/Bookingpage.jsx";
+// import CartPage from "./_components/_Cart/Cart.jsx";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/otpvalidation" element={<OTPvalidation />} />
             <Route path="/setpassword" element={<Setpassword />} />
             <Route path="/bookingpage/:id" element={<Bookingpage />} />
+            {/* <Route path="/CartPage" element={<CartPage />} /> */}
           </Routes>
         </Router>
       </div>
