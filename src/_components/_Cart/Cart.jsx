@@ -63,6 +63,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./Cart-styles.css";
 
 const CartPage = () => {
   const [bookings, setBookings] = useState([]);
