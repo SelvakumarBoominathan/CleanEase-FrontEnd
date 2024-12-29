@@ -1,66 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import { useSelector } from "react-redux";
-// import axios from "axios";
-// import { Container, Table, Image, Button } from "react-bootstrap";
-
-// const CartBookingPage = () => {
-//   const [bookings, setBookings] = useState([]);
-//   const userId = useSelector((state) => state.userInfo.id); // Assuming userInfo slice has the user's id
-
-//   useEffect(() => {
-//     // Fetch the user's booking details from the backend
-//     const fetchBookings = async () => {
-//       try {
-//         const response = await axios.get(`/api/users/${userId}/bookings`);
-//         setBookings(response.data.bookings); // Assuming the response has a bookings array
-//       } catch (error) {
-//         console.error("Error fetching bookings:", error);
-//       }
-//     };
-
-//     fetchBookings();
-//   }, [userId]);
-
-//   return (
-//     <Container className="my-5">
-//       <h2>My Bookings</h2>
-//       {bookings.length > 0 ? (
-//         <Table striped bordered hover>
-//           <thead>
-//             <tr>
-//               <th>Employee</th>
-//               <th>City</th>
-//               <th>Date</th>
-//               <th>Time</th>
-//               <th>Actions</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {bookings.map((booking, index) => (
-//               <tr key={index}>
-//                 <td>
-//                   <Image src={booking.employeeImage} rounded width={50} />{" "}
-//                   {booking.employeeName}
-//                 </td>
-//                 <td>{booking.city}</td>
-//                 <td>{new Date(booking.date).toLocaleDateString()}</td>
-//                 <td>{booking.time}</td>
-//                 <td>
-//                   <Button variant="danger">Cancel</Button>
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </Table>
-//       ) : (
-//         <p>No bookings available.</p>
-//       )}
-//     </Container>
-//   );
-// };
-
-// export default CartBookingPage;
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Cart-styles.css";
@@ -71,14 +8,14 @@ const Cartpage = () => {
 
   // Function to fetch bookings
   const fetchBookings = async () => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("authToken");
     if (!token) {
       setError("No token found. Please log in.");
       return;
-    } 
+    }
 
     try {
-      const response = await axios.get("http://localhost:8000/api/cart", {
+      const response = await axios.get("http://localhost:8000/api/Cartpage", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -90,6 +27,55 @@ const Cartpage = () => {
     }
   };
 
+  // Function to remove a booking
+  // const removeBooking = (indexToRemove) => {
+  //   const updatedBookings = bookings.filter(
+  //     (_, index) => index !== indexToRemove
+  //   );
+  //   setBookings(updatedBookings); // Update the state to reflect the removal
+  // };
+
+  // const removeBooking = (indexToRemove) => {
+  //   // Filter out the booking at the specified index
+  //   const updatedBookings = bookings.filter(
+  //     (_, index) => index !== indexToRemove
+  //   );
+
+  //   setBookings(updatedBookings); // Update the state to reflect the removal
+  // };
+
+  const removeBooking = async (bookingId, indexToRemove) => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      setError("No token found. Please log in.");
+      return;
+    }
+
+    try {
+      // Make a DELETE request to the backend to remove the booking
+      const response = await axios.delete(
+        "http://localhost:8000/api/removeBooking",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          data: { bookingId }, // Send the booking ID to be removed
+        }
+      );
+
+      console.log(response.data.message); // Log success message from the backend
+
+      // Update the bookings state to reflect the removal
+      const updatedBookings = bookings.filter(
+        (_, index) => index !== indexToRemove
+      );
+      setBookings(updatedBookings); // Update the state
+    } catch (err) {
+      console.error(err);
+      setError(err.response?.data?.message || "Error removing booking.");
+    }
+  };
+
   useEffect(() => {
     fetchBookings();
   }, []);
@@ -98,7 +84,7 @@ const Cartpage = () => {
     <div className="Cart">
       <h1>Your Bookings</h1>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      {bookings.length > 0 ? (
+      {bookings && bookings.length > 0 ? (
         <ul>
           {bookings.map((booking, index) => (
             <li key={index}>
@@ -111,12 +97,37 @@ const Cartpage = () => {
               <p>City: {booking.city}</p>
               <p>Date: {new Date(booking.date).toLocaleDateString()}</p>
               <p>Time: {booking.time}</p>
+              <button
+                onClick={() => removeBooking(booking._id, index)} // Pass booking ID and index
+                style={{
+                  marginTop: "10px",
+                  backgroundColor: "red",
+                  color: "white",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                Remove Booking
+              </button>
             </li>
           ))}
         </ul>
       ) : (
         <p>No bookings available.</p>
       )}
+      <button
+        onClick={() => (window.location.href = "/")} // Redirect to home
+        style={{
+          marginTop: "20px",
+          backgroundColor: "#4CAF50",
+          color: "white",
+          border: "none",
+          padding: "10px 20px",
+          cursor: "pointer",
+        }}
+      >
+        Back to Home
+      </button>
     </div>
   );
 };
