@@ -5,11 +5,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
 
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { count } = useSelector((state) => state.bookings);
   // const username = useSelector((state) => state.logininfo.user.username);
   const [searchParams] = useSearchParams();
   const [isAdmin, setIsAdmin] = useState(false);
@@ -101,7 +103,7 @@ const Header = () => {
             </Nav>
           </Nav>
           <Navbar.Brand href="#home" className="mx-3">
-            <Link to="/Cartpage" className="btn btn-success">
+            {/* <Link to="/Cartpage" className="btn btn-success">
               {" "}
               <img
                 alt="My Bookings"
@@ -110,6 +112,30 @@ const Header = () => {
                 height="30"
                 className="d-inline-block align-top mx-2"
               />{" "}
+            </Link> */}
+
+            <Link to="/Cartpage" className="btn btn-success">
+              <img
+                alt="My Bookings"
+                src="shopping-cart.svg"
+                width="30"
+                height="30"
+                className="d-inline-block align-top mx-2"
+              />
+              {count > 0 && ( // Display count only if greater than 0
+                <span
+                  style={{
+                    backgroundColor: "red",
+                    color: "white",
+                    borderRadius: "50%",
+                    padding: "5px 10px",
+                    fontSize: "12px",
+                    marginLeft: "10px",
+                  }}
+                >
+                  {count}
+                </span>
+              )}
             </Link>
           </Navbar.Brand>
         </Navbar.Collapse>

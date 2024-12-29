@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import userslice from "../_components/slices/registerslice.js";
 import loginSlice from "../_components/slices/loginslice.js";
+import bookingsReducer from "../_components/slices/bookingsSlice";
 import {
   FLUSH,
   REHYDRATE,
@@ -22,6 +23,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   userInfo: userslice,
   logininfo: loginSlice,
+  bookings: bookingsReducer,
 });
 
 // Apply persistReducer to the combined reducer
