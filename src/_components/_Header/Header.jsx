@@ -11,7 +11,7 @@ import Button from "react-bootstrap/esm/Button";
 
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const { count } = useSelector((state) => state.bookings);
+  const bookingCount = useSelector((state) => state.bookings.count);
   // const username = useSelector((state) => state.logininfo.user.username);
   const [searchParams] = useSearchParams();
   const [isAdmin, setIsAdmin] = useState(false);
@@ -122,19 +122,8 @@ const Header = () => {
                 height="30"
                 className="d-inline-block align-top mx-2"
               />
-              {count > 0 && ( // Display count only if greater than 0
-                <span
-                  style={{
-                    backgroundColor: "red",
-                    color: "white",
-                    borderRadius: "50%",
-                    padding: "5px 10px",
-                    fontSize: "12px",
-                    marginLeft: "10px",
-                  }}
-                >
-                  {count}
-                </span>
+              {bookingCount > 0 && (
+                <span className="badge">{bookingCount}</span>
               )}
             </Link>
           </Navbar.Brand>
