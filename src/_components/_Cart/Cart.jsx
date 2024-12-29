@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "./Cart-styles.css";
 
 const Cartpage = () => {
@@ -28,22 +29,6 @@ const Cartpage = () => {
   };
 
   // Function to remove a booking
-  // const removeBooking = (indexToRemove) => {
-  //   const updatedBookings = bookings.filter(
-  //     (_, index) => index !== indexToRemove
-  //   );
-  //   setBookings(updatedBookings); // Update the state to reflect the removal
-  // };
-
-  // const removeBooking = (indexToRemove) => {
-  //   // Filter out the booking at the specified index
-  //   const updatedBookings = bookings.filter(
-  //     (_, index) => index !== indexToRemove
-  //   );
-
-  //   setBookings(updatedBookings); // Update the state to reflect the removal
-  // };
-
   const removeBooking = async (bookingId, indexToRemove) => {
     const token = localStorage.getItem("authToken");
     if (!token) {
@@ -83,6 +68,7 @@ const Cartpage = () => {
   return (
     <div className="Cart">
       <h1>Your Bookings</h1>
+
       {error && <p style={{ color: "red" }}>{error}</p>}
       {bookings && bookings.length > 0 ? (
         <ul>
@@ -115,19 +101,23 @@ const Cartpage = () => {
       ) : (
         <p>No bookings available.</p>
       )}
-      <button
-        onClick={() => (window.location.href = "/")} // Redirect to home
-        style={{
-          marginTop: "20px",
-          backgroundColor: "#4CAF50",
-          color: "white",
-          border: "none",
-          padding: "10px 20px",
-          cursor: "pointer",
-        }}
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
       >
-        Back to Home
-      </button>
+        <button
+          onClick={() => (window.location.href = "/")} // Redirect to home
+          style={{
+            marginTop: "20px",
+            backgroundColor: "#4CAF50",
+            color: "white",
+            border: "none",
+            padding: "10px 20px",
+            cursor: "pointer",
+          }}
+        >
+          Back to Home
+        </button>
+      </div>
     </div>
   );
 };
