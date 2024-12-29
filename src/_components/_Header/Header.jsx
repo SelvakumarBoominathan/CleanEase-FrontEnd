@@ -102,18 +102,7 @@ const Header = () => {
               </Link>
             </Nav>
           </Nav>
-          <Navbar.Brand href="#home" className="mx-3">
-            {/* <Link to="/Cartpage" className="btn btn-success">
-              {" "}
-              <img
-                alt="My Bookings"
-                src="shopping-cart.svg"
-                width="30"
-                height="30"
-                className="d-inline-block align-top mx-2"
-              />{" "}
-            </Link> */}
-
+          <Navbar.Brand className="mx-3">
             <Link to="/Cartpage" className="btn btn-success">
               <img
                 alt="My Bookings"
