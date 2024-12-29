@@ -1,5 +1,5 @@
 /* General Page Styling */
-body {
+.Cart body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -7,7 +7,7 @@ body {
 }
 
 /* Container */
-div {
+.Cart div {
   max-width: 800px;
   margin: 20px auto;
   background-color: #ffffff;
@@ -17,31 +17,31 @@ div {
 }
 
 /* Header */
-h1 {
+.Cart h1 {
   text-align: center;
   color: #333333;
   margin-bottom: 20px;
 }
 
 /* Error Message */
-p {
+.Cart p {
   text-align: center;
   font-size: 16px;
 }
 
-p[style*="color: red"] {
+.Cart p[style*="color: red"] {
   color: #ff4d4f;
   font-weight: bold;
 }
 
 /* Booking List */
-ul {
+.Cart ul {
   list-style-type: none;
   padding: 0;
 }
 
 /* Booking Item */
-li {
+.Cart li {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -53,7 +53,7 @@ li {
 }
 
 /* Booking Image */
-img {
+.Cart img {
   border-radius: 6px;
   margin-right: 15px;
   width: 80px;
@@ -63,13 +63,13 @@ img {
 }
 
 /* Booking Details */
-h3 {
+.Cart h3 {
   margin: 0 0 5px;
   font-size: 18px;
   color: #2c3e50;
 }
 
-p {
+.Cart p {
   margin: 5px 0;
   font-size: 14px;
   color: #7f8c8d;

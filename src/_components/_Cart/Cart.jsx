@@ -65,17 +65,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Cart-styles.css";
 
-const CartPage = () => {
+const Cartpage = () => {
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState("");
 
   // Function to fetch bookings
   const fetchBookings = async () => {
-    const token = localStorage.getItem("token"); // Replace with your token storage mechanism
+    const token = localStorage.getItem("token");
     if (!token) {
       setError("No token found. Please log in.");
       return;
-    }
+    } 
 
     try {
       const response = await axios.get("http://localhost:8000/api/cart", {
@@ -95,7 +95,7 @@ const CartPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="Cart">
       <h1>Your Bookings</h1>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {bookings.length > 0 ? (
@@ -121,4 +121,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default Cartpage;
