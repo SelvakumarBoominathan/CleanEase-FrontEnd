@@ -1,13 +1,13 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 import "./Footer-styles.css";
 
-const Footer = () => {
+const Footer = forwardRef((props, ref) => {
   return (
-    <footer className="bg-dark text-dark py-4 mt-5">
+    <footer {...props} ref={ref} className="bg-dark text-dark py-4 mt-5">
       <Container>
         <Row>
           <ListGroup.Item className="bg-dark text-white border-0">
@@ -41,5 +41,6 @@ const Footer = () => {
       </Container>
     </footer>
   );
-};
+});
+
 export default Footer;

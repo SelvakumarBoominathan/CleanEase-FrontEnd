@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Searchfield from "./_Searchfield/Searchfield";
 import Body from "./_Body/Body";
 import Header from "./_Header/Header";
@@ -9,9 +9,17 @@ const Homepage = () => {
   const [service, setService] = useState("All");
   const [cost, setCost] = useState("All");
 
+  // Reference for the footer section
+  const footerRef = useRef(null);
+
+  // Function to scroll to footer
+  const navigateToFooter = () => {
+    footerRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div>
-      <Header />
+      <Header navigateToFooter={navigateToFooter} />
       <Searchfield
         service={service}
         cost={cost}
@@ -19,7 +27,7 @@ const Homepage = () => {
         setCost={setCost}
       />
       <Body service={service} cost={cost} />
-      <Footer />
+      <Footer ref={footerRef} />
     </div>
   );
 };

@@ -1,18 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Header-styles.css";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import Button from "react-bootstrap/esm/Button";
 
-const Header = () => {
+const Header = ({ navigateToFooter }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const bookingCount = useSelector((state) => state.bookings.count);
-  // const username = useSelector((state) => state.logininfo.user.username);
   const [searchParams] = useSearchParams();
   const [isAdmin, setIsAdmin] = useState(false);
   const username = searchParams.get("user");
@@ -26,30 +23,28 @@ const Header = () => {
       setIsAdmin(true);
     }
   }, []);
+
   const metaData = [
-    {
-      path: "/",
-      name: "Home",
-    },
-    {
-      path: "/about",
-      name: "About",
-    },
-    {
-      path: "/contact",
-      name: "Contact",
-    },
-    {
-      path: "/service",
-      name: "Service",
-    },
+    { path: "/", name: "Home", isFunction: false },
+    { path: "", name: "About", isFunction: true },
+    { path: "", name: "Contact", isFunction: true },
+    { path: "", name: "Service", isFunction: true },
   ];
 
-  function handleLogout() {
-    localStorage.removeItem("authToken");
-
-    setIsAuthenticated(false);
-  }
+  const handleLinkClick = (path) => {
+    if (path.startsWith("#")) {
+      const elementId = path.substring(1); // Remove the "#" to get the ID
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      } else {
+        console.warn(`Element with ID ${elementId} not found.`);
+      }
+    } else {
+      // Fallback for route navigation
+      window.location.href = path;
+    }
+  };
 
   return (
     <Navbar expand="lg" className="navbar">
@@ -67,27 +62,41 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-left list-name">
-            {metaData.map((item) => (
-              <Nav.Link href={item.path} key={item.name}>
-                <div className="list_item">{item.name}</div>
-              </Nav.Link>
-            ))}
+            {metaData.map((item) =>
+              item.isFunction ? (
+                <Nav.Link
+                  as="button"
+                  key={item.name}
+                  onClick={navigateToFooter}
+                  className="list_item btn-link"
+                >
+                  {item.name}
+                </Nav.Link>
+              ) : (
+                <Nav.Link
+                  as={Link}
+                  to={item.path}
+                  key={item.name}
+                  className="list_item"
+                >
+                  {item.name}
+                </Nav.Link>
+              )
+            )}
           </Nav>
           <Nav className="ms-auto w-30">
             {!isAuthenticated ? (
-              <Nav className="ms-auto  mt-1 mx-1">
+              <Nav className="ms-auto mt-1 mx-1">
                 <Link to="/Registerpage" className="btn btn-success">
                   Sign up
                 </Link>
               </Nav>
             ) : (
-              <Nav className="ms-auto  mt-1 mx-1">
+              <Nav className="ms-auto mt-1 mx-1">
                 <Link
                   to={`/emailverification/?user=${username}`}
-                  // to="/emailverification"
                   className="btn btn-success"
                 >
-                  {/* {isAdmin ? "Manage data" : "Reset Password"} */}
                   Reset Password
                 </Link>
               </Nav>
@@ -96,7 +105,7 @@ const Header = () => {
               <Link
                 to="/login"
                 className="btn btn-danger"
-                onClick={handleLogout}
+                onClick={() => localStorage.removeItem("authToken")}
               >
                 {isAuthenticated ? "Logout" : "Login"}
               </Link>

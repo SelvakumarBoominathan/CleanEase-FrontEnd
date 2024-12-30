@@ -85,7 +85,7 @@ const Registerpage = () => {
 
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-90">
-      <h1>SignUp Nexus!</h1>
+      <h1>Signup here!</h1>
       <Form
         className="Form-Register shadow"
         noValidate
@@ -138,8 +138,6 @@ const Registerpage = () => {
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
-        </Row>
-        <Row className="mb-3 mx-3 d-grid align-items-center">
           <Form.Group
             as={Row}
             className="col-md-12"
@@ -171,6 +169,7 @@ const Registerpage = () => {
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
         </Row>
+
         <Form.Group className="mb-3">
           <Form.Check
             required
