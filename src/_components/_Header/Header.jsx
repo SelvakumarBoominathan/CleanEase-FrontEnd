@@ -33,7 +33,7 @@ const Header = ({ navigateToFooter }) => {
 
   const handleLinkClick = (path) => {
     if (path.startsWith("#")) {
-      const elementId = path.substring(1); // Remove the "#" to get the ID
+      const elementId = path.substring(1);
       const element = document.getElementById(elementId);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
@@ -41,7 +41,6 @@ const Header = ({ navigateToFooter }) => {
         console.warn(`Element with ID ${elementId} not found.`);
       }
     } else {
-      // Fallback for route navigation
       window.location.href = path;
     }
   };
@@ -49,7 +48,7 @@ const Header = ({ navigateToFooter }) => {
   return (
     <Navbar expand="lg" className="navbar">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand>
           <img
             alt=""
             src="logo.svg"
