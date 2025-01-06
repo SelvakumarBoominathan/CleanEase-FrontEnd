@@ -1,29 +1,5 @@
 // // end points to make get post requests from front end
 
-// //Make api request
-
-// //authenticate function
-// export async function authenticate(username) {
-//   try {
-//     // Send a POST request to the /api/authenticate endpoint with the username
-//     return await axios.post("/api/authenticate", { username });
-//   } catch (error) {
-//     return { error: "Username doesn't exist...!" };
-//   }
-// }
-
-// //get User details after authentication (above)
-
-// export async function getuser({ username }) {
-//   try {
-//     //get the data of the user using axios get and destructured in an object
-//     const { data } = await axios.get(`/api/user/${username}`);
-//     return { data };
-//   } catch (error) {
-//     return { error: "Password does not match...!" };
-//   }
-// }
-
 //function for user registration
 import axios from "axios";
 
@@ -282,6 +258,30 @@ const removeBooking = async (booking) => {
     setError(err.response?.data?.message || "Error removing booking.");
   }
 };
+
+// //Make api request
+
+// //authenticate function
+// export async function authenticate(username) {
+//   try {
+//     // Send a POST request to the /api/authenticate endpoint with the username
+//     return await axios.post("/api/authenticate", { username });
+//   } catch (error) {
+//     return { error: "Username doesn't exist...!" };
+//   }
+// }
+
+// //get User details after authentication
+
+// export async function getuser({ username }) {
+//   try {
+//     //get the data of the user using axios get and destructured in an object
+//     const { data } = await axios.get(`/api/user/${username}`);
+//     return { data };
+//   } catch (error) {
+//     return { error: "Password does not match...!" };
+//   }
+// }
 
 //Get Checklist Data
 export const getChecklist = () => {};
