@@ -20,6 +20,7 @@ const Footer = forwardRef((props, ref) => {
             />{" "}
             <h6 className="header">CleanEase</h6>
           </ListGroup.Item>
+
           <Col md={5}>
             <h6>Company</h6>
             <ListGroup variant="flush">
