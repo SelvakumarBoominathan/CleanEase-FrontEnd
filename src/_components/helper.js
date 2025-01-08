@@ -3,7 +3,8 @@
 //function for user registration
 import axios from "axios";
 
-const baseURL = "http://localhost:8000/api";
+// const baseURL = "http://localhost:8000/api";
+const baseURL = import.meta.env.VITE_BE_URL;
 
 export const registerUser = async (userData) => {
   try {
