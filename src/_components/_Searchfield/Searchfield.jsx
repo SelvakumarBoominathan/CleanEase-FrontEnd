@@ -15,7 +15,7 @@ const Searchfield = ({ service, cost, setService, setCost }) => {
     { label: "Car Cleaner", value: 2 },
     { label: "Kitchen Cleaner", value: 3 },
     { label: "Gardener", value: 4 },
-    { label: "Electrition", value: 5 },
+    { label: "Electricion", value: 5 },
     { label: "Plumber", value: 6 },
     { label: "AC service", value: 7 },
     { label: "Vessel Washer", value: 8 },
@@ -44,7 +44,7 @@ const Searchfield = ({ service, cost, setService, setCost }) => {
         </div>
         <Container className="d-flex align-items-center justify-content-between mt-3 gap-4 container1">
           <Dropdown className="d-grid place-items-center">
-            Service :
+            Filter by Service :
             <Dropdown.Toggle
               variant="success"
               id="dropdown-basic"

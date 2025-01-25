@@ -24,11 +24,18 @@ const Header = ({ navigateToFooter }) => {
     }
   }, []);
 
+  // const metaData = [
+  //   { path: "/", name: "Home", isFunction: false },
+  //   { path: "", name: "About", isFunction: true },
+  //   { path: "", name: "Contact", isFunction: true },
+  //   { path: "", name: "Service", isFunction: true },
+  // ];
+
   const metaData = [
     { path: "/", name: "Home", isFunction: false },
-    { path: "", name: "About", isFunction: true },
-    { path: "", name: "Contact", isFunction: true },
-    { path: "", name: "Service", isFunction: true },
+    { path: "#about", name: "About", isFunction: true }, // Example updated path
+    { path: "#contact", name: "Contact", isFunction: true },
+    { path: "#service", name: "Service", isFunction: true },
   ];
 
   const handleLinkClick = (path) => {
