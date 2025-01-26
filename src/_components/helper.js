@@ -231,35 +231,35 @@ export const addBooking = async (bookingData) => {
   }
 };
 
-const removeBooking = async (booking) => {
-  const token = localStorage.getItem("authToken");
-  if (!token) {
-    setError("No records found. Please log in.");
-    return;
-  }
+// const removeBooking = async (booking) => {
+//   const token = localStorage.getItem("authToken");
+//   if (!token) {
+//     setError("No records found. Please log in.");
+//     return;
+//   }
 
-  try {
-    const response = await axios.post(
-      "http://localhost:8000/api/removeBooking",
-      {
-        employeeName: booking.employeeName,
-        date: booking.date,
-        time: booking.time,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+//   try {
+//     const response = await axios.post(
+//       "http://localhost:8000/api/removeBooking",
+//       {
+//         employeeName: booking.employeeName,
+//         date: booking.date,
+//         time: booking.time,
+//       },
+//       {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       }
+//     );
 
-    // Update the bookings in the frontend after deletion
-    setBookings(response.data.bookings);
-  } catch (err) {
-    console.error(err);
-    setError(err.response?.data?.message || "Error removing booking.");
-  }
-};
+//     // Update the bookings in the frontend after deletion
+//     setBookings(response.data.bookings);
+//   } catch (err) {
+//     console.error(err);
+//     setError(err.response?.data?.message || "Error removing booking.");
+//   }
+// };
 
 // //Make api request
 
