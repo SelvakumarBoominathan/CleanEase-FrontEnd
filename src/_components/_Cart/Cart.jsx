@@ -19,11 +19,14 @@ const Cartpage = () => {
     }
 
     try {
-      const response = await axios.get("http://localhost:8000/api/Cartpage", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        "https://mellifluous-swan-470b44.netlify.app/api/Cartpage",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setBookings(response.data.bookings);
       dispatch(setBookingCount(response.data.bookings.length));
     } catch (err) {
