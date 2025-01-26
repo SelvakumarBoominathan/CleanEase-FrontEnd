@@ -233,7 +233,7 @@ export const addBooking = async (bookingData) => {
 const removeBooking = async (booking) => {
   const token = localStorage.getItem("authToken");
   if (!token) {
-    setError("No token found. Please log in.");
+    setError("No records found. Please log in.");
     return;
   }
 
