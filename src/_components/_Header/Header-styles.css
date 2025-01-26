@@ -58,5 +58,8 @@
 
   .list-name > * {
     margin: 5px 0; /* Add spacing between items */
+    display: flex;
+    flex-direction: column; /* Stack navigation items */
+    align-items: center;
   }
 }
