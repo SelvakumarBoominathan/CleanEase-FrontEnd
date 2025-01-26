@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, Suspense, useState } from "react";
 import { ButtonGroup, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
@@ -177,7 +177,7 @@ const Body = ({ service, cost }) => {
       <div className="grid-sys">
         {filteredWorkers.map((emp) => (
           <Card style={{ width: "18rem" }} key={emp.id}>
-            <Card.Img variant="top" src={emp.image} />
+            <Card.Img variant="top" loading="lazy" src={emp.image} />
             <Card.Body className="d-flex flex-column">
               <Card.Title>Name: {emp.name}</Card.Title>
               <Card.Text>Category: {emp.category}</Card.Text>
@@ -269,6 +269,7 @@ const Body = ({ service, cost }) => {
       </div>
 
       {/* Modals */}
+
       <AddEmployeeModal
         show={showModal}
         onHide={() => setShowModal(false)}
