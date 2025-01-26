@@ -20,7 +20,7 @@ const Cartpage = () => {
 
     try {
       const response = await axios.get(
-        "https://mellifluous-swan-470b44.netlify.app/api/Cartpage",
+        "https://cleanease-backend-2-1.onrender.com/api/Cartpage",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -45,12 +45,15 @@ const Cartpage = () => {
 
     try {
       // Make a DELETE request to the backend to remove the booking
-      await axios.delete("http://localhost:8000/api/removeBooking", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        data: { bookingId }, // Send the booking ID to be removed
-      });
+      await axios.delete(
+        "https://cleanease-backend-2-1.onrender.com/api/removeBooking",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          data: { bookingId }, // Send the booking ID to be removed
+        }
+      );
 
       // Update the bookings state to reflect the removal
       const updatedBookings = bookings.filter(
