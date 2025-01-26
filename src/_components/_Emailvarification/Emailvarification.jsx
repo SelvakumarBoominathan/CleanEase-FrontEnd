@@ -70,7 +70,7 @@ const Email_verification = () => {
               <Form.Label>Email Address</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="Enter email"
+                placeholder="Enter email address of your account"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
