@@ -14,7 +14,7 @@ const Cartpage = () => {
   const fetchBookings = async () => {
     const token = localStorage.getItem("authToken");
     if (!token) {
-      setError("No token found. Please log in.");
+      setError("No user found. Please log in.");
       return;
     }
 
@@ -36,7 +36,7 @@ const Cartpage = () => {
   const removeBooking = async (bookingId) => {
     const token = localStorage.getItem("authToken");
     if (!token) {
-      setError("No token found. Please log in.");
+      setError("No user found. Please log in.");
       return;
     }
 
