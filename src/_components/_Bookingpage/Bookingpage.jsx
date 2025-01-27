@@ -53,7 +53,7 @@ const BookingPage = () => {
 
     try {
       await addBooking(bookingData);
-      console.log(bookingData);
+      // console.log(bookingData);
       setBookingSuccess(true);
     } catch (error) {
       console.error("Error during booking:", error);

@@ -30,7 +30,7 @@ export const registerUser = async (userData) => {
 export const loginUser = async (userData) => {
   try {
     const response = await axios.post(`${baseURL}/login`, userData);
-    console.log("login successful");
+    // console.log("login successful");
 
     //storing token in localstorage
     const { token } = response.data;

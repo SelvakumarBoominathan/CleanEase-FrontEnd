@@ -67,7 +67,7 @@ const Setpassword = () => {
       setLoading(false);
     }
 
-    console.log({ newpassword: newpassword, reenterpassword: reenterpassword });
+    // console.log({ newpassword: newpassword, reenterpassword: reenterpassword });
   };
 
   return (

@@ -12,7 +12,7 @@ const Registerpage = () => {
   const users = useSelector((state) => state.userInfo.users); // Corrected selector
   const Navigate = useNavigate();
 
-  console.log(users);
+  // console.log(users);
 
   const [formInput, setFormInput] = useState({
     name: "",
@@ -35,7 +35,7 @@ const Registerpage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Form submitted with:", formInput);
+    // console.log("Form submitted with:", formInput);
     const form = event.currentTarget;
 
     const errors = await passwordvalidate({ password: formInput.password });
