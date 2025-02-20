@@ -19,6 +19,10 @@ h1 {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-weight: 800;
+  /* overflow: hidden; */
+  white-space: nowrap;
+  animation: typing 2s steps(200) infinite alternate-reverse;
+  /* animation: typing 2s steps(2000, end) forwards; */
 }
 
 .register-link-container {
@@ -39,4 +43,17 @@ h1 {
 
 p {
   margin-right: 5px;
+}
+
+/* #header {
+  animation: typing 2s steps(20) infinite alternate-reverse;
+} */
+
+@keyframes typing {
+  from {
+    width: 10%; /* Start with no width */
+  }
+  to {
+    width: 30%; /* Expand to full width */
+  }
 }

@@ -44,7 +44,7 @@ const Login = () => {
 
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center vh-100 w-90">
-      <h1>Let's Get in!</h1>
+      <h1 id="header">Let's Get in!</h1>
       <Form className="Form-Register shadow" onSubmit={handleSubmit}>
         <Row className="mb-1 mx-3 d-grid align-items-center">
           <Form.Group as={Row} className="col-md-12" controlId="formUserName">
