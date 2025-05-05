@@ -19,7 +19,7 @@ const persistConfig = {
   storage,
 };
 
-// Combine your reducers
+// Combine reducers
 const rootReducer = combineReducers({
   userInfo: userslice,
   logininfo: loginSlice,
