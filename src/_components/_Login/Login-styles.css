@@ -49,11 +49,4 @@ p {
   animation: typing 2s steps(20) infinite alternate-reverse;
 } */
 
-@keyframes typing {
-  from {
-    width: -20%; /* Start with no width */
-  }
-  to {
-    width: 20%; /* Expand to full width */
-  }
-}
+

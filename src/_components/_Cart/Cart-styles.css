@@ -1,200 +1,76 @@
-/* General Page Styling */
 .Cart {
-  padding: 20px;
-  font-family: "Arial", sans-serif;
-  background-color: #f8f9fa;
+  background-color: #0B132B;
+  color: #F9FAFB;
+  min-height: 100vh;
+  padding: 40px 20px;
+  font-family: "Poppins", sans-serif;
 }
 
 .Cart h1 {
   text-align: center;
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.Cart p {
-  font-size: 1rem;
-  color: #555;
-  text-align: center;
-}
-
-/* Booking List Styling */
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0 auto;
-  max-width: 1000px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-li {
-  background-color: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 300px;
-  text-align: center;
-}
-
-li img {
-  width: 100px;
-  height: 100px;
-  border-radius: 8px;
-  object-fit: cover;
   margin-bottom: 10px;
+  color: #00A8E8;
 }
 
-li h3 {
-  font-size: 1.2rem;
-  margin: 10px 0;
-  color: #333;
-}
-
-li p {
-  font-size: 0.9rem;
-  margin: 5px 0;
-  color: #666;
-}
-
-/* Button Styling */
-button {
-  padding: 10px 15px;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-button:hover {
-  transform: scale(1.05);
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
-button[style*="background-color: red"] {
-  background-color: #dc3545;
-  color: white;
-}
-
-button[style*="background-color: red"]:hover {
-  background-color: #c82333;
-}
-
-button[style*="background-color: #4CAF50"] {
-  background-color: #28a745;
-  color: white;
-}
-
-button[style*="background-color: #4CAF50"]:hover {
-  background-color: #218838;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  ul {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  li {
-    width: 100%;
-    max-width: 400px;
-  }
-}
-
-@media (max-width: 480px) {
-  li {
-    padding: 10px;
-  }
-
-  li h3 {
-    font-size: 1rem;
-  }
-
-  li p {
-    font-size: 0.8rem;
-  }
-
-  button {
-    font-size: 0.9rem;
-    padding: 8px 12px;
-  }
-}
-
-.home-link {
-  display: inline-block;
-  margin-bottom: 20px;
-  color: #007bff;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-.home-link:hover {
-  text-decoration: underline;
-}
-
-.Cart {
+.Cart h2 {
   text-align: center;
-  padding: 20px;
+  margin-bottom: 30px;
+  color: #F9FAFB;
 }
 
 .booking-list {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
 .booking-item {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin: 10px auto;
-  padding: 15px;
-  max-width: 500px;
-  text-align: left;
-  background-color: #f9f9f9;
+  background-color: #132A54;
+  padding: 20px;
+  border-radius: 12px;
+  width: 260px;
+  text-align: center;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.booking-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .booking-item img {
-  display: block;
+  border-radius: 50%;
   margin: 10px 0;
-  max-width: 100px;
 }
 
 .remove-button {
-  margin-top: 10px;
-  background-color: red;
-  color: white;
+  background-color: #FF4C29;
+  color: #F9FAFB;
   border: none;
   padding: 8px 12px;
+  border-radius: 8px;
   cursor: pointer;
-  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
 .remove-button:hover {
-  background-color: darkred;
-}
-
-.back-home-container {
-  margin-top: 20px;
+  background-color: #FF715B;
 }
 
 .back-home-button {
-  background-color: #4caf50;
-  color: white;
+  background-color: #00A8E8;
+  color: #0B132B;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 18px;
+  border-radius: 8px;
   cursor: pointer;
-  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
 .back-home-button:hover {
-  background-color: #45a049;
+  background-color: #05F2DB;
 }

@@ -1,65 +1,83 @@
-.title {
-  font-family: "Montserrat", sans-serif;
-  color: rgb(7, 74, 130);
-  font-optical-sizing: auto;
-  font-weight: 800;
-  font-style: normal;
-  place-content: center;
-}
-
+/* /* Header - Modern Navy + Sky Blue Theme */
 .navbar {
-  background-color: beige;
+  background-color: #1e1448; /* deep navy */
+  padding: 12px 0;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.list-name > *:hover {
-  color: #f00 !important;
-  text-decoration: underline;
-}
-
-.count-badge {
-  background-color: red;
-  color: white;
-  border-radius: 50%;
-  padding: 5px 10px;
-  font-size: 12px;
+.title {
+  display: inline-block;
   margin-left: 10px;
+  color: #F9FAFB; /* off-white text */
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .title {
-    font-size: 18px; /* Adjust title size for smaller screens */
-  }
-
-  .list-name {
-    display: flex;
-    flex-direction: column; /* Stack navigation items */
-    align-items: center;
-  }
-
-  .count-badge {
-    font-size: 10px; /* Smaller font size for badges */
-    padding: 3px 8px; /* Adjust padding for smaller screens */
-  }
+.list_name .list_item {
+  color: #F9FAFB;
+  margin: 0 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-@media (max-width: 480px) {
-  .title {
-    font-size: 16px; /* Further reduce title size for very small screens */
-  }
+.list_name .list_item:hover {
+  color: #00A8E8;
+  transform: scale(1.05);
+}
 
-  .navbar {
-    padding: 10px; /* Adjust padding for very small screens */
-  }
+.nav-buttons .btn {
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 6px 14px;
+  transition: all 0.3s ease;
+}
 
-  .list-name > * {
-    margin: 5px 0; /* Add spacing between items */
-    display: flex;
-    flex-direction: column; /* Stack navigation items */
-    align-items: center;
-  }
+/* Sign up / Reset Password Button */
+.btn-outline-primary {
+  color: #00A8E8;
+  border-color: #00A8E8;
+  background-color: transparent;
+}
+
+.btn-outline-primary:hover {
+  background-color: #05F2DB;
+  color: #0B132B;
+  border-color: #05F2DB;
+}
+
+/* Login / Logout Button */
+.btn-outline-danger {
+  color: #FF4C29;
+  border-color: #FF4C29;
+}
+
+.btn-outline-danger:hover {
+  background-color: #FF4C29;
+  color: #F9FAFB;
+  border-color: #FF4C29;
+}
+
+/* Cart Button */
+.btn-outline-success {
+  color: #00A8E8;
+  border-color: #00A8E8;
+  position: relative;
+}
+
+.btn-outline-success:hover {
+  background-color: #05F2DB;
+  color: #0B132B;
+  border-color: #05F2DB;
+}
+
+.badge {
+  background-color: #FF4C29;
+  color: #F9FAFB;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  position: absolute;
+  top: -8px;
+  right: -8px;
 }

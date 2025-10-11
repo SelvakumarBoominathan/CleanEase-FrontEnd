@@ -1,4 +1,4 @@
-footer h6 {
+/* footer h6 {
   color: rgb(234, 232, 232);
 }
 
@@ -13,4 +13,69 @@ footer .list-group-item {
   font-weight: 800;
   font-style: normal;
   place-content: center;
+} */
+
+footer {
+  background-color: #0b132b; /* deep navy background */
+  color: #f9fafb; /* bright white text */
+  padding: 40px 0;
+  margin-top: 50px;
+  font-family: "Poppins", sans-serif;
+}
+
+footer h6 {
+  color: #00a8e8; /* sky blue heading */
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+footer .header {
+  display: inline;
+  font-size: 1.3rem;
+  color: #05f2db; /* brand accent color */
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+footer .list-group-item {
+  background-color: transparent;
+  border: none;
+  color: #b8bfc6; /* muted text for details */
+  transition: color 0.3s ease;
+}
+
+footer .list-group-item:hover {
+  color: #f9fafb; /* brighten on hover */
+}
+
+footer img {
+  filter: brightness(1.2);
+}
+
+/* Buttons in footer (if added) */
+footer button {
+  background-color: #00a8e8;
+  color: #0b132b;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+footer button:hover {
+  background-color: #05f2db;
+  color: #0b132b;
+}
+
+/* Links in footer */
+footer a {
+  color: #00a8e8;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #05f2db;
+  text-decoration: underline;
 }
