@@ -32,9 +32,12 @@ footer h6 {
 footer .header {
   display: inline;
   font-size: 1.3rem;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
   color: #05f2db; /* brand accent color */
   font-weight: 700;
   margin-left: 10px;
+  place-content: center;
 }
 
 footer .list-group-item {
