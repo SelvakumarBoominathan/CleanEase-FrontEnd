@@ -1,6 +1,6 @@
 /* /* Header - Modern Navy + Sky Blue Theme */
 .navbar {
-  background-color: #1e1448; /* deep navy */
+  background-color: #0b132b; /* deep navy */
   padding: 12px 0;
   font-family: "Poppins", sans-serif;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
@@ -9,20 +9,20 @@
 .title {
   display: inline-block;
   margin-left: 10px;
-  color: #F9FAFB; /* off-white text */
+  color: #f9fafb; /* off-white text */
   font-weight: 700;
   font-size: 1.2rem;
 }
 
 .list_name .list_item {
-  color: #F9FAFB;
+  color: #f9fafb; /* off-white text */
   margin: 0 12px;
   font-weight: 500;
   transition: all 0.3s ease;
 }
 
 .list_name .list_item:hover {
-  color: #00A8E8;
+  color: #00a8e8;
   transform: scale(1.05);
 }
 
@@ -35,45 +35,45 @@
 
 /* Sign up / Reset Password Button */
 .btn-outline-primary {
-  color: #00A8E8;
-  border-color: #00A8E8;
+  color: #00a8e8;
+  border-color: #00a8e8;
   background-color: transparent;
 }
 
 .btn-outline-primary:hover {
-  background-color: #05F2DB;
-  color: #0B132B;
-  border-color: #05F2DB;
+  background-color: #05f2db;
+  color: #0b132b;
+  border-color: #05f2db;
 }
 
 /* Login / Logout Button */
 .btn-outline-danger {
-  color: #FF4C29;
-  border-color: #FF4C29;
+  color: #ff4c29;
+  border-color: #ff4c29;
 }
 
 .btn-outline-danger:hover {
-  background-color: #FF4C29;
-  color: #F9FAFB;
-  border-color: #FF4C29;
+  background-color: #ff4c29;
+  color: #f9fafb;
+  border-color: #ff4c29;
 }
 
 /* Cart Button */
 .btn-outline-success {
-  color: #00A8E8;
-  border-color: #00A8E8;
+  color: #00a8e8;
+  border-color: #00a8e8;
   position: relative;
 }
 
 .btn-outline-success:hover {
-  background-color: #05F2DB;
-  color: #0B132B;
-  border-color: #05F2DB;
+  background-color: #05f2db;
+  color: #0b132b;
+  border-color: #05f2db;
 }
 
 .badge {
-  background-color: #FF4C29;
-  color: #F9FAFB;
+  background-color: #ff4c29;
+  color: #f9fafb;
   border-radius: 50%;
   padding: 2px 6px;
   font-size: 0.75rem;
