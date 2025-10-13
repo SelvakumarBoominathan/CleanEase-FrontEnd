@@ -121,8 +121,27 @@ const Searchfield = ({ service, cost, setService, setCost }) => {
             Home services at your doorstep
           </motion.h1>
           <motion.h6 variants={itemVariants}>
-            Welcome <b>{username}</b>! Filter for{" "}
-            <span className="Span">SERVICES</span>
+            Welcome{" "}
+            <motion.span
+              className="Span"
+              animate={{
+                scale: [1, 1.1, 1],
+                color: ["#0077ff", "#00cc99", "#0077ff"],
+                textShadow: [
+                  "0px 0px 8px #0077ff",
+                  "0px 0px 20px #00cc99",
+                  "0px 0px 8px #0077ff",
+                ],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              {username}
+            </motion.span>
+            ! Filter for <span className="Span">SERVICES</span>
           </motion.h6>
         </motion.div>
 

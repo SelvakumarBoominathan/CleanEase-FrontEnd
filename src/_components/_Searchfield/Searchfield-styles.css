@@ -37,6 +37,11 @@ b {
   text-align: center;
   z-index: 20; /* 🟩 Ensures dropdown button sits above nearby items */
 }
+.Span {
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: larger;
+}
 
 .custom-menu {
   z-index: 9999 !important; /* 🟩 ✅ Final fix: dropdown menu always appears on top */
