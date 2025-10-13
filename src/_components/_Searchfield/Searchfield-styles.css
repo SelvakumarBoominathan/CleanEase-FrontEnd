@@ -10,6 +10,7 @@
 h1,
 h6 * {
   margin: 50px, 0, 50px, 0;
+  text-align: center;
 }
 
 .changing {
@@ -22,6 +23,26 @@ b {
 
 .dropdown-Width {
   width: 180px;
+}
+
+.filter-container {
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative; /* 🟩 Important: establishes stacking context */
+  z-index: 15; /* 🟩 Keeps this layer above other components */
+}
+
+.filter-dropdown {
+  text-align: center;
+  z-index: 20; /* 🟩 Ensures dropdown button sits above nearby items */
+}
+
+.custom-menu {
+  z-index: 9999 !important; /* 🟩 ✅ Final fix: dropdown menu always appears on top */
+  background-color: white;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 @media (max-width: 600px) {
