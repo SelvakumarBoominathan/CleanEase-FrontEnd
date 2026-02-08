@@ -1,148 +1,383 @@
-# CleanEase Frontend
+# CleanEase Frontend - Professional React Application
 
-CleanEase is an online platform that offers services such as cleaning, driving, plumbing, carpentry, gardening, and more. This frontend application, built using the MERN stack, provides user-friendly features for both users and administrators.
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![React](https://img.shields.io/badge/react-18.3+-61dafb)
+![Vite](https://img.shields.io/badge/vite-5.3+-646cff)
 
----
+A modern, production-ready React frontend for the CleanEase platform. Built with cutting-edge technologies including Vite, Redux Toolkit, and professional UI components.
 
-## Features
+📋 **Table of Contents**
 
-### For Users:
-
-- **Account Creation**: Users can register with their email addresses.
-- **Login & Password Reset**: Secure login and password reset functionality with OTP verification.
-- **Booking Services**: Users can view available services and book slots online.
-- **Cart Management**: A cart to manage selected services.
-
-### For Admins:
-
-- **Admin Login**: Access restricted to the admin account (Username: `admin`, Password: `Admin123$`).
-- **Employee Management**: Admins can add new employees or edit existing employee details. These options are invisible to regular users.
-
----
-
-## File Structure
-
-### Components
-
-- **\_Body**: Handles the main content and service listing.
-- **\_Bookingpage**: Manages the booking process, including date and time selection.
-- **\_Cart**: Displays selected services for the user.
-- **\_Emailverification**: Component for initiating the OTP process.
-- **\_Footer**: Application footer with company details.
-- **\_Header**: Application header with navigation.
-- **\_Login**: Login page for both users and admin.
-- **\_OTPverification**: Verifies the OTP during password reset.
-- **\_Registerpage**: User registration page.
-- **\_Searchfield**: Filters services by criteria such as cost and type.
-- **\_Setpassword**: Component for updating passwords after OTP verification.
-
-### State Management
-
-- **Slices**:
-  - `bookingsSlice.js`: Manages bookings state.
-  - `loginslice.js`: Handles login state for both users and admin.
-  - `registerslice.js`: Stores user registration data.
-- **store.js**: Centralized Redux store for managing the application's state.
-
-### Middleware
-
-- **auth.js**: Handles authentication logic and restricts access to certain features based on user roles.
-
-### Utilities
-
-- **helper.js**: Helper functions for reusable logic.
-- **validate.js**: Validation utilities for forms and inputs.
-
-### Core Files
-
-- **\_Homepage.jsx**: The main entry point for the application's homepage layout.
-- **App.jsx**: Root component managing routing and global structure.
-- **main.jsx**: Entry point for rendering the application.
-
-### Styling
-
-- **App.css**: Global styles for the application.
-
-### Configuration
-
-- **vite.config.js**: Configuration for Vite, the build tool used.
-- **index.html**: Main HTML file for the application.
-
-### Others
-
-- **.gitignore**: Specifies files and directories to exclude from Git.
+- [Features](#-features)
+- [Quick Start](#-quick-start)
+- [Project Structure](#-project-structure)
+- [API Integration](#-api-integration)
+- [Customization](#-customization)
+- [Deployment](#-deployment)
+- [Troubleshooting](#-troubleshooting)
 
 ---
 
-## Tech Stack
+## 🌟 Features
 
-- **Frontend Framework**: React.js
-- **State Management**: Redux Toolkit
-- **Styling**: CSS Modules
-- **Build Tool**: Vite
+### User Features
+
+- ✅ **User Authentication** - Register, login, password reset with OTP validation
+- ✅ **Browse Services** - Search and filter service providers
+- ✅ **Easy Booking** - Simple scheduling with date/time selection
+- ✅ **Shopping Cart** - Manage multiple bookings
+- ✅ **Ratings & Reviews** - Submit and view customer feedback
+- ✅ **Responsive Design** - Perfect on mobile, tablet, and desktop
+- ✅ **Secure Account** - JWT-based authentication, encrypted passwords
+
+### Admin Features
+
+- ✅ **Admin Dashboard** - Manage platform operations
+- ✅ **Employee Management** - Add, edit, delete service providers
+- ✅ **Service Management** - Control available services
+- ✅ **User Management** - View and manage users
+- ✅ **Analytics** - View booking statistics and trends
+- ✅ **Reporting** - Generate service reports
+
+### Technical Features
+
+- ⚡ **Fast Development** - Vite with HMR (Hot Module Replacement)
+- 🔒 **Secure** - JWT authentication, protected routes, secure token handling
+- 📦 **State Management** - Redux Toolkit with Redux Persist
+- 🎨 **Professional UI** - CSS variables, dark mode support, animations
+- 📱 **Mobile First** - Responsive design with Flexbox/Grid
+- 🚀 **Docker Ready** - Containerized deployment
+- 🔄 **API Integration** - Seamless Backend-2 integration
+- 📝 **Form Validation** - Client and server-side validation with Formik
 
 ---
 
-## Installation & Setup
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js installed
-- A running backend server for API requests
+- **Node.js** 18.0+ ([Download](https://nodejs.org/))
+- **npm** 9.0+ or **yarn** 3.0+
+- **Docker** & **Docker Compose** (for containerized setup)
 
-### Steps
+### Local Development Setup
 
-1. Clone the repository:
+**1. Clone repository and install dependencies:**
 
-   ```bash
-   git clone <repository-url>
-   ```
+```bash
+cd CleanEase-FrontEnd
+npm install
+```
 
-2. Navigate to the project directory:
+**2. Create environment file:**
 
-   ```bash
-   cd cleanease-frontend
-   ```
+```bash
+cp .env.example .env
+```
 
-3. Install dependencies:
+**3. Configure backend URL:**
 
-   ```bash
-   npm install
-   ```
+```env
+# .env - For local development
+VITE_BE_URL=http://localhost:8000
+```
 
-4. Start the development server:
+**4. Start development server:**
 
-   ```bash
-   npm run dev
-   ```
+```bash
+npm run dev
+```
 
-5. Access the application at `http://localhost:5173`.
+Access at: **`http://localhost:5173`**
+
+### Docker Setup
+
+**Full Stack (Frontend + Backend + Databases):**
+
+```bash
+# From project root
+./start-docker.sh        # Mac/Linux
+./start-docker.bat       # Windows
+
+# Services will be available at:
+# Frontend:  http://localhost:3000
+# Backend:   http://localhost:8000
+# MongoDB:   localhost:27017
+# Redis:     localhost:6379
+```
+
+**Frontend Only:**
+
+```bash
+docker build -t cleanease-frontend .
+docker run -p 3000:3000 \
+  -e VITE_BE_URL=http://backend:8000 \
+  cleanease-frontend
+```
 
 ---
 
-## Admin Credentials
+## 📁 Project Structure
 
-- **Username**: admin
-- **Password**: Admin123$
+```
+src/
+├── config/
+│   └── config.js              # 🔧 API endpoints, constants, features
+├── services/
+│   ├── api.js                 # 🌐 API service (refactored for Backend-2)
+│   └── apiClient.js           # 🔐 Axios client with JWT interceptors
+├── components/
+│   └── UIComponents.jsx       # 🎨 Professional UI components
+├── _components/               # 📄 Page components
+│   ├── _Header/               #    Navigation & header
+│   ├── _Homepage.jsx          #    Landing page
+│   ├── _Login/                #    Authentication
+│   ├── _Registerpage/         #    User registration
+│   ├── _Emailvarification/    #    Email verification
+│   ├── _OTPvalidation/        #    OTP validation
+│   ├── _Setpassword/          #    Password reset
+│   ├── _Bookingpage/          #    Service booking
+│   ├── _Body/                 #    Main content
+│   │   └── Modals/            #    Modal dialogs
+│   ├── _Cart/                 #    Shopping cart
+│   ├── _Searchfield/          #    Search filtering
+│   └── _Footer/               #    Footer
+├── middleware/
+│   └── auth.jsx               # 🔒 Protected routes
+├── store/
+│   └── store.js               # 📦 Redux store config
+├── slices/
+│   ├── loginslice.js          #    Auth state
+│   ├── registerslice.js       #    Registration state
+│   └── bookingsSlice.js       #    Bookings state
+├── utils/
+│   ├── errorHandler.js        # ⚠️  Error handling
+│   ├── helper.js              #    Helper functions
+│   └── validate.js            #    Form validation
+├── styles/
+│   ├── theme.css              # 🎨 CSS variables & theme
+│   └── components.css         #    Component styles
+├── App.jsx                    # 📱 Main app component
+└── main.jsx                   # ⚡ Entry point
+```
 
 ---
 
-## Key Features to Explore
+## 🔌 API Integration
 
-1. **User Registration and Login**
+### Refactored API Service
 
-   - Create a new account.
-   - Log in to your account.
-   - Reset password using OTP verification.
+All API calls now use a centralized, clean interface:
 
-2. **Booking Services**
+```javascript
+import * as api from "./services/api.js";
 
-   - Explore various services.
-   - Book slots based on availability.
+// Authentication
+await api.registerUser({ email, password, name });
+await api.loginUser({ username, password });
+await api.resetPassword({ username, otp, newPassword });
 
-3. **Admin Functionality**
-   - Log in with admin credentials.
-   - Add or edit employee details.
+// Employees
+await api.getAllEmployees(page, limit);
+await api.getEmployeeById(id);
+await api.addEmployee(employeeData); // Admin only
+await api.updateEmployee(id, employeeData); // Admin only
+await api.deleteEmployee(id); // Admin only
+
+// Bookings
+await api.addBooking(bookingData);
+await api.getUserBookings();
+await api.cancelBooking(bookingData);
+
+// Reviews
+await api.addReviewAndRating(reviewData);
+
+// Users
+await api.getUserDetails(username);
+await api.updateUserProfile(profileData);
+```
+
+### Automatic Features
+
+Every API call includes:
+
+- ✅ Automatic JWT token injection
+- ✅ Error handling & user notifications
+- ✅ Toast alerts for success/failure
+- ✅ Retry logic with exponential backoff
+- ✅ Request/response logging
+- ✅ Token expiry handling & auto-logout
+
+---
+
+## 🎨 Theming & Customization
+
+### Change Colors
+
+Edit `src/styles/theme.css`:
+
+```css
+:root {
+  --primary-color: #6366f1; /* Brand color */
+  --secondary-color: #8b5cf6; /* Secondary */
+  --success-color: #10b981; /* Success state */
+  --danger-color: #ef4444; /* Error state */
+  --warning-color: #f59e0b; /* Warning state */
+  /* ... more variables */
+}
+```
+
+---
+
+## 📦 npm Scripts
+
+```bash
+#Development
+npm run dev          # Start Vite dev server (http://localhost:5173)
+
+# Production
+npm run build        # Build optimized production bundle
+npm run preview      # Preview production build locally
+npm run lint         # Run ESLint code quality check
+```
+
+---
+
+## 🌍 Environment Variables
+
+Create `.env` file with these variables:
+
+```env
+# API Configuration
+VITE_BE_URL=http://localhost:8000
+
+# For Docker (service name from docker-compose)
+# VITE_BE_URL=http://backend:8000
+
+# For Production
+# VITE_BE_URL=https://api.yourdomain.com
+
+# Features
+VITE_ENABLE_ANALYTICS=false
+VITE_ENABLE_DEBUG=false
+```
+
+---
+
+## 🚀 Deployment
+
+### Production Build
+
+```bash
+npm run build
+# Creates optimized dist/ folder
+
+# Test build locally
+npm run preview
+```
+
+### Docker Deployment
+
+```bash
+# Build image
+docker build -t cleanease-frontend:latest .
+
+# Run container
+docker run -p 3000:3000 \
+  -e VITE_BE_URL=https://api.yourdomain.com \
+  cleanease-frontend:latest
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### Port 3000/5173 Already in Use
+
+**Linux/Mac:**
+
+```bash
+lsof -i :3000
+kill -9 <PID>
+```
+
+**Windows:**
+
+```bash
+netstat -ano | findstr :3000
+taskkill /PID <PID> /F
+```
+
+### Backend Connection Failed
+
+1. Ensure backend is running: `npm start` in backend folder
+2. Check API URL in `.env`: `VITE_BE_URL=http://localhost:8000`
+3. Verify CORS is enabled in backend
+
+### Module Not Found Error
+
+```bash
+#Clear cache and reinstall
+rm -rf node_modules package-lock.json
+npm install
+npm run dev
+```
+
+### Docker Build Fails
+
+```bash
+# Clean up Docker system
+docker system prune
+
+# Rebuild without cache
+docker build --no-cache -t cleanease-frontend .
+```
+
+---
+
+## 📚 Tech Stack
+
+| Layer                | Technology    | Version |
+| -------------------- | ------------- | ------- |
+| **UI Framework**     | React         | 18.3+   |
+| **Build Tool**       | Vite          | 5.3+    |
+| **State Management** | Redux Toolkit | 2.2+    |
+| **HTTP Client**      | Axios         | 1.7+    |
+| **Form Handling**    | Formik        | 2.4+    |
+| **Routing**          | React Router  | 6.23+   |
+| **Containerization** | Docker        | Latest  |
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open Pull Request
+
+---
+
+## 📄 License
+
+MIT License - see LICENSE file for details.
+
+---
+
+## 🎓 Additional Resources
+
+- [React Docs](https://react.dev)
+- [Vite Guide](https://vitejs.dev)
+- [Redux Toolkit](https://redux-toolkit.js.org)
+- [Axios Docs](https://axios-http.com)
+
+---
+
+**Version:** 1.0.0  
+**Last Updated:** February 8, 2026  
+**Status:** ✅ Production Ready
 
 ---
 
