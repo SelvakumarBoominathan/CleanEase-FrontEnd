@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Import Routes instead of Switch
 // import Homepage from "./_components/_Homepage.jsx";
@@ -14,21 +14,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 // lazy components
 const Homepage = React.lazy(() => import("./_components/_Homepage.jsx"));
-const Registerpage = React.lazy(() =>
-  import("./_components/_Registerpage/Registerpage")
+const Registerpage = React.lazy(
+  () => import("./_components/_Registerpage/Registerpage"),
 );
 const Login = React.lazy(() => import("./_components/_Login/Login"));
-const Emailvarification = React.lazy(() =>
-  import("./_components/_Emailvarification/Emailvarification.jsx")
+const Emailvarification = React.lazy(
+  () => import("./_components/_Emailvarification/Emailvarification.jsx"),
 );
-const OTPvalidation = React.lazy(() =>
-  import("./_components/_OTPvalidation/OTPvalidation.jsx")
+const OTPvalidation = React.lazy(
+  () => import("./_components/_OTPvalidation/OTPvalidation.jsx"),
 );
-const Setpassword = React.lazy(() =>
-  import("./_components/_Setpassword/Setpassword.jsx")
+const Setpassword = React.lazy(
+  () => import("./_components/_Setpassword/Setpassword.jsx"),
 );
-const Bookingpage = React.lazy(() =>
-  import("./_components/_Bookingpage/Bookingpage.jsx")
+const Bookingpage = React.lazy(
+  () => import("./_components/_Bookingpage/Bookingpage.jsx"),
 );
 const Cartpage = React.lazy(() => import("./_components/_Cart/Cart.jsx"));
 
