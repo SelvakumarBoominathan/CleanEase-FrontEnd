@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Container, Form, Button, Row, Toast, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { passwordvalidate } from "../validate.js";
-import { resetPassword } from "../helper.js";
+import { resetPassword } from "../../services/api.js";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
@@ -57,7 +57,7 @@ const Setpassword = () => {
     } catch (error) {
       console.error(
         "Error resetting password!",
-        error.response?.data || error.message
+        error.response?.data || error.message,
       );
       setError("Failed to reseting password!");
       setTimeout(() => {

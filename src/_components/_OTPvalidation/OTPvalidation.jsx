@@ -10,7 +10,7 @@ import {
   Spinner,
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { validateOTP } from "../helper";
+import { validateOTP } from "../../services/api.js";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
@@ -37,7 +37,7 @@ const OTPvalidation = () => {
     } catch (error) {
       console.error(
         "Error validate OTP:",
-        error.response?.data || error.message
+        error.response?.data || error.message,
       );
       setError("Incorrect OTP!");
       setTimeout(() => {

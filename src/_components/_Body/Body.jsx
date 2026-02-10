@@ -313,12 +313,12 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import {
-  getAllEmployee,
+  getAllEmployees,
   deleteEmployee,
   addEmployee,
-  updateEmp,
-  addReviewandRating,
-} from "../helper.js";
+  updateEmployee,
+  addReviewAndRating,
+} from "../../services/api.js";
 
 import AddEmployeeModal from "./Modals/AddEmployeeModal";
 import ReviewModal from "./Modals/ReviewModal";
@@ -366,7 +366,7 @@ const Body = ({ service, cost }) => {
 
   const fetchEmployees = async () => {
     try {
-      const employeeData = await getAllEmployee();
+      const employeeData = await getAllEmployees();
       setEmployee(employeeData);
     } catch (err) {
       setError(err.message);
@@ -429,11 +429,11 @@ const Body = ({ service, cost }) => {
   const handleUpdatesubmit = async (e) => {
     e.preventDefault();
     try {
-      await updateEmp(updateEmployee.id, updateEmployee);
+      await updateEmployee(updateEmployee.id, updateEmployee);
       setEmployee(
         employee.map((emp) =>
-          emp.id === updateEmployee.id ? updateEmployee : emp
-        )
+          emp.id === updateEmployee.id ? updateEmployee : emp,
+        ),
       );
       setUpdateShowModal(false);
       alert("Employee updated");
@@ -445,7 +445,7 @@ const Body = ({ service, cost }) => {
 
   const handleReviewSubmit = async (rating, reviewtext, username, empID) => {
     try {
-      await addReviewandRating(rating, reviewtext, username, empID);
+      await addReviewAndRating(rating, reviewtext, username, empID);
       await fetchEmployees();
       setRating(0);
       setReviewText("");

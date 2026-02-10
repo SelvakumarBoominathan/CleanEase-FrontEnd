@@ -2,10 +2,9 @@
 
 //function for user registration
 import axios from "axios";
+import { API_CONFIG } from "../config/config.js";
 
-// const baseURL = "http://localhost:8000/api";
-const baseURL = "https://cleanease-backend-2-1.onrender.com/api";
-// const baseURL = import.meta.env.VITE_BE_URL;
+const baseURL = API_CONFIG.API_URL;
 
 export const registerUser = async (userData) => {
   try {
@@ -59,7 +58,7 @@ export const sendRegisterMail = async (email) => {
   } catch (error) {
     console.error(
       "Error sending register mail:",
-      error.response?.data || error.message
+      error.response?.data || error.message,
     );
     throw error;
   }
@@ -134,7 +133,7 @@ export const deleteEmployee = async (id) => {
   } catch (error) {
     console.error(
       "Error in deleting employee:",
-      error.response?.data || error.message
+      error.response?.data || error.message,
     );
     throw error;
   }
@@ -145,13 +144,13 @@ export const updateEmp = async (id, empData) => {
   try {
     const response = await axios.put(
       `${baseURL}/updateEmployee/${id}`,
-      empData
+      empData,
     );
     return response.data;
   } catch (error) {
     console.error(
       "Error in updating employee:",
-      error.response?.data || error.message
+      error.response?.data || error.message,
     );
     throw error;
   }
@@ -166,7 +165,7 @@ export const addEmployee = async (newEmployee) => {
   } catch (error) {
     console.error(
       "Error in adding new employee : ",
-      error.response?.data || error.message
+      error.response?.data || error.message,
     );
   }
 };
@@ -191,7 +190,7 @@ export const addReviewandRating = async (
   rating,
   reviewtext,
   username,
-  empID
+  empID,
 ) => {
   try {
     const response = await axios.post(`${baseURL}/rating`, {
@@ -209,7 +208,7 @@ export const addReviewandRating = async (
     } else {
       console.error(
         "Error in posting rating and review comments : ",
-        error.response?.data || error.message
+        error.response?.data || error.message,
       );
       alert("An error occurred. Please try again later.");
     }
@@ -225,7 +224,7 @@ export const addBooking = async (bookingData) => {
   } catch (error) {
     console.error(
       "Error in booking service : ",
-      error.response?.data || error.message
+      error.response?.data || error.message,
     );
     alert("An error occurred. Please try again later.");
   }

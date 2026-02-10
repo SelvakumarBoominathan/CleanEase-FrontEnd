@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUsers } from "../slices/registerslice.js";
 import { passwordvalidate } from "../validate.js";
 import "./Registerpage-styles.css";
-import { registerUser } from "../helper.js";
+import { registerUser } from "../../services/api.js";
 
 const Registerpage = () => {
   const dispatch = useDispatch();

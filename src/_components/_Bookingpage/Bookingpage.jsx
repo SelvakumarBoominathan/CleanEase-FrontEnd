@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getEmployeeById, addBooking, getChecklist } from "../helper";
+import { getEmployeeById, addBooking } from "../../services/api.js";
 import Calendar from "react-calendar";
 import { useSelector } from "react-redux";
 import "react-calendar/dist/Calendar.css";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Form, Button, Row, Col, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { sendRegisterMail } from "../helper";
+import { sendPasswordResetOTP } from "../../services/api.js";
 import "./Emailvarification-styles.css";
 // import { useSearchParams } from "react-router-dom";
 
@@ -21,9 +21,9 @@ const Email_verification = () => {
     //Access username from redux
 
     try {
-      // Send OTP to the entered email using the helper function
-      const userdata = await sendRegisterMail(email);
-      const username = userdata.user;
+      // Send OTP to the entered email using the API function
+      const response = await sendPasswordResetOTP(email);
+      const username = response.data?.user;
       // Show alert for email submission
       setShowAlert(true);
 
@@ -35,7 +35,7 @@ const Email_verification = () => {
     } catch (error) {
       console.error(
         "Error sending OTP:",
-        error.response?.data || error.message
+        error.response?.data || error.message,
       );
       setError("Failed to send OTP. Please try again.");
       setTimeout(() => {
