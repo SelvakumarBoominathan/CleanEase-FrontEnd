@@ -3,10 +3,11 @@ import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Import Routes instead of Switch
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
 // lazy components
 const Homepage = lazy(() => import("./_components/_Homepage.jsx"));
-const Registerpage = lazy(() => import("./_components/_Registerpage/Registerpage.jsx"));
+const Registerpage = lazy(
+  () => import("./_components/_Registerpage/Registerpage.jsx"),
+);
 const Login = lazy(() => import("./_components/_Login/Login.jsx"));
 const Emailvarification = lazy(
   () => import("./_components/_Emailvarification/Emailvarification.jsx"),
